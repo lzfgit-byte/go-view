@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
-import { OUTPUT_DIR, brotliSize, chunkSizeWarningLimit, terserOptions, rollupOptions } from './build/constant'
+import { OUTPUT_DIR, brotliSize, chunkSizeWarningLimit, rollupOptions } from './build/constant'
 import viteCompression from 'vite-plugin-compression'
 import { axiosPre } from './src/settings/httpSetting'
 import { viteMockServe } from 'vite-plugin-mock'
@@ -11,6 +11,7 @@ function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir)
 }
 
+// @ts-ignore
 export default ({ mode }) => defineConfig({
   base: process.env.NODE_ENV === 'production' ? './' : '/',
   // 路径重定向
@@ -86,6 +87,7 @@ export default ({ mode }) => defineConfig({
     // minify: 'terser', // 如果需要用terser混淆，可打开这两行
     // terserOptions: terserOptions,
     rollupOptions: rollupOptions,
+    //@ts-ignore
     brotliSize: brotliSize,
     chunkSizeWarningLimit: chunkSizeWarningLimit
   }
