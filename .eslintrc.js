@@ -25,6 +25,7 @@ module.exports = {
     'vue/no-unused-vars': 'off',
     'vue/multi-word-component-names': 'off',
     'vue/valid-template-root': 'off',
+    'no-extra-semi': 'off',
     'vue/no-mutating-props': 'off'
   }
 }

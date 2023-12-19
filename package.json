@@ -31,7 +31,7 @@
     "keymaster": "^1.6.2",
     "mitt": "^3.0.0",
     "monaco-editor": "^0.33.0",
-    "naive-ui": "2.34.3",
+    "naive-ui": "2.36.0",
     "pinia": "^2.0.13",
     "screenfull": "^6.0.1",
     "three": "^0.145.0",

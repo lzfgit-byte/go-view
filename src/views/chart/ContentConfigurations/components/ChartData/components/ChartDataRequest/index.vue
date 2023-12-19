@@ -1,9 +1,9 @@
 <template>
   <n-modal class="go-chart-data-request" v-model:show="modelShowRef" :mask-closable="false" :closeOnEsc="false">
-    <n-card :bordered="false" role="dialog" size="small" aria-modal="true" style="width: 1000px; height: 800px">
+    <n-card :bordered="false" role="dialog" size="small" aria-modal="true" style="width: 1000px; height: 90vh">
       <template #header></template>
       <template #header-extra> </template>
-      <n-scrollbar style="max-height: 718px">
+      <n-scrollbar style="max-height: 80vh">
         <div class="go-pr-3">
           <n-space vertical>
             <request-global-config></request-global-config>
@@ -21,7 +21,12 @@
               {{ requestContentTypeObj[requestContentType] }}
             </n-tag>
           </div>
-          <n-button type="primary" @click="closeAndSendHandle"> {{ saveBtnText || '保存 & 发送请求' }}</n-button>
+          <div>
+            <n-space>
+              <n-button @click="closeHandle"> 取消 </n-button>
+              <n-button type="primary" @click="closeAndSendHandle"> {{ saveBtnText || '保存 & 发送请求' }}</n-button>
+            </n-space>
+          </div>
         </n-space>
       </template>
     </n-card>
