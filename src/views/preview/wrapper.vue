@@ -11,12 +11,14 @@ import { StorageEnum } from '@/enums/storageEnum'
 import { ref } from 'vue'
 import Preview from './index.vue'
 
-let key = ref(Date.now())
+let key = ref(Date.now());
 
 // 数据变更 -> 组件销毁重建
-;[SavePageEnum.JSON, SavePageEnum.CHART_TO_PREVIEW].forEach((saveEvent: string) => {
-  if (!window.opener && !window.opener.addEventListener) return
-  window.opener.addEventListener(saveEvent, async (e: any) => {
+[SavePageEnum.JSON, SavePageEnum.CHART_TO_PREVIEW].forEach((saveEvent: string) => {
+  if (!window?.opener && !window?.opener?.addEventListener) {
+    return
+  }
+  window?.opener?.addEventListener(saveEvent, async (e: any) => {
     const localStorageInfo: ChartEditStorageType = await getSessionStorageInfo() as unknown as ChartEditStorageType
     setSessionStorage(StorageEnum.GO_CHART_STORAGE_LIST, [{ ...e.detail, id: localStorageInfo.id }])
     key.value = Date.now()

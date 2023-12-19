@@ -11,18 +11,15 @@ import { useChartHistoryStore } from '@/store/modules/chartHistoryStore/chartHis
 // 全局设置
 import { useSettingStore } from '@/store/modules/settingStore/settingStore'
 // 历史类型
-import { HistoryActionTypeEnum, HistoryItemType, HistoryTargetTypeEnum } from '@/store/modules/chartHistoryStore/chartHistoryStore.d'
+import {
+  HistoryActionTypeEnum,
+  HistoryItemType,
+  HistoryTargetTypeEnum
+} from '@/store/modules/chartHistoryStore/chartHistoryStore.d'
 // 画布枚举
 import { MenuEnum, SyncEnum } from '@/enums/editPageEnum'
 
-import {
-  getUUID,
-  loadingStart,
-  loadingFinish,
-  loadingError,
-  isString,
-  isArray
-} from '@/utils'
+import { getUUID, loadingStart, loadingFinish, loadingError, isString, isArray } from '@/utils'
 
 import {
   ProjectInfoType,
@@ -185,6 +182,10 @@ export const useChartEditStore = defineStore({
     }
   },
   actions: {
+    //fix:[add]添加缺失的方法
+    setProjectInfo<T extends keyof ProjectInfoType, K extends ProjectInfoType[T]>(key: T, value: K) {
+      this.projectInfo[key] = value
+    },
     // * 获取需要存储的数据项
     getStorageInfo(): ChartEditStorage {
       return {
