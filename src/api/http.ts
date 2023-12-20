@@ -11,7 +11,6 @@ import type {
   RequestConfigType,
   RequestGlobalConfigType,
 } from '@/store/modules/chartEditStore/chartEditStore.d';
-import { JSONParse, JSONStringify } from '@/utils';
 
 export const get = <T = any>(url: string, params?: object) => {
   return axiosInstance<T>({
@@ -123,11 +122,6 @@ export const customizeHttp = (
   if (!targetParams || !globalParams) {
     return;
   }
-  let jsonStr = JSONStringify(targetParams);
-  [/\$projectId/g].forEach((reg) => {
-    jsonStr = jsonStr.replace(reg, 'a');
-    targetParams = JSONParse(jsonStr);
-  });
   // 全局
   const {
     // 全局请求源地址
