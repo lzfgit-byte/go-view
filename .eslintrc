@@ -23,6 +23,9 @@
     "eslint-comments/no-unlimited-disable": "off",
     "antfu/top-level-function": "off",
     "no-new-func": "off",
+    "antfu/if-newline": "off",
+    "@typescript-eslint/ban-types": "off",
+    "antfu/generic-spacing": "off",
     "dot-notation": "off",
     "@typescript-eslint/no-this-alias": "off"
   }
