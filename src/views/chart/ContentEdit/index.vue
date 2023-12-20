@@ -117,8 +117,8 @@ const chartEditStore = useChartEditStore()
 const { handleContextMenu } = useContextMenu()
 const { dataSyncFetch, intervalDataSyncUpdate } = useSync()
 
-// 加入网页关闭提示
-addWindowUnload()
+// 加入网页关闭提示 TODO,取消刷新拦截
+addWindowUnload()()
 
 // 编辑时注入scale变量，消除警告
 provide(SCALE_KEY, null)
