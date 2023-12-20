@@ -9,6 +9,7 @@ import { RequestDataTypeEnum } from '@/enums/httpEnum';
 import {
   JSONParse,
   JSONStringify,
+  fetchRouteParamsLocation,
   intervalUnitHandle,
   isPreview,
   newFunctionHandle,
@@ -80,8 +81,9 @@ export const useChartDataFetch = (
         const fetchFn = async () => {
           let request = toRaw(targetComponent.request);
           let jsonStr = JSONStringify(request);
-          [/\$projectId/g].forEach((reg) => {
-            jsonStr = jsonStr.replace(reg, 'a');
+          // TODO 添加更多动态参数
+          [{ reg: /\$projectId/g, value: fetchRouteParamsLocation() }].forEach(({ reg, value }) => {
+            jsonStr = jsonStr.replace(reg, value);
             request = JSONParse(jsonStr);
           });
           const res = await customizeHttp(request, toRaw(chartEditStore.getRequestGlobalConfig));

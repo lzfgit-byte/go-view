@@ -1,12 +1,15 @@
-import { useRoute } from 'vue-router'
-import { ResultEnum, RequestHttpHeaderEnum } from '@/enums/httpEnum'
-import { ErrorPageNameMap, PageEnum, PreviewEnum } from '@/enums/pageEnum'
-import { docPath, giteeSourceCodePath } from '@/settings/pathConst'
-import { SystemStoreEnum, SystemStoreUserInfoEnum } from '@/store/modules/systemStore/systemStore.d'
-import { StorageEnum } from '@/enums/storageEnum'
-import { clearLocalStorage, getLocalStorage, clearCookie } from './storage'
-import router from '@/router'
-import { logoutApi } from '@/api/path'
+import { useRoute } from 'vue-router';
+import { clearCookie, clearLocalStorage, getLocalStorage } from './storage';
+import { RequestHttpHeaderEnum, ResultEnum } from '@/enums/httpEnum';
+import { ErrorPageNameMap, PageEnum, PreviewEnum } from '@/enums/pageEnum';
+import { docPath, giteeSourceCodePath } from '@/settings/pathConst';
+import {
+  SystemStoreEnum,
+  SystemStoreUserInfoEnum,
+} from '@/store/modules/systemStore/systemStore.d';
+import { StorageEnum } from '@/enums/storageEnum';
+import router from '@/router';
+import { logoutApi } from '@/api/path';
 
 /**
  * * 根据名字跳转路由
@@ -14,26 +17,22 @@ import { logoutApi } from '@/api/path'
  * @param isReplace
  * @param windowOpen
  */
-export const routerTurnByName = (
-  pageName: string,
-  isReplace?: boolean,
-  windowOpen?: boolean
-) => {
+export const routerTurnByName = (pageName: string, isReplace?: boolean, windowOpen?: boolean) => {
   if (windowOpen) {
-    const path = fetchPathByName(pageName, 'href')
-    openNewWindow(path)
-    return
+    const path = fetchPathByName(pageName, 'href');
+    openNewWindow(path);
+    return;
   }
   if (isReplace) {
     router.replace({
       name: pageName,
-    })
-    return
+    });
+    return;
   }
   router.push({
     name: pageName,
-  })
-}
+  });
+};
 
 /**
  * * 根据名称获取路由信息
@@ -44,12 +43,12 @@ export const fetchPathByName = (pageName: string, p?: string) => {
   try {
     const pathData = router.resolve({
       name: pageName,
-    })
-    return p ? (pathData as any)[p] : pathData
+    });
+    return p ? (pathData as any)[p] : pathData;
   } catch (error) {
-    window['$message'].warning('查询路由信息失败，请联系管理员！')
+    window['$message'].warning('查询路由信息失败，请联系管理员！');
   }
-}
+};
 
 /**
  * * 根据路径跳转路由
@@ -64,23 +63,23 @@ export const routerTurnByPath = (
   isReplace?: boolean,
   windowOpen?: boolean
 ) => {
-  let fullPath = ''
+  let fullPath = '';
   if (query?.length) {
-    fullPath = `${path}/${query.join('/')}`
+    fullPath = `${path}/${query.join('/')}`;
   }
   if (windowOpen) {
-    return openNewWindow(fullPath)
+    return openNewWindow(fullPath);
   }
   if (isReplace) {
     router.replace({
       path: fullPath,
-    })
-    return
+    });
+    return;
   }
   router.push({
     path: fullPath,
-  })
-}
+  });
+};
 
 /**
  * * 错误页重定向
@@ -88,67 +87,67 @@ export const routerTurnByPath = (
  * @returns
  */
 export const redirectErrorPage = (code: ResultEnum) => {
-  if (!code) return false
-  const pageName = ErrorPageNameMap.get(code)
-  if (!pageName) return false
-  routerTurnByName(pageName)
-}
+  if (!code) return false;
+  const pageName = ErrorPageNameMap.get(code);
+  if (!pageName) return false;
+  routerTurnByName(pageName);
+};
 
 /**
  * * 重新加载当前路由页面
  */
 export const reloadRoutePage = () => {
-  routerTurnByName(PageEnum.RELOAD_NAME)
-}
+  routerTurnByName(PageEnum.RELOAD_NAME);
+};
 
 /**
  * * 退出登录
  */
 export const logout = async () => {
   try {
-    const res = await logoutApi()
-    if(res && res.code === ResultEnum.SUCCESS) {
-      window['$message'].success(window['$t']('global.logout_success'))
-      clearCookie(RequestHttpHeaderEnum.COOKIE)
-      clearLocalStorage(StorageEnum.GO_SYSTEM_STORE)
-      routerTurnByName(PageEnum.BASE_LOGIN_NAME)
+    const res = await logoutApi();
+    if (res && res.code === ResultEnum.SUCCESS) {
+      window['$message'].success(window['$t']('global.logout_success'));
+      clearCookie(RequestHttpHeaderEnum.COOKIE);
+      clearLocalStorage(StorageEnum.GO_SYSTEM_STORE);
+      routerTurnByName(PageEnum.BASE_LOGIN_NAME);
     }
   } catch (error) {
-    window['$message'].success(window['$t']('global.logout_failure'))
+    window['$message'].success(window['$t']('global.logout_failure'));
   }
-}
+};
 
 /**
  * * 新开页面
  * @param url
  */
 export const openNewWindow = (url: string) => {
-  return window.open(url, '_blank')
-}
+  return window.open(url, '_blank');
+};
 
 /**
  * * 打开项目文档
  * @param url
  */
 export const openDoc = () => {
-  openNewWindow(docPath)
-}
+  openNewWindow(docPath);
+};
 
 /**
  * * 打开码云仓库地址
  * @param url
  */
 export const openGiteeSourceCode = () => {
-  openNewWindow(giteeSourceCodePath)
-}
+  openNewWindow(giteeSourceCodePath);
+};
 
 /**
  * * 判断是否是预览页
  * @returns boolean
  */
 export const isPreview = () => {
-  return document.location.hash.includes('preview')
-}
+  return document.location.hash.includes('preview');
+};
 
 /**
  * * 获取当前路由下的参数
@@ -156,12 +155,12 @@ export const isPreview = () => {
  */
 export const fetchRouteParams = () => {
   try {
-    const route = useRoute()
-    return route.params
+    const route = useRoute();
+    return route.params;
   } catch (error) {
-    window['$message'].warning('查询路由信息失败，请联系管理员！')
+    window['$message'].warning('查询路由信息失败，请联系管理员！');
   }
-}
+};
 
 /**
  * * 通过硬解析获取当前路由下的参数
@@ -170,20 +169,20 @@ export const fetchRouteParams = () => {
 export const fetchRouteParamsLocation = () => {
   try {
     // 防止添加query参数的时候，解析ID异常
-    return document.location.hash.split('?')[0].split('/').pop() || ''
+    return document.location.hash.split('?')[0].split('/').pop() || '';
   } catch (error) {
-    window['$message'].warning('查询路由信息失败，请联系管理员！')
-    return ''
+    window['$message'].warning('查询路由信息失败，请联系管理员！');
+    return '';
   }
-}
+};
 
 /**
  * * 回到主页面
  * @param confirm
  */
 export const goHome = () => {
-  routerTurnByName(PageEnum.BASE_HOME_NAME)
-}
+  routerTurnByName(PageEnum.BASE_HOME_NAME);
+};
 
 /**
  * * 判断是否登录
@@ -191,24 +190,24 @@ export const goHome = () => {
  */
 export const loginCheck = () => {
   try {
-    const info = getLocalStorage(StorageEnum.GO_SYSTEM_STORE)
-    if (!info) return false
+    const info = getLocalStorage(StorageEnum.GO_SYSTEM_STORE);
+    if (!info) return false;
     if (info[SystemStoreEnum.USER_INFO][SystemStoreUserInfoEnum.USER_TOKEN]) {
-      return true
+      return true;
     }
-    return false
+    return false;
   } catch (error) {
-    return false
+    return false;
   }
-}
+};
 
 /**
  * * 预览地址
- * @returns 
+ * @returns
  */
- export const previewPath = (id?: string | number) => {
-  const { origin, pathname } = document.location
-  const path = fetchPathByName(PreviewEnum.CHART_PREVIEW_NAME, 'href')
-  const previewPath = `${origin}${pathname}${path}/${id || fetchRouteParamsLocation()}`
-  return previewPath
-}
+export const previewPath = (id?: string | number) => {
+  const { origin, pathname } = document.location;
+  const path = fetchPathByName(PreviewEnum.CHART_PREVIEW_NAME, 'href');
+  const previewPath = `${origin}${pathname}${path}/${id || fetchRouteParamsLocation()}`;
+  return previewPath;
+};
