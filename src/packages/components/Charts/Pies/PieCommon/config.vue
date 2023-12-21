@@ -32,10 +32,18 @@
         </n-space>
       </setting-item>
       <SettingItem name="位置">
-        <n-select v-model:value="optionData.series[0].label.position" size="small" :options="labelConfig.position" />
+        <n-select
+          v-model:value="optionData.series[0].label.position"
+          size="small"
+          :options="labelConfig.position"
+        />
       </SettingItem>
       <setting-item name="展示类型">
-        <n-select v-model:value="optionData.series[0].label.formatter" size="small" :options="labelFormatterOptions" />
+        <n-select
+          v-model:value="optionData.series[0].label.formatter"
+          size="small"
+          :options="labelFormatterOptions"
+        />
       </setting-item>
     </SettingItemBox>
     <setting-item-box name="圆角">
@@ -64,36 +72,41 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, watch } from 'vue'
-import { GlobalThemeJsonType } from '@/settings/chartThemes/index'
-import { GlobalSetting, CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
-import { PieTypeObject, PieTypeEnum } from './config'
-import { labelConfig } from '@/packages/chartConfiguration/echarts'
+  import { PropType, watch } from 'vue';
+  import { GlobalThemeJsonType } from '@/settings/chartThemes/index';
+  import {
+    GlobalSetting,
+    CollapseItem,
+    SettingItemBox,
+    SettingItem,
+  } from '@/components/Pages/ChartItemSetting';
+  import { PieTypeObject, PieTypeEnum } from './config';
+  import { labelConfig } from '@/packages/chartConfiguration/echarts';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<GlobalThemeJsonType>,
-    required: true
-  }
-})
-const fontWeightOptions = [
-  {
-    label: PieTypeEnum.NORMAL,
-    value: PieTypeObject[PieTypeEnum.NORMAL]
-  },
-  {
-    label: PieTypeEnum.RING,
-    value: PieTypeObject[PieTypeEnum.RING]
-  },
-  {
-    label: PieTypeEnum.ROSE,
-    value: PieTypeObject[PieTypeEnum.ROSE]
-  }
-]
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<GlobalThemeJsonType>,
+      required: true,
+    },
+  });
+  const fontWeightOptions = [
+    {
+      label: PieTypeEnum.NORMAL,
+      value: PieTypeObject[PieTypeEnum.NORMAL],
+    },
+    {
+      label: PieTypeEnum.RING,
+      value: PieTypeObject[PieTypeEnum.RING],
+    },
+    {
+      label: PieTypeEnum.ROSE,
+      value: PieTypeObject[PieTypeEnum.ROSE],
+    },
+  ];
 
-const labelFormatterOptions = [
-  { label: '数据名', value: '{b}' },
-  { label: '百分比', value: '{d}' },
-  { label: '列名:百分比', value: '{b}:{d}%' }
-]
+  const labelFormatterOptions = [
+    { label: '数据名', value: '{b}' },
+    { label: '百分比', value: '{d}' },
+    { label: '列名:百分比', value: '{b}:{d}%' },
+  ];
 </script>
