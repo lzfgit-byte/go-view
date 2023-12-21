@@ -1,21 +1,21 @@
-import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public'
-import { HeatmapConfig } from './index'
-import { CreateComponentType } from '@/packages/index.d'
-import { cloneDeep } from 'lodash'
-import dataJson from './data.json'
+import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public';
+import { HeatmapConfig } from './index';
+import { CreateComponentType } from '@/packages/index.d';
+import { cloneDeep } from 'lodash';
+import dataJson from './data.json';
 
-export const includes = ['xAxis', 'yAxis', 'grid']
+export const includes = ['xAxis', 'yAxis', 'grid'];
 
 export const option = {
   dataset: { ...dataJson },
   tooltip: {
-    position: 'top'
+    position: 'top',
   },
   xAxis: {
-    data: dataJson.xAxis
+    data: dataJson.xAxis,
   },
   yAxis: {
-    data: dataJson.yAxis
+    data: dataJson.yAxis,
   },
   visualMap: {
     show: true,
@@ -27,8 +27,8 @@ export const option = {
     orient: 'horizontal',
     inRange: {
       // 高 -> 低
-      color: ['#4661c2', '#263253']
-    }
+      color: ['#4661c2', '#263253'],
+    },
   },
   series: [
     {
@@ -36,26 +36,26 @@ export const option = {
       type: 'heatmap',
       data: dataJson.seriesData,
       label: {
-        show: true
+        show: true,
       },
       emphasis: {
         itemStyle: {
           borderColor: '#333',
           borderWidth: 1,
           shadowBlur: 10,
-          shadowColor: 'rgba(0, 0, 0, 0.5)'
-        }
+          shadowColor: 'rgba(0, 0, 0, 0.5)',
+        },
       },
       progressive: 1000,
-      animation: false
-    }
-  ]
-}
+      animation: false,
+    },
+  ],
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key: string = HeatmapConfig.key
-  public chartConfig = cloneDeep(HeatmapConfig)
+  public key: string = HeatmapConfig.key;
+  public chartConfig = cloneDeep(HeatmapConfig);
 
   // 图表配置项
-  public option = echartOptionProfixHandle(option, includes)
+  public option = echartOptionProfixHandle(option, includes);
 }

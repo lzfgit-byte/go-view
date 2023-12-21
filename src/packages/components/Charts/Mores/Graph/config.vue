@@ -11,7 +11,11 @@
           <n-select v-model:value="graphConfig.label.show" :options="LabelSwitch" size="small" />
         </setting-item>
         <setting-item name="位置">
-          <n-select v-model:value="graphConfig.label.position" :options="LabelPosition" size="small" />
+          <n-select
+            v-model:value="graphConfig.label.position"
+            :options="LabelPosition"
+            size="small"
+          />
         </setting-item>
       </SettingItemBox>
       <SettingItemBox name="线条">
@@ -45,7 +49,10 @@
           </n-input-number>
         </SettingItem>
       </SettingItemBox>
-      <SettingItemBox name="力引导" v-if="optionData.series[0].force && graphConfig.layout == 'force'">
+      <SettingItemBox
+        name="力引导"
+        v-if="optionData.series[0].force && graphConfig.layout == 'force'"
+      >
         <SettingItem name="斥力因子" v-if="optionData.series[0].force.repulsion">
           <n-input-number
             v-model:value="optionData.series[0].force.repulsion"
@@ -77,7 +84,11 @@
           </n-input-number>
         </SettingItem>
         <SettingItem name="迭代动画">
-          <n-select v-model:value="graphConfig.force.layoutAnimation" :options="LayoutAnimation" size="small" />
+          <n-select
+            v-model:value="graphConfig.force.layoutAnimation"
+            :options="LayoutAnimation"
+            size="small"
+          />
         </SettingItem>
         <SettingItem name="节点速度">
           <n-input-number
@@ -95,19 +106,19 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, computed } from 'vue'
-import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
-import { option, GraphLayout, LabelSwitch, LabelPosition, LayoutAnimation } from './config'
-import { GlobalThemeJsonType } from '@/settings/chartThemes/index'
+  import { PropType, computed } from 'vue';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
+  import { option, GraphLayout, LabelSwitch, LabelPosition, LayoutAnimation } from './config';
+  import { GlobalThemeJsonType } from '@/settings/chartThemes/index';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<typeof option & GlobalThemeJsonType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<typeof option & GlobalThemeJsonType>,
+      required: true,
+    },
+  });
 
-const graphConfig = computed<(typeof option.series)[0]>(() => {
-  return props.optionData.series[0]
-})
+  const graphConfig = computed<(typeof option.series)[0]>(() => {
+    return props.optionData.series[0];
+  });
 </script>
