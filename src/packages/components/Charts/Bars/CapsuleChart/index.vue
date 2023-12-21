@@ -5,7 +5,7 @@
     :style="{
       fontSize: numberSizeHandle(state.mergedConfig.valueFontSize),
       paddingLeft: numberSizeHandle(state.mergedConfig.paddingLeft),
-      paddingRight: numberSizeHandle(state.mergedConfig.paddingRight)
+      paddingRight: numberSizeHandle(state.mergedConfig.paddingRight),
     }"
   >
     <div class="label-column">
@@ -52,180 +52,183 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch, reactive, PropType } from 'vue'
-import { useChartDataFetch } from '@/hooks'
-import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
-import config, { option } from './config'
-import cloneDeep from 'lodash/cloneDeep'
+  import { onMounted, watch, reactive, PropType } from 'vue';
+  import { useChartDataFetch } from '@/hooks';
+  import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
+  import config, { option } from './config';
+  import cloneDeep from 'lodash/cloneDeep';
 
-type DataProps = {
-  name: string | number
-  value: string | number
-  [key: string]: string | number
-}
+  type DataProps = {
+    name: string | number;
+    value: string | number;
+    [key: string]: string | number;
+  };
 
-interface StateProps {
-  defaultConfig: {
-    dataset: {
-      dimensions: Array<string>
-      source: Array<DataProps>
+  interface StateProps {
+    defaultConfig: {
+      dataset: {
+        dimensions: Array<string>;
+        source: Array<DataProps>;
+      };
+      colors: Array<string>;
+      unit: string;
+      showValue: boolean;
+      itemHeight: number;
+      valueFontSize: number;
+      paddingLeft: number;
+      paddingRight: number;
+    };
+    mergedConfig: any;
+    capsuleLength: Array<number>;
+    capsuleValue: Array<string | Object>;
+    labelData: Array<number>;
+    capsuleItemHeight: string;
+  }
+
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<config>,
+      default: () => ({}),
+    },
+  });
+
+  const state = reactive<StateProps>({
+    defaultConfig: option,
+    mergedConfig: null,
+    capsuleLength: [],
+    capsuleValue: [],
+    labelData: [],
+    capsuleItemHeight: '',
+  });
+
+  watch(
+    () => props.chartConfig.option,
+    (newVal) => {
+      calcData(newVal);
+    },
+    {
+      deep: true,
     }
-    colors: Array<string>
-    unit: string
-    showValue: boolean
-    itemHeight: number
-    valueFontSize: number
-    paddingLeft: number
-    paddingRight: number
-  }
-  mergedConfig: any
-  capsuleLength: Array<number>
-  capsuleValue: Array<string | Object>
-  labelData: Array<number>
-  capsuleItemHeight: string
-}
+  );
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<config>,
-    default: () => ({})
-  }
-})
+  const calcData = (data: any, type?: string) => {
+    let cloneConfig = cloneDeep(props.chartConfig.option || {});
+    state.mergedConfig = cloneConfig;
+    if (type == 'preview') {
+      cloneConfig.dataset = data;
+    }
+    calcCapsuleLengthAndLabelData(state.mergedConfig.dataset);
+  };
 
-const state = reactive<StateProps>({
-  defaultConfig: option,
-  mergedConfig: null,
-  capsuleLength: [],
-  capsuleValue: [],
-  labelData: [],
-  capsuleItemHeight: ''
-})
+  // 数据解析
+  const calcCapsuleLengthAndLabelData = (dataset: any) => {
+    try {
+      const { source } = dataset;
+      if (!source || !source.length) return;
 
-watch(
-  () => props.chartConfig.option,
-  newVal => {
-    calcData(newVal)
-  },
-  {
-    deep: true
-  }
-)
+      state.capsuleItemHeight = numberSizeHandle(state.mergedConfig.itemHeight);
+      const capsuleValue = source.map(
+        (item: DataProps) => item[state.mergedConfig.dataset.dimensions[1]]
+      );
 
-const calcData = (data: any, type?: string) => {
-  let cloneConfig = cloneDeep(props.chartConfig.option || {})
-  state.mergedConfig = cloneConfig
-  if (type == 'preview') {
-    cloneConfig.dataset = data
-  }
-  calcCapsuleLengthAndLabelData(state.mergedConfig.dataset)
-}
+      const maxValue = Math.max(...capsuleValue);
 
-// 数据解析
-const calcCapsuleLengthAndLabelData = (dataset: any) => {
-  try {
-    const { source } = dataset
-    if (!source || !source.length) return
+      state.capsuleValue = capsuleValue;
 
-    state.capsuleItemHeight = numberSizeHandle(state.mergedConfig.itemHeight)
-    const capsuleValue = source.map((item: DataProps) => item[state.mergedConfig.dataset.dimensions[1]])
+      state.capsuleLength = capsuleValue.map((v: any) => (maxValue ? v / maxValue : 0));
 
-    const maxValue = Math.max(...capsuleValue)
+      const oneFifth = maxValue / 5;
 
-    state.capsuleValue = capsuleValue
+      const labelData = Array.from(
+        new Set(new Array(6).fill(0).map((v, i) => Math.ceil(i * oneFifth)))
+      );
 
-    state.capsuleLength = capsuleValue.map((v: any) => (maxValue ? v / maxValue : 0))
+      state.labelData = labelData;
+    } catch (error) {
+      console.warn(error);
+    }
+  };
 
-    const oneFifth = maxValue / 5
+  const numberSizeHandle = (val: string | number) => {
+    return val + 'px';
+  };
 
-    const labelData = Array.from(new Set(new Array(6).fill(0).map((v, i) => Math.ceil(i * oneFifth))))
+  onMounted(() => {
+    calcData(props.chartConfig.option);
+  });
 
-    state.labelData = labelData
-
-  } catch (error) {
-    console.warn(error);
-  }
-}
-
-const numberSizeHandle = (val: string | number) => {
-  return val + 'px'
-}
-
-onMounted(() => {
-  calcData(props.chartConfig.option)
-})
-
-// 预览
-useChartDataFetch(props.chartConfig, useChartEditStore, (newData: any) => {
-  calcData(newData, 'preview')
-})
+  // 预览
+  useChartDataFetch(props.chartConfig, useChartEditStore, (newData: any) => {
+    calcData(newData, 'preview');
+  });
 </script>
 
 <style lang="scss" scoped>
-@include go('dv-capsule-chart') {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  padding: 20px;
-  padding-right: 50px;
-  color: #b9b8cc;
-
-  .label-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-    padding-right: 10px;
-    text-align: right;
-    > div:not(:last-child) {
-      margin: 5px 0;
-    }
-  }
-
-  .capsule-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .capsule-item {
-    box-shadow: 0 0 3px #999;
-    height: 10px;
-    margin: 5px 0px;
-    border-radius: 5px;
-
-    .capsule-item-column {
-      position: relative;
-      height: 8px;
-      margin-top: 1px;
-      border-radius: 5px;
-      transition: all 0.3s;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-
-      .capsule-item-value {
-        padding-left: 10px;
-        transform: translateX(100%);
-      }
-    }
-  }
-
-  .unit-label {
-    height: 20px;
+  @include go('dv-capsule-chart') {
     position: relative;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+    flex-direction: row;
+    box-sizing: border-box;
+    padding: 20px;
+    padding-right: 50px;
+    color: #b9b8cc;
 
-  .unit-text {
-    text-align: right;
-    display: flex;
-    align-items: flex-end;
-    line-height: 20px;
-    margin-left: 10px;
+    .label-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding-right: 10px;
+      text-align: right;
+      > div:not(:last-child) {
+        margin: 5px 0;
+      }
+    }
+
+    .capsule-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .capsule-item {
+      box-shadow: 0 0 3px #999;
+      height: 10px;
+      margin: 5px 0px;
+      border-radius: 5px;
+
+      .capsule-item-column {
+        position: relative;
+        height: 8px;
+        margin-top: 1px;
+        border-radius: 5px;
+        transition: all 0.3s;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .capsule-item-value {
+          padding-left: 10px;
+          transform: translateX(100%);
+        }
+      }
+    }
+
+    .unit-label {
+      height: 20px;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .unit-text {
+      text-align: right;
+      display: flex;
+      align-items: flex-end;
+      line-height: 20px;
+      margin-left: 10px;
+    }
   }
-}
 </style>

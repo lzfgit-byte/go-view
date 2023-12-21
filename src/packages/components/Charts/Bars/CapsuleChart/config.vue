@@ -5,18 +5,38 @@
   <collapse-item name="胶囊柱图" expanded>
     <SettingItemBox name="布局">
       <setting-item name="左侧边距">
-        <n-input-number v-model:value="optionData.paddingLeft" :min="10" :step="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="optionData.paddingLeft"
+          :min="10"
+          :step="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
       <setting-item name="右侧边距">
-        <n-input-number v-model:value="optionData.paddingRight" :min="10" :step="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="optionData.paddingRight"
+          :min="10"
+          :step="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
       <setting-item name="每块高度(px)">
-        <n-input-number v-model:value="optionData.itemHeight" :min="0" :step="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="optionData.itemHeight"
+          :min="0"
+          :step="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
     </SettingItemBox>
     <SettingItemBox name="文本">
       <setting-item name="所有文字大小">
-        <n-input-number v-model:value="optionData.valueFontSize" :min="0" :step="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="optionData.valueFontSize"
+          :min="0"
+          :step="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
       <setting-item name="单位">
         <n-input v-model:value="optionData.unit" size="small"></n-input>
@@ -31,23 +51,32 @@
     </SettingItemBox>
     <SettingItemBox name="颜色">
       <setting-item v-for="(item, index) in optionData.colors" :key="index" :name="`颜色${index}`">
-        <n-color-picker v-model:value="optionData.colors[index]" size="small" :modes="['hex']"></n-color-picker>
+        <n-color-picker
+          v-model:value="optionData.colors[index]"
+          size="small"
+          :modes="['hex']"
+        ></n-color-picker>
       </setting-item>
     </SettingItemBox>
   </collapse-item>
 </template>
 
 <script setup lang="ts">
-import { PropType, computed } from 'vue'
-import { GlobalSetting, CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
-import { GlobalThemeJsonType } from '@/settings/chartThemes/index'
+  import { PropType, computed } from 'vue';
+  import {
+    GlobalSetting,
+    CollapseItem,
+    SettingItemBox,
+    SettingItem,
+  } from '@/components/Pages/ChartItemSetting';
+  import { GlobalThemeJsonType } from '@/settings/chartThemes/index';
 
-import { option } from './config'
+  import { option } from './config';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<typeof option & GlobalThemeJsonType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<typeof option & GlobalThemeJsonType>,
+      required: true,
+    },
+  });
 </script>

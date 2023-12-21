@@ -1,10 +1,10 @@
-import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public'
-import { BarLineConfig } from './index'
-import { CreateComponentType } from '@/packages/index.d'
-import cloneDeep from 'lodash/cloneDeep'
-import dataJson from './data.json'
+import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public';
+import { BarLineConfig } from './index';
+import { CreateComponentType } from '@/packages/index.d';
+import cloneDeep from 'lodash/cloneDeep';
+import dataJson from './data.json';
 
-export const includes = ['legend', 'xAxis', 'yAxis', 'grid']
+export const includes = ['legend', 'xAxis', 'yAxis', 'grid'];
 // 柱状折线组合图 分别定义series
 // 写死name可以定义legend显示的名称
 export const barSeriesItem = {
@@ -14,13 +14,13 @@ export const barSeriesItem = {
     show: true,
     position: 'top',
     color: '#fff',
-    fontSize: 12
+    fontSize: 12,
   },
   itemStyle: {
     color: null,
-    borderRadius: 2
-  }
-}
+    borderRadius: 2,
+  },
+};
 
 export const lineSeriesItem = {
   type: 'line',
@@ -29,19 +29,19 @@ export const lineSeriesItem = {
     show: true,
     position: 'top',
     color: '#fff',
-    fontSize: 12
+    fontSize: 12,
   },
   symbolSize: 5, //设定实心点的大小
   itemStyle: {
     color: '#FFE47A',
-    borderWidth: 1
+    borderWidth: 1,
   },
   lineStyle: {
     type: 'solid',
     width: 3,
-    color: null
-  }
-}
+    color: null,
+  },
+};
 
 export const option = {
   tooltip: {
@@ -49,27 +49,27 @@ export const option = {
     trigger: 'axis',
     axisPointer: {
       show: true,
-      type: 'shadow'
-    }
+      type: 'shadow',
+    },
   },
   legend: {
-    data: null
+    data: null,
   },
   xAxis: {
     show: true,
-    type: 'category'
+    type: 'category',
   },
   yAxis: {
     show: true,
-    type: 'value'
+    type: 'value',
   },
   dataset: { ...dataJson },
-  series: [barSeriesItem, lineSeriesItem]
-}
+  series: [barSeriesItem, lineSeriesItem],
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key = BarLineConfig.key
-  public chartConfig = cloneDeep(BarLineConfig)
+  public key = BarLineConfig.key;
+  public chartConfig = cloneDeep(BarLineConfig);
   // 图表配置项
-  public option = echartOptionProfixHandle(option, includes)
+  public option = echartOptionProfixHandle(option, includes);
 }
