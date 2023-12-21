@@ -11,13 +11,23 @@
 
     <SettingItemBox name="范围" :alone="true">
       <setting-item :name="`顶部距离：${item.top}px`">
-        <n-slider v-model:value="item.top" :min="0" :max="300" :format-tooltip="sliderFormatTooltip"></n-slider>
+        <n-slider
+          v-model:value="item.top"
+          :min="0"
+          :max="300"
+          :format-tooltip="sliderFormatTooltip"
+        ></n-slider>
       </setting-item>
     </SettingItemBox>
 
     <setting-item-box name="区块">
       <setting-item name="边框大小">
-        <n-input-number v-model:value="item.itemStyle.borderWidth" :min="0" :max="10" size="small" />
+        <n-input-number
+          v-model:value="item.itemStyle.borderWidth"
+          :min="0"
+          :max="10"
+          size="small"
+        />
       </setting-item>
       <setting-item name="边框颜色">
         <n-color-picker v-model:value="item.itemStyle.borderColor" :modes="['hex']" size="small" />
@@ -32,7 +42,11 @@
         <n-checkbox v-model:checked="item.label.show" size="small">标签</n-checkbox>
       </setting-item>
       <setting-item name="位置">
-        <n-select v-model:value="item.label.position" :options="FunnelLabelPositionEnumList" size="small" />
+        <n-select
+          v-model:value="item.label.position"
+          :options="FunnelLabelPositionEnumList"
+          size="small"
+        />
       </setting-item>
       <setting-item name="大小">
         <n-input-number v-model:value="item.label.fontSize" :min="0" size="small" />
@@ -45,23 +59,28 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, computed } from 'vue'
-import { GlobalSetting, CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
-import { GlobalThemeJsonType } from '@/settings/chartThemes/index'
-import { option, FunnelOrderEnumList, FunnelLabelPositionEnumList } from './config'
+  import { PropType, computed } from 'vue';
+  import {
+    GlobalSetting,
+    CollapseItem,
+    SettingItemBox,
+    SettingItem,
+  } from '@/components/Pages/ChartItemSetting';
+  import { GlobalThemeJsonType } from '@/settings/chartThemes/index';
+  import { option, FunnelOrderEnumList, FunnelLabelPositionEnumList } from './config';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<typeof option & GlobalThemeJsonType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<typeof option & GlobalThemeJsonType>,
+      required: true,
+    },
+  });
 
-const seriesList = computed(() => {
-  return props.optionData.series
-})
+  const seriesList = computed(() => {
+    return props.optionData.series;
+  });
 
-const sliderFormatTooltip = (v: number) => {
-  return `${v}px`
-}
+  const sliderFormatTooltip = (v: number) => {
+    return `${v}px`;
+  };
 </script>
