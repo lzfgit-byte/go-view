@@ -1,5 +1,4 @@
 // 模块 Path 前缀分类
-import { fetchRouteParamsLocation } from '@/utils';
 
 export enum ModuleTypeEnum {
   SYSTEM = 'sys',
@@ -135,5 +134,3 @@ export enum ContentTypeEnum {
   // form-data  上传
   FORM_DATA = 'multipart/form-data;charset=UTF-8',
 }
-// 表格数据请求动态参数 TODO 添加更多动态参数
-export const CustomListReqData = [{ reg: /\$projectId/g, value: fetchRouteParamsLocation() }];

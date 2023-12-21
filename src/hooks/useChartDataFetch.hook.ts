@@ -5,7 +5,7 @@ import { useChartDataPondFetch } from '@/hooks/';
 import type { CreateComponentType } from '@/packages/index.d';
 import { ChartFrameEnum } from '@/packages/index.d';
 import type { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
-import { RequestDataTypeEnum, CustomListReqData } from '@/enums/httpEnum';
+import { RequestDataTypeEnum } from '@/enums/httpEnum';
 import {
   JSONParse,
   JSONStringify,
@@ -14,6 +14,7 @@ import {
   newFunctionHandle,
 } from '@/utils';
 import { setOption } from '@/packages/public/chart';
+import { CustomListReqData } from '@/const/HttpConst';
 
 // 获取类型
 type ChartEditStoreType = typeof useChartEditStore;
