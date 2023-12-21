@@ -1,27 +1,27 @@
-import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public'
-import { LineLinearSingleConfig } from './index'
-import { CreateComponentType } from '@/packages/index.d'
-import { defaultTheme, chartColorsSearch } from '@/settings/chartThemes/index'
-import cloneDeep from 'lodash/cloneDeep'
-import dataJson from './data.json'
+import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public';
+import { LineLinearSingleConfig } from './index';
+import { CreateComponentType } from '@/packages/index.d';
+import { defaultTheme, chartColorsSearch } from '@/settings/chartThemes/index';
+import cloneDeep from 'lodash/cloneDeep';
+import dataJson from './data.json';
 
-export const includes = ['legend', 'xAxis', 'yAxis', 'grid']
+export const includes = ['legend', 'xAxis', 'yAxis', 'grid'];
 
 export const option = {
   tooltip: {
     show: true,
     trigger: 'axis',
     axisPointer: {
-      type: 'line'
-    }
+      type: 'line',
+    },
   },
   xAxis: {
     show: true,
-    type: 'category'
+    type: 'category',
   },
   yAxis: {
     show: true,
-    type: 'value'
+    type: 'value',
   },
   dataset: { ...dataJson },
   series: [
@@ -40,26 +40,26 @@ export const option = {
           colorStops: [
             {
               offset: 0,
-              color: chartColorsSearch[defaultTheme][0] // 0% 处的颜色
+              color: chartColorsSearch[defaultTheme][0], // 0% 处的颜色
             },
             {
               offset: 1,
-              color: chartColorsSearch[defaultTheme][1] // 100% 处的颜色
-            }
+              color: chartColorsSearch[defaultTheme][1], // 100% 处的颜色
+            },
           ],
-          globalCoord: false // 缺省为 false
+          globalCoord: false, // 缺省为 false
         },
         shadowColor: chartColorsSearch[defaultTheme][2],
         shadowBlur: 10,
-        shadowOffsetY: 20
-      }
-    }
-  ]
-}
+        shadowOffsetY: 20,
+      },
+    },
+  ],
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key: string = LineLinearSingleConfig.key
-  public chartConfig = cloneDeep(LineLinearSingleConfig)
+  public key: string = LineLinearSingleConfig.key;
+  public chartConfig = cloneDeep(LineLinearSingleConfig);
   // 图表配置项
-  public option = echartOptionProfixHandle(option, includes)
+  public option = echartOptionProfixHandle(option, includes);
 }

@@ -43,11 +43,7 @@
         </n-space>
       </setting-item>
       <setting-item name="大小">
-        <n-input-number
-          v-model:value="item.label.fontSize"
-          size="small"
-          :min="1"
-        ></n-input-number>
+        <n-input-number v-model:value="item.label.fontSize" size="small" :min="1"></n-input-number>
       </setting-item>
       <setting-item name="颜色">
         <n-color-picker
@@ -72,24 +68,24 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, computed } from 'vue'
-import { lineConf } from '@/packages/chartConfiguration/echarts/index'
-import { GlobalThemeJsonType } from '@/settings/chartThemes/index'
-import {
-  GlobalSetting,
-  CollapseItem,
-  SettingItemBox,
-  SettingItem
-} from '@/components/Pages/ChartItemSetting'
+  import { PropType, computed } from 'vue';
+  import { lineConf } from '@/packages/chartConfiguration/echarts/index';
+  import { GlobalThemeJsonType } from '@/settings/chartThemes/index';
+  import {
+    GlobalSetting,
+    CollapseItem,
+    SettingItemBox,
+    SettingItem,
+  } from '@/components/Pages/ChartItemSetting';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<GlobalThemeJsonType>,
-    required: true
-  },
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<GlobalThemeJsonType>,
+      required: true,
+    },
+  });
 
-const seriesList = computed(() => {
-  return props.optionData.series
-})
+  const seriesList = computed(() => {
+    return props.optionData.series;
+  });
 </script>

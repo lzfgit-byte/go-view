@@ -1,28 +1,28 @@
-import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public'
-import { LineGradientsConfig } from './index'
-import { CreateComponentType } from '@/packages/index.d'
-import { graphic } from 'echarts/core'
-import { defaultTheme, chartColorsSearch } from '@/settings/chartThemes/index'
-import cloneDeep from 'lodash/cloneDeep'
-import dataJson from './data.json'
+import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public';
+import { LineGradientsConfig } from './index';
+import { CreateComponentType } from '@/packages/index.d';
+import { graphic } from 'echarts/core';
+import { defaultTheme, chartColorsSearch } from '@/settings/chartThemes/index';
+import cloneDeep from 'lodash/cloneDeep';
+import dataJson from './data.json';
 
-export const includes = ['legend', 'xAxis', 'yAxis', 'grid']
+export const includes = ['legend', 'xAxis', 'yAxis', 'grid'];
 
 const option = {
   tooltip: {
     show: true,
     trigger: 'axis',
     axisPointer: {
-      type: 'line'
-    }
+      type: 'line',
+    },
   },
   xAxis: {
     show: true,
-    type: 'category'
+    type: 'category',
   },
   yAxis: {
     show: true,
-    type: 'value'
+    type: 'value',
   },
   dataset: { ...dataJson },
   series: [
@@ -34,25 +34,25 @@ const option = {
         show: true,
         position: 'top',
         color: '#fff',
-        fontSize: 12
+        fontSize: 12,
       },
       lineStyle: {
         width: 3,
-        type: 'solid'
+        type: 'solid',
       },
       areaStyle: {
         opacity: 0.8,
         color: new graphic.LinearGradient(0, 0, 0, 1, [
           {
             offset: 0,
-            color: chartColorsSearch[defaultTheme][3]
+            color: chartColorsSearch[defaultTheme][3],
           },
           {
             offset: 1,
-            color: 'rgba(0,0,0,0)'
-          }
-        ])
-      }
+            color: 'rgba(0,0,0,0)',
+          },
+        ]),
+      },
     },
     {
       type: 'line',
@@ -61,32 +61,32 @@ const option = {
         show: true,
         position: 'top',
         color: '#fff',
-        fontSize: 12
+        fontSize: 12,
       },
       lineStyle: {
         width: 3,
-        type: 'solid'
+        type: 'solid',
       },
       areaStyle: {
         opacity: 0.8,
         color: new graphic.LinearGradient(0, 0, 0, 1, [
           {
             offset: 0,
-            color: chartColorsSearch[defaultTheme][4]
+            color: chartColorsSearch[defaultTheme][4],
           },
           {
             offset: 1,
-            color: 'rgba(0,0,0,0)'
-          }
-        ])
-      }
-    }
-  ]
-}
+            color: 'rgba(0,0,0,0)',
+          },
+        ]),
+      },
+    },
+  ],
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key: string = LineGradientsConfig.key
-  public chartConfig = cloneDeep(LineGradientsConfig)
+  public key: string = LineGradientsConfig.key;
+  public chartConfig = cloneDeep(LineGradientsConfig);
   // 图表配置项
-  public option = echartOptionProfixHandle(option, includes)
+  public option = echartOptionProfixHandle(option, includes);
 }
