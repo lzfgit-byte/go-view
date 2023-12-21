@@ -1,9 +1,9 @@
-import { PublicConfigClass } from '@/packages/public'
-import { CreateComponentType } from '@/packages/index.d'
-import { MapAmapConfig } from './index'
-import { chartInitConfig } from '@/settings/designSetting'
-import cloneDeep from 'lodash/cloneDeep'
-import dataJson from './data.json'
+import { PublicConfigClass } from '@/packages/public';
+import { CreateComponentType } from '@/packages/index.d';
+import { MapAmapConfig } from './index';
+import { chartInitConfig } from '@/settings/designSetting';
+import cloneDeep from 'lodash/cloneDeep';
+import dataJson from './data.json';
 
 export enum ThemeEnum {
   NORMAL = 'normal',
@@ -17,25 +17,25 @@ export enum ThemeEnum {
   BLUE = 'blue',
   DARKBLUE = 'darkblue',
   WINE = 'wine',
-  WEIXIN = 'tileLayer'
+  WEIXIN = 'tileLayer',
 }
 
 export enum LangEnum {
   ZH_CN = 'zh_cn',
   EN = 'en',
-  ZH_EN = 'zh_en'
+  ZH_EN = 'zh_en',
 }
 
 export enum ViewModeEnum {
   PLANE = '2D',
-  STEREOSCOPIC = '3D'
+  STEREOSCOPIC = '3D',
 }
 
 export enum FeaturesEnum {
   BG = 'bg',
   POINT = 'point',
   ROAD = 'road',
-  BUILDING = 'building'
+  BUILDING = 'building',
 }
 
 export enum MarkerEnum {
@@ -44,7 +44,7 @@ export enum MarkerEnum {
   // 定位标点
   MARKER = 'Marker',
   // 暂无
-  NONE = 'none'
+  NONE = 'none',
 }
 
 export const option = {
@@ -67,18 +67,18 @@ export const option = {
       zIndex: 10,
       bubble: true,
       cursor: 'pointer',
-      clickable: true
+      clickable: true,
     },
     mapMarkerType: MarkerEnum.CIRCLE_MARKER,
     viewMode: ViewModeEnum.PLANE,
     lang: LangEnum.ZH_CN,
-    features: [FeaturesEnum.BG, FeaturesEnum.POINT, FeaturesEnum.ROAD, FeaturesEnum.BUILDING]
-  }
-}
+    features: [FeaturesEnum.BG, FeaturesEnum.POINT, FeaturesEnum.ROAD, FeaturesEnum.BUILDING],
+  },
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key = MapAmapConfig.key
-  public attr = { ...chartInitConfig, w: 1000, h: 800, zIndex: -1 }
-  public chartConfig = cloneDeep(MapAmapConfig)
-  public option = cloneDeep(option)
+  public key = MapAmapConfig.key;
+  public attr = { ...chartInitConfig, w: 1000, h: 800, zIndex: -1 };
+  public chartConfig = cloneDeep(MapAmapConfig);
+  public option = cloneDeep(option);
 }

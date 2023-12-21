@@ -45,17 +45,27 @@
       </SettingItemBox>
       <SettingItemBox name="其他">
         <SettingItem>
-          <n-checkbox v-model:checked="seriesList[1].itemStyle.showHainanIsLands" size="small">显示南海群岛</n-checkbox>
+          <n-checkbox v-model:checked="seriesList[1].itemStyle.showHainanIsLands" size="small"
+            >显示南海群岛</n-checkbox
+          >
         </SettingItem>
       </SettingItemBox>
     </CollapseItem>
     <CollapseItem name="标记" :expanded="true">
       <SettingItemBox name="样式">
         <SettingItem name="大小">
-          <n-input-number v-model:value="seriesList[0].symbolSize" size="small" :min="0"></n-input-number>
+          <n-input-number
+            v-model:value="seriesList[0].symbolSize"
+            size="small"
+            :min="0"
+          ></n-input-number>
         </SettingItem>
         <SettingItem name="颜色">
-          <n-color-picker size="small" :modes="['hex']" v-model:value="seriesList[0].itemStyle.color"></n-color-picker>
+          <n-color-picker
+            size="small"
+            :modes="['hex']"
+            v-model:value="seriesList[0].itemStyle.color"
+          ></n-color-picker>
         </SettingItem>
       </SettingItemBox>
     </CollapseItem>
@@ -63,20 +73,20 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, computed } from 'vue'
-import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
-import { lineConf } from '@/packages/chartConfiguration/echarts/index'
-import { GlobalThemeJsonType } from '@/settings/chartThemes/index'
-import { GlobalSetting } from '@/components/Pages/ChartItemSetting'
+  import { PropType, computed } from 'vue';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
+  import { lineConf } from '@/packages/chartConfiguration/echarts/index';
+  import { GlobalThemeJsonType } from '@/settings/chartThemes/index';
+  import { GlobalSetting } from '@/components/Pages/ChartItemSetting';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<GlobalThemeJsonType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<GlobalThemeJsonType>,
+      required: true,
+    },
+  });
 
-const seriesList = computed(() => {
-  return props.optionData.series
-})
+  const seriesList = computed(() => {
+    return props.optionData.series;
+  });
 </script>

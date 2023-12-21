@@ -69,7 +69,11 @@
         </n-space>
       </SettingItem>
       <SettingItem name="字体颜色">
-        <n-color-picker size="small" :modes="['hex']" v-model:value="seriesList[1].label.color"></n-color-picker>
+        <n-color-picker
+          size="small"
+          :modes="['hex']"
+          v-model:value="seriesList[1].label.color"
+        ></n-color-picker>
       </SettingItem>
       <SettingItem name="字体大小">
         <n-input-number
@@ -174,7 +178,9 @@
     </SettingItemBox>
     <SettingItemBox name="其他" v-if="mapRegion.adcode === 'china'">
       <SettingItem>
-        <n-checkbox v-model:checked="mapRegion.showHainanIsLands" size="small">显示南海群岛</n-checkbox>
+        <n-checkbox v-model:checked="mapRegion.showHainanIsLands" size="small"
+          >显示南海群岛</n-checkbox
+        >
       </SettingItem>
       <SettingItem v-if="seriesList[2]">
         <n-checkbox v-model:checked="mapRegion.enter" size="small">点击进入下级</n-checkbox>
@@ -182,7 +188,11 @@
     </SettingItemBox>
     <SettingItemBox name="返回图标" v-if="mapRegion.enter">
       <SettingItem name="颜色">
-        <n-color-picker size="small" :modes="['hex']" v-model:value="mapRegion.backColor"></n-color-picker>
+        <n-color-picker
+          size="small"
+          :modes="['hex']"
+          v-model:value="mapRegion.backColor"
+        ></n-color-picker>
       </SettingItem>
       <SettingItem name="大小">
         <n-input-number
@@ -197,10 +207,18 @@
   <CollapseItem name="标记" :expanded="true">
     <SettingItemBox name="样式">
       <SettingItem name="大小">
-        <n-input-number v-model:value="seriesList[0].symbolSize" size="small" :min="0"></n-input-number>
+        <n-input-number
+          v-model:value="seriesList[0].symbolSize"
+          size="small"
+          :min="0"
+        ></n-input-number>
       </SettingItem>
       <SettingItem name="颜色">
-        <n-color-picker size="small" :modes="['hex']" v-model:value="seriesList[0].itemStyle.color"></n-color-picker>
+        <n-color-picker
+          size="small"
+          :modes="['hex']"
+          v-model:value="seriesList[0].itemStyle.color"
+        ></n-color-picker>
       </SettingItem>
     </SettingItemBox>
 
@@ -211,10 +229,18 @@
         </n-space>
       </SettingItem>
       <SettingItem name="字体大小">
-        <n-input-number v-model:value="seriesList[0].label.fontSize" size="small" :min="0"></n-input-number>
+        <n-input-number
+          v-model:value="seriesList[0].label.fontSize"
+          size="small"
+          :min="0"
+        ></n-input-number>
       </SettingItem>
       <SettingItem name="字体颜色">
-        <n-color-picker size="small" :modes="['hex']" v-model:value="seriesList[0].label.color"></n-color-picker>
+        <n-color-picker
+          size="small"
+          :modes="['hex']"
+          v-model:value="seriesList[0].label.color"
+        ></n-color-picker>
       </SettingItem>
     </SettingItemBox>
 
@@ -228,10 +254,18 @@
         ></n-input-number>
       </SettingItem>
       <SettingItem name="涟漪颜色">
-        <n-color-picker size="small" :modes="['hex']" v-model:value="seriesList[0].rippleEffect.color"></n-color-picker>
+        <n-color-picker
+          size="small"
+          :modes="['hex']"
+          v-model:value="seriesList[0].rippleEffect.color"
+        ></n-color-picker>
       </SettingItem>
       <SettingItem name="涟漪的绘制方式">
-        <n-select size="small" v-model:value="seriesList[0].rippleEffect.brushType" :options="rippleEffectOptions" />
+        <n-select
+          size="small"
+          v-model:value="seriesList[0].rippleEffect.brushType"
+          :options="rippleEffectOptions"
+        />
       </SettingItem>
     </SettingItemBox>
   </CollapseItem>
@@ -241,7 +275,11 @@
       <SettingItem name="速度">
         <n-tooltip trigger="hover">
           <template #trigger>
-            <n-input-number v-model:value="seriesList[2].effect.period" size="small" :min="0"></n-input-number>
+            <n-input-number
+              v-model:value="seriesList[2].effect.period"
+              size="small"
+              :min="0"
+            ></n-input-number>
           </template>
           值越小速度越快
         </n-tooltip>
@@ -260,7 +298,11 @@
         </n-tooltip>
       </SettingItem>
       <SettingItem name="大小">
-        <n-input-number v-model:value="seriesList[2].effect.symbolSize" size="small" :min="0"></n-input-number>
+        <n-input-number
+          v-model:value="seriesList[2].effect.symbolSize"
+          size="small"
+          :min="0"
+        ></n-input-number>
       </SettingItem>
     </SettingItemBox>
     <SettingItemBox name="配置">
@@ -272,59 +314,63 @@
         ></n-color-picker>
       </SettingItem>
       <SettingItem name="宽度">
-        <n-input-number v-model:value="seriesList[2].lineStyle.normal.width" size="small" :min="1"></n-input-number>
+        <n-input-number
+          v-model:value="seriesList[2].lineStyle.normal.width"
+          size="small"
+          :min="1"
+        ></n-input-number>
       </SettingItem>
     </SettingItemBox>
   </CollapseItem>
 </template>
 
 <script setup lang="ts">
-import { PropType, computed } from 'vue'
-import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
-import { GlobalThemeJsonType } from '@/settings/chartThemes/index'
-import { GlobalSetting } from '@/components/Pages/ChartItemSetting'
-import { ref } from 'vue'
-import mapChinaJson from './mapGeojson/china.json'
+  import { PropType, computed } from 'vue';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
+  import { GlobalThemeJsonType } from '@/settings/chartThemes/index';
+  import { GlobalSetting } from '@/components/Pages/ChartItemSetting';
+  import { ref } from 'vue';
+  import mapChinaJson from './mapGeojson/china.json';
 
-const mapRegionOptions = ref([
-  {
-    adcode: 'china',
-    name: '中国'
-  }
-])
+  const mapRegionOptions = ref([
+    {
+      adcode: 'china',
+      name: '中国',
+    },
+  ]);
 
-const rippleEffectOptions = ref([
-  {
-    value: 'fill',
-    label: '实心'
-  },
-  {
-    value: 'stroke',
-    label: '空心'
-  }
-])
+  const rippleEffectOptions = ref([
+    {
+      value: 'fill',
+      label: '实心',
+    },
+    {
+      value: 'stroke',
+      label: '空心',
+    },
+  ]);
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<GlobalThemeJsonType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<GlobalThemeJsonType>,
+      required: true,
+    },
+  });
 
-const initMapRegionOptions = () => {
-  mapChinaJson.features.forEach((element: any) => {
-    if (element.properties.name) {
-      mapRegionOptions.value.push({ ...element.properties })
-    }
-  })
-}
-initMapRegionOptions()
+  const initMapRegionOptions = () => {
+    mapChinaJson.features.forEach((element: any) => {
+      if (element.properties.name) {
+        mapRegionOptions.value.push({ ...element.properties });
+      }
+    });
+  };
+  initMapRegionOptions();
 
-const seriesList = computed(() => {
-  return props.optionData.series
-})
+  const seriesList = computed(() => {
+    return props.optionData.series;
+  });
 
-const mapRegion = computed(() => {
-  return props.optionData.mapRegion
-})
+  const mapRegion = computed(() => {
+    return props.optionData.mapRegion;
+  });
 </script>
