@@ -38,7 +38,11 @@
         <n-color-picker v-model:value="title.textStyle.color" size="small"></n-color-picker>
       </setting-item>
       <setting-item name="大小">
-        <n-input-number v-model:value="title.textStyle.fontSize" :min="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="title.textStyle.fontSize"
+          :min="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
     </setting-item-box>
     <setting-item-box name="副标题">
@@ -46,7 +50,11 @@
         <n-color-picker size="small" v-model:value="title.subtextStyle.color"></n-color-picker>
       </setting-item>
       <setting-item name="大小">
-        <n-input-number v-model:value="title.subtextStyle.fontSize" :min="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="title.subtextStyle.fontSize"
+          :min="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
     </setting-item-box>
   </collapse-item>
@@ -80,7 +88,11 @@
         <n-color-picker size="small" v-model:value="xAxis.nameTextStyle.color"></n-color-picker>
       </setting-item>
       <setting-item name="大小">
-        <n-input-number v-model:value="xAxis.nameTextStyle.fontSize" :min="12" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="xAxis.nameTextStyle.fontSize"
+          :min="12"
+          size="small"
+        ></n-input-number>
       </setting-item>
       <setting-item name="偏移量">
         <n-input-number v-model:value="xAxis.nameGap" :min="5" size="small"></n-input-number>
@@ -96,10 +108,19 @@
         <n-color-picker size="small" v-model:value="xAxis.axisLabel.color"></n-color-picker>
       </setting-item>
       <setting-item name="大小">
-        <n-input-number v-model:value="xAxis.axisLabel.fontSize" :min="8" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="xAxis.axisLabel.fontSize"
+          :min="8"
+          size="small"
+        ></n-input-number>
       </setting-item>
       <setting-item name="偏移量">
-        <n-input-number v-model:value="xAxis.axisLabel.rotate" :min="-90" :max="90" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="xAxis.axisLabel.rotate"
+          :min="-90"
+          :max="90"
+          size="small"
+        ></n-input-number>
       </setting-item>
     </setting-item-box>
     <setting-item-box name="轴线">
@@ -109,13 +130,24 @@
         </n-space>
       </setting-item>
       <setting-item name="颜色">
-        <n-color-picker v-model:value="xAxis.axisLine.lineStyle.color" size="small"></n-color-picker>
+        <n-color-picker
+          v-model:value="xAxis.axisLine.lineStyle.color"
+          size="small"
+        ></n-color-picker>
       </setting-item>
       <setting-item name="粗细">
-        <n-input-number v-model:value="xAxis.axisLine.lineStyle.width" :min="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="xAxis.axisLine.lineStyle.width"
+          :min="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
       <setting-item name="位置">
-        <n-select v-model:value="xAxis.position" size="small" :options="axisConfig.xposition"></n-select>
+        <n-select
+          v-model:value="xAxis.position"
+          size="small"
+          :options="axisConfig.xposition"
+        ></n-select>
       </setting-item>
       <setting-item name="对齐零">
         <n-space>
@@ -135,7 +167,11 @@
         </n-space>
       </setting-item>
       <setting-item name="长度">
-        <n-input-number v-model:value="xAxis.axisTick.length" :min="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="xAxis.axisTick.length"
+          :min="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
     </setting-item-box>
     <setting-item-box name="分割线">
@@ -145,10 +181,17 @@
         </n-space>
       </setting-item>
       <setting-item name="颜色">
-        <n-color-picker v-model:value="xAxis.splitLine.lineStyle.color" size="small"></n-color-picker>
+        <n-color-picker
+          v-model:value="xAxis.splitLine.lineStyle.color"
+          size="small"
+        ></n-color-picker>
       </setting-item>
       <setting-item name="粗细">
-        <n-input-number v-model:value="xAxis.splitLine.lineStyle.width" :min="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="xAxis.splitLine.lineStyle.width"
+          :min="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
       <setting-item name="类型">
         <n-select
@@ -172,7 +215,11 @@
         <n-color-picker size="small" v-model:value="yAxis.nameTextStyle.color"></n-color-picker>
       </setting-item>
       <setting-item name="大小">
-        <n-input-number v-model:value="yAxis.nameTextStyle.fontSize" :min="8" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="yAxis.nameTextStyle.fontSize"
+          :min="8"
+          size="small"
+        ></n-input-number>
       </setting-item>
       <setting-item name="偏移量">
         <n-input-number v-model:value="yAxis.nameGap" :min="5" size="small"></n-input-number>
@@ -188,10 +235,19 @@
         <n-color-picker size="small" v-model:value="yAxis.axisLabel.color"></n-color-picker>
       </setting-item>
       <setting-item name="大小">
-        <n-input-number v-model:value="yAxis.axisLabel.fontSize" :min="8" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="yAxis.axisLabel.fontSize"
+          :min="8"
+          size="small"
+        ></n-input-number>
       </setting-item>
       <setting-item name="偏移量">
-        <n-input-number v-model:value="yAxis.axisLabel.rotate" :min="-90" :max="90" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="yAxis.axisLabel.rotate"
+          :min="-90"
+          :max="90"
+          size="small"
+        ></n-input-number>
       </setting-item>
     </setting-item-box>
     <setting-item-box name="轴线">
@@ -201,13 +257,24 @@
         </n-space>
       </setting-item>
       <setting-item name="颜色">
-        <n-color-picker v-model:value="yAxis.axisLine.lineStyle.color" size="small"></n-color-picker>
+        <n-color-picker
+          v-model:value="yAxis.axisLine.lineStyle.color"
+          size="small"
+        ></n-color-picker>
       </setting-item>
       <setting-item name="粗细">
-        <n-input-number v-model:value="yAxis.axisLine.lineStyle.width" :min="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="yAxis.axisLine.lineStyle.width"
+          :min="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
       <setting-item name="位置">
-        <n-select v-model:value="yAxis.position" size="small" :options="axisConfig.yposition"></n-select>
+        <n-select
+          v-model:value="yAxis.position"
+          size="small"
+          :options="axisConfig.yposition"
+        ></n-select>
       </setting-item>
       <setting-item name="对齐零">
         <n-space>
@@ -227,7 +294,11 @@
         </n-space>
       </setting-item>
       <setting-item name="长度">
-        <n-input-number v-model:value="yAxis.axisTick.length" :min="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="yAxis.axisTick.length"
+          :min="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
     </setting-item-box>
     <setting-item-box name="分割线">
@@ -237,10 +308,17 @@
         </n-space>
       </setting-item>
       <setting-item name="颜色">
-        <n-color-picker v-model:value="yAxis.splitLine.lineStyle.color" size="small"></n-color-picker>
+        <n-color-picker
+          v-model:value="yAxis.splitLine.lineStyle.color"
+          size="small"
+        ></n-color-picker>
       </setting-item>
       <setting-item name="粗细">
-        <n-input-number v-model:value="yAxis.splitLine.lineStyle.width" :min="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="yAxis.splitLine.lineStyle.width"
+          :min="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
       <setting-item name="类型">
         <n-select
@@ -261,7 +339,11 @@
         <n-color-picker size="small" v-model:value="legend.textStyle.color"></n-color-picker>
       </setting-item>
       <setting-item name="大小">
-        <n-input-number v-model:value="legend.textStyle.fontSize" :min="1" size="small"></n-input-number>
+        <n-input-number
+          v-model:value="legend.textStyle.fontSize"
+          :min="1"
+          size="small"
+        ></n-input-number>
       </setting-item>
     </setting-item-box>
     <setting-item-box name="图例位置">
@@ -305,14 +387,25 @@
     </setting-item-box>
 
     <setting-item-box name="颜色">
-      <setting-item :name="`层级-${index + 1}`" v-for="(item, index) in visualMap.inRange.color" :key="index">
-        <n-color-picker v-model:value="visualMap.inRange.color[index]" size="small"></n-color-picker>
+      <setting-item
+        :name="`层级-${index + 1}`"
+        v-for="(item, index) in visualMap.inRange.color"
+        :key="index"
+      >
+        <n-color-picker
+          v-model:value="visualMap.inRange.color[index]"
+          size="small"
+        ></n-color-picker>
       </setting-item>
     </setting-item-box>
 
     <setting-item-box name="控制块">
       <setting-item name="放置方向">
-        <n-select v-model:value="visualMap.orient" size="small" :options="axisConfig.visualMap.orient"></n-select>
+        <n-select
+          v-model:value="visualMap.orient"
+          size="small"
+          :options="axisConfig.visualMap.orient"
+        ></n-select>
       </setting-item>
       <setting-item name="宽度">
         <n-input-number v-model:value="visualMap.itemWidth" :min="5" size="small"></n-input-number>
@@ -336,69 +429,78 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, computed, watch } from 'vue'
-import { GlobalThemeJsonType } from '@/settings/chartThemes/index'
-import { axisConfig, legendConfig } from '@/packages/chartConfiguration/echarts/index'
-import { CollapseItem, SettingItemBox, SettingItem, GlobalSettingPosition } from '@/components/Pages/ChartItemSetting'
-import { icon } from '@/plugins'
-import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
-import EchartsRendererSetting from './EchartsRendererSetting.vue'
+  import { PropType, computed, watch } from 'vue';
+  import { GlobalThemeJsonType } from '@/settings/chartThemes';
+  import { axisConfig, legendConfig } from '@/packages/chartConfiguration/echarts';
+  import {
+    CollapseItem,
+    SettingItemBox,
+    SettingItem,
+    GlobalSettingPosition,
+  } from '@/components/Pages/ChartItemSetting';
+  import { icon } from '@/plugins';
+  import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
+  import EchartsRendererSetting from './EchartsRendererSetting.vue';
 
-const { HelpOutlineIcon } = icon.ionicons5
+  const { HelpOutlineIcon } = icon.ionicons5;
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<GlobalThemeJsonType>,
-    required: true
-  },
-  inChart: {
-    type: Boolean,
-    required: false,
-    default: false
-  }
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<GlobalThemeJsonType>,
+      required: true,
+    },
+    inChart: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  });
 
-const chartEditStore = useChartEditStore()
-const themeSetting = computed(() => {
-  const chartThemeSetting = chartEditStore.getEditCanvasConfig.chartThemeSetting
-  return chartThemeSetting
-})
+  const chartEditStore = useChartEditStore();
+  const themeSetting = computed(() => {
+    const chartThemeSetting = chartEditStore.getEditCanvasConfig.chartThemeSetting;
+    return chartThemeSetting;
+  });
 
-const title = computed(() => {
-  return props.optionData.title
-})
+  const title = computed(() => {
+    return props.optionData.title;
+  });
 
-const xAxis = computed(() => {
-  return props.optionData.xAxis
-})
+  const xAxis = computed(() => {
+    return props.optionData.xAxis;
+  });
 
-const yAxis = computed(() => {
-  return props.optionData.yAxis
-})
+  const yAxis = computed(() => {
+    return props.optionData.yAxis;
+  });
 
-const legend = computed(() => {
-  return props.optionData.legend
-})
+  const legend = computed(() => {
+    return props.optionData.legend;
+  });
 
-const grid = computed(() => {
-  return props.optionData.grid
-})
+  const grid = computed(() => {
+    return props.optionData.grid;
+  });
 
-const visualMap = computed(() => {
-  return props.optionData.visualMap
-})
+  const visualMap = computed(() => {
+    return props.optionData.visualMap;
+  });
 
-// 监听legend color颜色改变type = scroll的颜色
-watch(() => legend.value && legend.value.textStyle.color, (newVal) => {
-  if (legend.value && newVal) {
-     if (!legend.value.pageTextStyle) {
-      legend.value.pageTextStyle = { color: newVal }
-    } else {
-      legend.value.pageTextStyle.color = newVal
+  // 监听legend color颜色改变type = scroll的颜色
+  watch(
+    () => legend.value && legend.value.textStyle.color,
+    (newVal) => {
+      if (legend.value && newVal) {
+        if (!legend.value.pageTextStyle) {
+          legend.value.pageTextStyle = { color: newVal };
+        } else {
+          legend.value.pageTextStyle.color = newVal;
+        }
+      }
+    },
+    {
+      immediate: true,
+      deep: true,
     }
-  }
-}, {
-  immediate: true,
-  deep: true,
-})
+  );
 </script>

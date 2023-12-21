@@ -1,5 +1,5 @@
 <template>
-  <n-divider style="margin: 10px 0;"></n-divider>
+  <n-divider style="margin: 10px 0"></n-divider>
   <n-collapse arrow-placement="right" :default-expanded-names="expanded ? name : null" accordion>
     <!-- 右侧 -->
     <template #header-extra>
@@ -15,22 +15,22 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  name: {
-    type: String,
-    required: true
-  },
-  expanded: {
-    type: Boolean,
-    required: false,
-    default: false
-  }
-})
+  defineProps({
+    name: {
+      type: String,
+      required: true,
+    },
+    expanded: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  });
 
-// const name = new Date().getTime()
+  // const name = new Date().getTime()
 
-const click = (e:MouseEvent) => {
-  e.preventDefault()
-  e.stopPropagation()
-}
+  const click = (e: MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
 </script>
