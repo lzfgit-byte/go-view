@@ -24,20 +24,19 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, computed } from 'vue'
-import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
-import { option, orientList, toolTipSwitch } from './config'
-import { GlobalThemeJsonType } from '@/settings/chartThemes/index'
+  import { PropType, computed } from 'vue';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
+  import { option, orientList, toolTipSwitch } from './config';
+  import { GlobalThemeJsonType } from '@/settings/chartThemes/index';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<typeof option & GlobalThemeJsonType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<typeof option & GlobalThemeJsonType>,
+      required: true,
+    },
+  });
 
-const sankeyConfig = computed<typeof option.series>(() => {
-  return props.optionData.series
-})
-
+  const sankeyConfig = computed<typeof option.series>(() => {
+    return props.optionData.series;
+  });
 </script>

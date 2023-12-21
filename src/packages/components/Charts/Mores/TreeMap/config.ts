@@ -1,10 +1,10 @@
-import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public'
-import { TreeMapConfig } from './index'
-import { CreateComponentType } from '@/packages/index.d'
-import cloneDeep from 'lodash/cloneDeep'
-import dataJson from './data.json'
+import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public';
+import { TreeMapConfig } from './index';
+import { CreateComponentType } from '@/packages/index.d';
+import cloneDeep from 'lodash/cloneDeep';
+import dataJson from './data.json';
 
-export const includes = []
+export const includes = [];
 
 export const option = {
   dataset: dataJson,
@@ -14,14 +14,14 @@ export const option = {
       type: 'treemap',
       leafDepth: 1,
       roam: false,
-      data: dataJson
-    }
-  ]
-}
+      data: dataJson,
+    },
+  ],
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key = TreeMapConfig.key
-  public chartConfig = cloneDeep(TreeMapConfig)
+  public key = TreeMapConfig.key;
+  public chartConfig = cloneDeep(TreeMapConfig);
   // 图表配置项
-  public option = echartOptionProfixHandle(option, includes)
+  public option = echartOptionProfixHandle(option, includes);
 }

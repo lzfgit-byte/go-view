@@ -1,40 +1,40 @@
-import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public'
-import { CreateComponentType } from '@/packages/index.d'
-import { WaterPoloConfig } from './index'
-import cloneDeep from 'lodash/cloneDeep'
+import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public';
+import { CreateComponentType } from '@/packages/index.d';
+import { WaterPoloConfig } from './index';
+import cloneDeep from 'lodash/cloneDeep';
 
 export const shapes = [
   {
     label: '圆形',
-    value: 'circle'
+    value: 'circle',
   },
   {
     label: '正方形',
-    value: 'rect'
+    value: 'rect',
   },
   {
     label: '带圆角的正方形',
-    value: 'roundRect'
+    value: 'roundRect',
   },
   {
     label: '正三角形',
-    value: 'triangle'
+    value: 'triangle',
   },
   {
     label: '菱形',
-    value: 'diamond'
+    value: 'diamond',
   },
   {
     label: '水滴',
-    value: 'pin'
+    value: 'pin',
   },
   {
     label: '箭头',
-    value: 'arrow'
+    value: 'arrow',
   },
-]
+];
 
-export const includes = []
+export const includes = [];
 
 export const option = {
   dataset: 0.5,
@@ -82,16 +82,15 @@ export const option = {
         borderDistance: 10,
         itemStyle: {
           borderWidth: 2,
-          borderColor: '#112165'
-        }
-      }
-    }
-  ]
-}
+          borderColor: '#112165',
+        },
+      },
+    },
+  ],
+};
 
-export default class Config extends PublicConfigClass implements CreateComponentType
-{
-  public key = WaterPoloConfig.key
-  public chartConfig = cloneDeep(WaterPoloConfig)
-  public option = echartOptionProfixHandle(option, includes)
+export default class Config extends PublicConfigClass implements CreateComponentType {
+  public key = WaterPoloConfig.key;
+  public chartConfig = cloneDeep(WaterPoloConfig);
+  public option = echartOptionProfixHandle(option, includes);
 }
