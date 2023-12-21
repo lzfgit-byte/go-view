@@ -1,4 +1,6 @@
 // 模块 Path 前缀分类
+import { fetchRouteParamsLocation } from '@/utils';
+
 export enum ModuleTypeEnum {
   SYSTEM = 'sys',
   PROJECT = 'project',
@@ -22,7 +24,7 @@ export enum RequestDataTypeEnum {
   // 请求数据
   AJAX = 1,
   // 数据池
-  Pond = 2
+  Pond = 2,
 }
 
 // 请求主体类型
@@ -30,13 +32,13 @@ export enum RequestContentTypeEnum {
   // 普通请求
   DEFAULT = 0,
   // SQL请求
-  SQL = 1
+  SQL = 1,
 }
 
 // 头部
 export enum RequestHttpHeaderEnum {
   TOKEN = 'Token',
-  COOKIE = 'Cookie'
+  COOKIE = 'Cookie',
 }
 
 // 请求方法
@@ -45,7 +47,7 @@ export enum RequestHttpEnum {
   POST = 'post',
   PATCH = 'patch',
   PUT = 'put',
-  DELETE = 'delete'
+  DELETE = 'delete',
 }
 
 /**
@@ -59,7 +61,7 @@ export enum RequestHttpIntervalEnum {
   // 时
   HOUR = 'hour',
   // 天
-  DAY = 'day'
+  DAY = 'day',
 }
 
 /**
@@ -69,8 +71,8 @@ export const SelectHttpTimeNameObj = {
   [RequestHttpIntervalEnum.SECOND]: '秒',
   [RequestHttpIntervalEnum.MINUTE]: '分',
   [RequestHttpIntervalEnum.HOUR]: '时',
-  [RequestHttpIntervalEnum.DAY]: '天'
-}
+  [RequestHttpIntervalEnum.DAY]: '天',
+};
 
 /**
  * @description: 请求头部类型
@@ -80,7 +82,7 @@ export enum RequestBodyEnum {
   FORM_DATA = 'form-data',
   X_WWW_FORM_URLENCODED = 'x-www-form-urlencoded',
   JSON = 'json',
-  XML = 'xml'
+  XML = 'xml',
 }
 
 /**
@@ -91,8 +93,8 @@ export const RequestBodyEnumList = [
   RequestBodyEnum.FORM_DATA,
   RequestBodyEnum.X_WWW_FORM_URLENCODED,
   RequestBodyEnum.JSON,
-  RequestBodyEnum.XML
-]
+  RequestBodyEnum.XML,
+];
 
 /**
  * @description: 请求参数类型
@@ -107,18 +109,18 @@ export enum RequestParamsTypeEnum {
  * @description: 请求参数主体
  */
 export type RequestParamsObjType = {
-  [T: string]: string
-}
+  [T: string]: string;
+};
 export type RequestParams = {
-  [RequestParamsTypeEnum.PARAMS]: RequestParamsObjType
-  [RequestParamsTypeEnum.HEADER]: RequestParamsObjType
+  [RequestParamsTypeEnum.PARAMS]: RequestParamsObjType;
+  [RequestParamsTypeEnum.HEADER]: RequestParamsObjType;
   [RequestParamsTypeEnum.BODY]: {
-    [RequestBodyEnum.FORM_DATA]: RequestParamsObjType
-    [RequestBodyEnum.X_WWW_FORM_URLENCODED]: RequestParamsObjType
-    [RequestBodyEnum.JSON]: string
-    [RequestBodyEnum.XML]: string
-  }
-}
+    [RequestBodyEnum.FORM_DATA]: RequestParamsObjType;
+    [RequestBodyEnum.X_WWW_FORM_URLENCODED]: RequestParamsObjType;
+    [RequestBodyEnum.JSON]: string;
+    [RequestBodyEnum.XML]: string;
+  };
+};
 
 // 常用的contentTyp类型
 export enum ContentTypeEnum {
@@ -131,5 +133,7 @@ export enum ContentTypeEnum {
   // application/x-www-form-urlencoded 一般配合qs
   FORM_URLENCODED = 'application/x-www-form-urlencoded;charset=UTF-8',
   // form-data  上传
-  FORM_DATA = 'multipart/form-data;charset=UTF-8'
+  FORM_DATA = 'multipart/form-data;charset=UTF-8',
 }
+// 表格数据请求动态参数 TODO 添加更多动态参数
+export const CustomListReqData = [{ reg: /\$projectId/g, value: fetchRouteParamsLocation() }];

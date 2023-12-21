@@ -1,0 +1,48 @@
+module.exports = {
+  root: true,
+  parser: 'vue-eslint-parser',
+  globals: {
+    postMessage: true,
+  },
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+      tsx: true,
+    },
+  },
+  env: {
+    node: true,
+    // The Follow config only works with eslint-plugin-vue v8.0.0+
+    'vue/setup-compiler-macros': true,
+  },
+  extends: ['plugin:prettier/recommended', 'plugin:vue/vue3-essential', 'eslint:recommended'],
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-unused-vars': 'off',
+    'vue/no-unused-vars': 'off',
+    'vue/multi-word-component-names': 'off',
+    'vue/valid-template-root': 'off',
+    'no-extra-semi': 'off',
+    'vue/no-mutating-props': 'off',
+    'vue/component-tags-order': 'off',
+    'vue/padding-line-between-blocks': 'off',
+    semi: [2, 'always'],
+    '@typescript-eslint/semi': 'off',
+    'unused-imports/no-unused-imports': 'off',
+    'prefer-promise-reject-errors': 'off',
+    'prefer-const': 'off',
+    'new-cap': 'off',
+    'no-new': 'off',
+    'prefer-rest-params': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    'unicorn/prefer-includes': 'off',
+    'eslint-comments/no-unlimited-disable': 'off',
+    'no-new-func': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    'dot-notation': 'off',
+    '@typescript-eslint/no-this-alias': 'off',
+  },
+};
