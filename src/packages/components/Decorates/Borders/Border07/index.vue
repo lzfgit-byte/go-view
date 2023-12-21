@@ -48,8 +48,7 @@
           />
           <polyline
             fill="#fff"
-            :points="
-              `8, ${h * 0.15} 8, 3, ${w * 0.1 + 7}, 3
+            :points="`8, ${h * 0.15} 8, 3, ${w * 0.1 + 7}, 3
               ${w * 0.1}, 8 14, 8 14, ${h * 0.15 - 7}
             `"
           />
@@ -105,39 +104,49 @@
         </mask>
       </defs>
 
-      <polygon :fill="backgroundColor" :points="`
+      <polygon
+        :fill="backgroundColor"
+        :points="`
         15, 9 ${w * 0.1 + 1}, 9 ${w * 0.1 + 4}, 6 ${w * 0.52 + 2}, 6
         ${w * 0.52 + 6}, 10 ${w * 0.58 - 7}, 10 ${w * 0.58 - 2}, 6
         ${w * 0.9 + 2}, 6 ${w * 0.9 + 6}, 10 ${w - 10}, 10 ${w - 10}, ${h * 0.1 - 6}
         ${w - 6}, ${h * 0.1 - 1} ${w - 6}, ${h * 0.8 + 1} ${w - 10}, ${h * 0.8 + 6}
         ${w - 10}, ${h - 10} ${w * 0.92 + 7}, ${h - 10}  ${w * 0.92 + 2}, ${h - 6}
         11, ${h - 6} 11, ${h * 0.15 - 2} 15, ${h * 0.15 - 7}
-      `"/>
+      `"
+      />
 
-      <rect x="0" y="0" :width="w" :height="h" :fill="`url(#${filterId})`" :mask="`url(#${maskId})`"/>
+      <rect
+        x="0"
+        y="0"
+        :width="w"
+        :height="h"
+        :fill="`url(#${filterId})`"
+        :mask="`url(#${maskId})`"
+      />
     </svg>
   </div>
 </template>
 
 <script setup lang="ts">
-import { PropType, toRefs } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
-import { getUUID } from '@/utils'
+  import { PropType, toRefs } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
+  import { getUUID } from '@/utils';
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
 
-const filterId = `border-box-07-filter-${getUUID()}`
-const maskId = `border-box-07-mask-${getUUID()}`
-const { w, h } = toRefs(props.chartConfig.attr)
-const { colors, backgroundColor } = toRefs(props.chartConfig.option)
+  const filterId = `border-box-07-filter-${getUUID()}`;
+  const maskId = `border-box-07-mask-${getUUID()}`;
+  const { w, h } = toRefs(props.chartConfig.attr);
+  const { colors, backgroundColor } = toRefs(props.chartConfig.option);
 </script>
 
 <style lang="scss" scoped>
-@include go('border-box') {
-}
+  @include go('border-box') {
+  }
 </style>
