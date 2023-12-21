@@ -26,18 +26,18 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
-import { PickCreateComponentType } from '@/packages/index.d'
-import { SettingItemBox } from '@/components/Pages/ChartItemSetting'
+  import { PropType } from 'vue';
+  import { PickCreateComponentType } from '@/packages/index.d';
+  import { SettingItemBox } from '@/components/Pages/ChartItemSetting';
 
-const props = defineProps({
-  chartAttr: {
-    type: Object as PropType<Omit<PickCreateComponentType<'attr'>, 'node' | 'conNode'>>,
-    required: true
-  },
-  isGroup: {
-    type: Boolean,
-    required: false
-  }
-})
+  const props = defineProps({
+    chartAttr: {
+      type: Object as PropType<Omit<PickCreateComponentType<'attr'>, 'node' | 'conNode'>>,
+      required: true,
+    },
+    isGroup: {
+      type: Boolean,
+      required: false,
+    },
+  });
 </script>

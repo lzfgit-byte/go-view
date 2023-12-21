@@ -10,20 +10,20 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, reactive } from 'vue'
-import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
+  import { PropType, reactive } from 'vue';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
 
-type positionType = {
-  top?: number | string | null
-  left?: number | string | null
-  right?: number | string | null
-  bottom?: number | string | null
-}
+  type positionType = {
+    top?: number | string | null;
+    left?: number | string | null;
+    right?: number | string | null;
+    bottom?: number | string | null;
+  };
 
-const props = defineProps({
-  targetData: {
-    type: Object as PropType<positionType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    targetData: {
+      type: Object as PropType<positionType>,
+      required: true,
+    },
+  });
 </script>
