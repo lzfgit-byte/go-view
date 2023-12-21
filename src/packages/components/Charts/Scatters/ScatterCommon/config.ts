@@ -1,15 +1,15 @@
-import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public'
-import { ScatterCommonConfig } from './index'
-import { CreateComponentType } from '@/packages/index.d'
-import cloneDeep from 'lodash/cloneDeep'
-import dataJson from './data.json'
+import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public';
+import { ScatterCommonConfig } from './index';
+import { CreateComponentType } from '@/packages/index.d';
+import cloneDeep from 'lodash/cloneDeep';
+import dataJson from './data.json';
 
-export const includes = ['legend', 'xAxis', 'yAxis', 'grid']
+export const includes = ['legend', 'xAxis', 'yAxis', 'grid'];
 
 export const seriesItem = {
   type: 'scatter',
   emphasis: {
-    focus: 'series'
+    focus: 'series',
   },
   symbolSize: 12,
   markArea: {
@@ -17,30 +17,30 @@ export const seriesItem = {
     itemStyle: {
       color: 'transparent',
       borderWidth: 1,
-      borderType: 'dashed'
+      borderType: 'dashed',
     },
     data: [
       [
         {
           xAxis: 'min',
-          yAxis: 'min'
+          yAxis: 'min',
         },
         {
           xAxis: 'max',
-          yAxis: 'max'
-        }
-      ]
-    ]
+          yAxis: 'max',
+        },
+      ],
+    ],
   },
   markPoint: {
     symbol: 'pin',
     symbolSize: 50,
     data: [
       { type: 'max', name: 'Max' },
-      { type: 'min', name: 'Min' }
-    ]
-  }
-}
+      { type: 'min', name: 'Min' },
+    ],
+  },
+};
 
 export const option = {
   dataset: dataJson,
@@ -50,32 +50,32 @@ export const option = {
       // console.log(params)
       return params.value.length > 1
         ? `${params.seriesName}：<br />${params.value[0]} ${params.value[1]}`
-        : `${params.seriesName}：<br />${params.name} ${params.value}`
+        : `${params.seriesName}：<br />${params.name} ${params.value}`;
     },
     axisPointer: {
       show: true,
       type: 'cross',
       lineStyle: {
         type: 'dashed',
-        width: 1
-      }
-    }
+        width: 1,
+      },
+    },
   },
   xAxis: {
-    scale: true
+    scale: true,
   },
   yAxis: {
-    scale: true
+    scale: true,
   },
   series: dataJson.map((item, index) => ({
     ...seriesItem,
-    datasetIndex: index
-  }))
-}
+    datasetIndex: index,
+  })),
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key = ScatterCommonConfig.key
-  public chartConfig = cloneDeep(ScatterCommonConfig)
+  public key = ScatterCommonConfig.key;
+  public chartConfig = cloneDeep(ScatterCommonConfig);
   // 图表配置项
-  public option = echartOptionProfixHandle(option, includes)
+  public option = echartOptionProfixHandle(option, includes);
 }

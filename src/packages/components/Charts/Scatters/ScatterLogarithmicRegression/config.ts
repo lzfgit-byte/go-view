@@ -1,10 +1,10 @@
-import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public'
-import { ScatterLogarithmicRegressionConfig } from './index'
-import { CreateComponentType } from '@/packages/index.d'
-import cloneDeep from 'lodash/cloneDeep'
-import dataJson from './data.json'
+import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public';
+import { ScatterLogarithmicRegressionConfig } from './index';
+import { CreateComponentType } from '@/packages/index.d';
+import cloneDeep from 'lodash/cloneDeep';
+import dataJson from './data.json';
 
-export const includes = ['legend', 'xAxis', 'yAxis', 'grid']
+export const includes = ['legend', 'xAxis', 'yAxis', 'grid'];
 
 export const option = {
   dataset: dataJson,
@@ -15,22 +15,22 @@ export const option = {
       // console.log(params)
       return params.value.length > 1
         ? `${params.seriesName}：<br />${params.value[0]} ${params.value[1]}`
-        : `${params.seriesName}：<br />${params.name} ${params.value}`
+        : `${params.seriesName}：<br />${params.name} ${params.value}`;
     },
     axisPointer: {
       show: true,
       type: 'cross',
       lineStyle: {
         type: 'dashed',
-        width: 1
-      }
-    }
+        width: 1,
+      },
+    },
   },
 
   legend: {
     data: dataJson
-      .filter(i => i?.transform?.type === 'filter' && i?.transform?.config?.eq)
-      .map(i => i.transform?.config?.eq?.toString())
+      .filter((i) => i?.transform?.type === 'filter' && i?.transform?.config?.eq)
+      .map((i) => i.transform?.config?.eq?.toString()),
   },
 
   xAxis: {
@@ -38,18 +38,18 @@ export const option = {
     type: 'value',
     splitLine: {
       lineStyle: {
-        type: 'dashed'
-      }
-    }
+        type: 'dashed',
+      },
+    },
   },
   yAxis: {
     show: true,
     type: 'value',
     splitLine: {
       lineStyle: {
-        type: 'dashed'
-      }
-    }
+        type: 'dashed',
+      },
+    },
   },
 
   visualMap: {
@@ -59,18 +59,18 @@ export const option = {
     max: 1500000000,
     seriesIndex: [0, 1],
     inRange: {
-      symbolSize: [10, 70]
-    }
+      symbolSize: [10, 70],
+    },
   },
 
   series: [
     {
       type: 'scatter',
-      datasetIndex: 1
+      datasetIndex: 1,
     },
     {
       type: 'scatter',
-      datasetIndex: 2
+      datasetIndex: 2,
     },
     {
       type: 'line',
@@ -80,14 +80,14 @@ export const option = {
       symbol: 'circle',
       label: { show: true, fontSize: 16 },
       labelLayout: { dx: -20 },
-      encode: { label: 2, tooltip: 1 }
-    }
-  ]
-}
+      encode: { label: 2, tooltip: 1 },
+    },
+  ],
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key = ScatterLogarithmicRegressionConfig.key
-  public chartConfig = cloneDeep(ScatterLogarithmicRegressionConfig)
+  public key = ScatterLogarithmicRegressionConfig.key;
+  public chartConfig = cloneDeep(ScatterLogarithmicRegressionConfig);
   // 图表配置项
-  public option = echartOptionProfixHandle(option, includes)
+  public option = echartOptionProfixHandle(option, includes);
 }
