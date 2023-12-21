@@ -43,6 +43,7 @@ module.exports = {
     'no-new-func': 'off',
     '@typescript-eslint/ban-types': 'off',
     'dot-notation': 'off',
+    'no-case-declarations': 'off',
     '@typescript-eslint/no-this-alias': 'off',
   },
 };
