@@ -15,7 +15,7 @@ export const rollupOptions = {
   output: {
     chunkFileNames: 'static/js/[name]-[hash].js',
     entryFileNames: 'static/js/[name]-[hash].js',
-    assetFileNames: (chunkInfo) => {
+    assetFileNames: (chunkInfo:any) => {
       if(['.png', '.jpg', '.jpeg'].includes(path.extname(chunkInfo.name))) {
         return `static/[ext]/[name].[ext]`
       }
