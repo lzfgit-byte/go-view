@@ -1,5 +1,5 @@
-import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d'
+import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const DialConfig: ConfigType = {
   key: 'Dial',
@@ -10,5 +10,5 @@ export const DialConfig: ConfigType = {
   categoryName: ChatCategoryEnumName.MORE,
   package: PackagesCategoryEnum.CHARTS,
   chartFrame: ChartFrameEnum.COMMON,
-  image:'dial.png'
-}
+  image: 'dial.png',
+};
