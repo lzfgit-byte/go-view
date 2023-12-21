@@ -3,23 +3,23 @@ export const axisConfig = {
   xposition: [
     {
       label: '顶部',
-      value: 'top'
+      value: 'top',
     },
     {
       label: '底部',
-      value: 'bottom'
-    }
+      value: 'bottom',
+    },
   ],
   // Y轴位置
   yposition: [
     {
       label: '左侧',
-      value: 'left'
+      value: 'left',
     },
     {
       label: '右侧',
-      value: 'right'
-    }
+      value: 'right',
+    },
   ],
   // 线条
   splitLint: {
@@ -27,30 +27,30 @@ export const axisConfig = {
       type: [
         {
           label: '实线',
-          value: 'solid'
+          value: 'solid',
         },
         {
           label: '虚线',
-          value: 'dashed'
+          value: 'dashed',
         },
         {
           label: '点线',
-          value: 'dotted'
-        }
-      ]
-    }
+          value: 'dotted',
+        },
+      ],
+    },
   },
   // 视觉映射
   visualMap: {
     orient: [
       {
         label: '竖直',
-        value: 'vertical'
+        value: 'vertical',
       },
       {
         label: '水平',
-        value: 'horizontal'
-      }
-    ]
-  }
-}
+        value: 'horizontal',
+      },
+    ],
+  },
+};

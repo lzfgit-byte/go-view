@@ -3,16 +3,16 @@ export const lineConf = {
     type: [
       {
         label: 'solid',
-        value: 'solid'
+        value: 'solid',
       },
       {
         label: 'dashed',
-        value: 'dashed'
+        value: 'dashed',
       },
       {
         label: 'dotted',
-        value: 'dotted'
-      }
-    ]
-  }
-}
+        value: 'dotted',
+      },
+    ],
+  },
+};
