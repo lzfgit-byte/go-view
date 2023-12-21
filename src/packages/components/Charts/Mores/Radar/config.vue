@@ -73,10 +73,18 @@
 
       <SettingItemBox name="指示器">
         <SettingItem name="颜色">
-          <n-color-picker size="small" :modes="['hex']" v-model:value="radarConfig.axisName.color"></n-color-picker>
+          <n-color-picker
+            size="small"
+            :modes="['hex']"
+            v-model:value="radarConfig.axisName.color"
+          ></n-color-picker>
         </SettingItem>
         <SettingItem name="大小">
-          <n-input-number v-model:value="radarConfig.axisName.fontSize" size="small" :min="9"></n-input-number>
+          <n-input-number
+            v-model:value="radarConfig.axisName.fontSize"
+            size="small"
+            :min="9"
+          ></n-input-number>
         </SettingItem>
         <SettingItem>
           <n-checkbox v-model:checked="radarConfig.axisName.show">文字标签</n-checkbox>
@@ -99,47 +107,52 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, computed, reactive } from 'vue'
-import { GlobalSetting, CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
-import { option, RadarShapeEnumList } from './config'
-import { GlobalThemeJsonType } from '@/settings/chartThemes/index'
+  import { PropType, computed, reactive } from 'vue';
+  import {
+    GlobalSetting,
+    CollapseItem,
+    SettingItemBox,
+    SettingItem,
+  } from '@/components/Pages/ChartItemSetting';
+  import { option, RadarShapeEnumList } from './config';
+  import { GlobalThemeJsonType } from '@/settings/chartThemes/index';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<typeof option & GlobalThemeJsonType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<typeof option & GlobalThemeJsonType>,
+      required: true,
+    },
+  });
 
-const radarConfig = computed<typeof option.radar>(() => {
-  return props.optionData.radar
-})
+  const radarConfig = computed<typeof option.radar>(() => {
+    return props.optionData.radar;
+  });
 
-const radarProp = reactive({
-  radius: [0, 60],
-  center: [50, 50]
-})
+  const radarProp = reactive({
+    radius: [0, 60],
+    center: [50, 50],
+  });
 
-// 更新处理
-const updateRadius0 = (value: number) => {
-  props.optionData.radar.radius[0] = `${value}%`
-}
+  // 更新处理
+  const updateRadius0 = (value: number) => {
+    props.optionData.radar.radius[0] = `${value}%`;
+  };
 
-const updateRadius1 = (value: number) => {
-  props.optionData.radar.radius[1] = `${value}%`
-}
+  const updateRadius1 = (value: number) => {
+    props.optionData.radar.radius[1] = `${value}%`;
+  };
 
-// 更新处理
-const updateCenter0 = (value: number) => {
-  props.optionData.radar.center[0] = `${value}%`
-}
+  // 更新处理
+  const updateCenter0 = (value: number) => {
+    props.optionData.radar.center[0] = `${value}%`;
+  };
 
-const updateCenter1 = (value: number) => {
-  props.optionData.radar.center[1] = `${value}%`
-}
+  const updateCenter1 = (value: number) => {
+    props.optionData.radar.center[1] = `${value}%`;
+  };
 
-// 百分比格式化 percent
-const sliderFormatTooltip = (v: number) => {
-  return `${v}%`
-}
+  // 百分比格式化 percent
+  const sliderFormatTooltip = (v: number) => {
+    return `${v}%`;
+  };
 </script>

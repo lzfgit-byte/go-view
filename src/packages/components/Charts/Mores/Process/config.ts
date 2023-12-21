@@ -1,35 +1,34 @@
-import { PublicConfigClass } from '@/packages/public'
-import { CreateComponentType } from '@/packages/index.d'
-import { ProcessConfig } from './index'
-import { chartInitConfig } from '@/settings/designSetting'
-import cloneDeep from 'lodash/cloneDeep'
-
+import { PublicConfigClass } from '@/packages/public';
+import { CreateComponentType } from '@/packages/index.d';
+import { ProcessConfig } from './index';
+import { chartInitConfig } from '@/settings/designSetting';
+import cloneDeep from 'lodash/cloneDeep';
 
 export const types = [
   {
     label: '线形',
-    value: 'line'
+    value: 'line',
   },
   {
     label: '圆形',
-    value: 'circle'
+    value: 'circle',
   },
   {
     label: '仪表盘',
-    value: 'dashboard'
+    value: 'dashboard',
   },
-]
+];
 
 export const indicatorPlacements = [
   {
     label: '内部',
-    value: 'inside'
+    value: 'inside',
   },
   {
     label: '外部',
-    value: 'outside'
-  }
-]
+    value: 'outside',
+  },
+];
 
 export const option = {
   dataset: 36,
@@ -40,7 +39,7 @@ export const option = {
   // 主颜色
   color: '#4992FFFF',
   // 轨道颜色
-  railColor: '#3e3e3f', 
+  railColor: '#3e3e3f',
   // 指标
   unit: '%',
   // 指标大小
@@ -50,12 +49,12 @@ export const option = {
   // 指标颜色
   indicatorTextColor: '#FFFFFFFF',
   // 偏移角度
-  offsetDegree: 0
-}
+  offsetDegree: 0,
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key = ProcessConfig.key
-  public attr = { ...chartInitConfig, h: 500, zIndex: -1 }
-  public chartConfig = cloneDeep(ProcessConfig)
-  public option = cloneDeep(option)
+  public key = ProcessConfig.key;
+  public attr = { ...chartInitConfig, h: 500, zIndex: -1 };
+  public chartConfig = cloneDeep(ProcessConfig);
+  public option = cloneDeep(option);
 }
