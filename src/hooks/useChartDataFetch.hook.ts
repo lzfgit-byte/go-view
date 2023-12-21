@@ -5,11 +5,10 @@ import { useChartDataPondFetch } from '@/hooks/';
 import type { CreateComponentType } from '@/packages/index.d';
 import { ChartFrameEnum } from '@/packages/index.d';
 import type { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
-import { RequestDataTypeEnum } from '@/enums/httpEnum';
+import { RequestDataTypeEnum, customListReqData } from '@/enums/httpEnum';
 import {
   JSONParse,
   JSONStringify,
-  fetchRouteParamsLocation,
   intervalUnitHandle,
   isPreview,
   newFunctionHandle,
@@ -80,12 +79,11 @@ export const useChartDataFetch = (
 
         const fetchFn = async () => {
           let request = toRaw(targetComponent.request);
-          let jsonStr = JSONStringify(request);
-          // TODO 添加更多动态参数
-          [{ reg: /\$projectId/g, value: fetchRouteParamsLocation() }].forEach(({ reg, value }) => {
-            jsonStr = jsonStr.replace(reg, value);
-            request = JSONParse(jsonStr);
-          });
+          // let jsonStr = JSONStringify(request);
+          // customListReqData.forEach(({ reg, value }) => {
+          //   jsonStr = jsonStr.replace(reg, value);
+          //   request = JSONParse(jsonStr);
+          // });
           const res = await customizeHttp(request, toRaw(chartEditStore.getRequestGlobalConfig));
           if (res) {
             try {
