@@ -14,15 +14,14 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  NDialogProvider,
-  NNotificationProvider,
-  NMessageProvider,
-  NLoadingBarProvider
-} from 'naive-ui'
+  import {
+    NDialogProvider,
+    NNotificationProvider,
+    NMessageProvider,
+    NLoadingBarProvider,
+  } from 'naive-ui';
 
-import { MessageContent } from '@/components/Plugins/MessageContent'
-import { DialogContent } from '@/components/Plugins/DialogContent'
-import { LoadingContent } from '@/components/Plugins/LoadingContent'
-
+  import { MessageContent } from '@/components/Plugins/MessageContent';
+  import { DialogContent } from '@/components/Plugins/DialogContent';
+  import { LoadingContent } from '@/components/Plugins/LoadingContent';
 </script>
