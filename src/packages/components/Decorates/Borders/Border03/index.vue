@@ -3,12 +3,7 @@
     <svg :width="w" :height="h">
       <defs>
         <filter :id="filterId" height="150%" width="150%" x="-25%" y="-25%">
-          <feMorphology
-            operator="dilate"
-            radius="1"
-            in="SourceAlpha"
-            result="thicken"
-          />
+          <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="thicken" />
           <feGaussianBlur in="thicken" stdDeviation="2" result="blurred" />
           <feFlood :flood-color="alpha(colors[1], 0.7)" result="glowColor">
             <animate
@@ -23,12 +18,7 @@
               repeatCount="indefinite"
             />
           </feFlood>
-          <feComposite
-            in="glowColor"
-            in2="blurred"
-            operator="in"
-            result="softGlowColored"
-          />
+          <feComposite in="glowColor" in2="blurred" operator="in" result="softGlowColored" />
           <feMerge>
             <feMergeNode in="softGlowColored" />
             <feMergeNode in="SourceGraphic" />
@@ -64,9 +54,7 @@
         stroke-linecap="round"
         :filter="`url(#${filterId})`"
         :stroke="colors[1]"
-        :d="`M ${w - 20} 5 L ${w - 15} 5 Q ${w - 5} 5 ${w - 5} 15 L ${
-          w - 5
-        } 20`"
+        :d="`M ${w - 20} 5 L ${w - 15} 5 Q ${w - 5} 5 ${w - 5} 15 L ${w - 5} 20`"
       />
 
       <path
@@ -99,24 +87,23 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, toRefs } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
-import { getUUID, alpha } from '@/utils'
+  import { PropType, toRefs } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
+  import { getUUID, alpha } from '@/utils';
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true
-  }
-})
-const filterId = `border-box-03-filterId-${getUUID()}`
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
+  const filterId = `border-box-03-filterId-${getUUID()}`;
 
-const { w, h } = toRefs(props.chartConfig.attr)
-const { colors, backgroundColor } = toRefs(props.chartConfig.option)
-
+  const { w, h } = toRefs(props.chartConfig.attr);
+  const { colors, backgroundColor } = toRefs(props.chartConfig.option);
 </script>
 
 <style lang="scss" scoped>
-@include go('border-box') {
-}
+  @include go('border-box') {
+  }
 </style>

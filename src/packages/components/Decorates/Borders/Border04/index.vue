@@ -3,20 +3,10 @@
     <svg :width="w" :height="h">
       <defs>
         <filter :id="filterId" height="150%" width="150%" x="-25%" y="-25%">
-          <feMorphology
-            operator="dilate"
-            radius="2"
-            in="SourceAlpha"
-            result="thicken"
-          />
+          <feMorphology operator="dilate" radius="2" in="SourceAlpha" result="thicken" />
           <feGaussianBlur in="thicken" stdDeviation="3" result="blurred" />
           <feFlood :flood-color="colors[1]" result="glowColor" />
-          <feComposite
-            in="glowColor"
-            in2="blurred"
-            operator="in"
-            result="softGlowColored"
-          />
+          <feComposite in="glowColor" in2="blurred" operator="in" result="softGlowColored" />
           <feMerge>
             <feMergeNode in="softGlowColored" />
             <feMergeNode in="SourceGraphic" />
@@ -223,31 +213,31 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, toRefs } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
-import { getUUID } from '@/utils'
+  import { PropType, toRefs } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
+  import { getUUID } from '@/utils';
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
 
-const filterId = `border-box-04-filterId-${getUUID()}`
-const { w, h } = toRefs(props.chartConfig.attr)
-const {
-  colors,
-  borderTitle,
-  borderTitleColor,
-  borderTitleSize,
-  borderTitleHeight,
-  borderTitleWidth,
-  backgroundColor
-} = toRefs(props.chartConfig.option)
+  const filterId = `border-box-04-filterId-${getUUID()}`;
+  const { w, h } = toRefs(props.chartConfig.attr);
+  const {
+    colors,
+    borderTitle,
+    borderTitleColor,
+    borderTitleSize,
+    borderTitleHeight,
+    borderTitleWidth,
+    backgroundColor,
+  } = toRefs(props.chartConfig.option);
 </script>
 
 <style lang="scss" scoped>
-@include go('border-box') {
-}
+  @include go('border-box') {
+  }
 </style>
