@@ -5,19 +5,19 @@ module.exports = {
       type: 'input',
       name: 'name',
       message: 'Please enter store name，such as "newStoreName" :',
-      validate (value) {
+      validate(value) {
         if (!value || value.trim === '') {
           return 'name is required';
         }
         return true;
       },
-    }
+    },
   ],
   actions: (data) => {
-    const dataName = data.name
+    const dataName = data.name;
 
     // 首字母大写
-    const upperDataName = dataName.slice(0, 1).toUpperCase() + dataName.slice(1)
+    const upperDataName = dataName.slice(0, 1).toUpperCase() + dataName.slice(1);
 
     const actions = [
       {
@@ -27,7 +27,7 @@ module.exports = {
         data: {
           name: data.name,
           upperDataName,
-        }
+        },
       },
       {
         type: 'add',
@@ -36,10 +36,10 @@ module.exports = {
         data: {
           name: data.name,
           upperDataName,
-        }
+        },
       },
-    ]
-    
-    return actions
-  }
-}
+    ];
+
+    return actions;
+  },
+};

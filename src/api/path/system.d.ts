@@ -3,24 +3,24 @@ export interface LoginResult {
     /**
      * token 值
      */
-    tokenValue: string
+    tokenValue: string;
     /**
      * token key
      */
-    tokenName: string
-  }
+    tokenName: string;
+  };
   userinfo: {
     /**
      * 昵称
      */
-    nickname: string
+    nickname: string;
     /**
      * 用户名
      */
-    username: string
+    username: string;
     /**
      * 用户 id
      */
-    id: string
-  }
+    id: string;
+  };
 }
