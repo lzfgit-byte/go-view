@@ -1,34 +1,34 @@
-import { ref, onBeforeUnmount, nextTick } from 'vue'
-import { useDesignStore } from '@/store/modules/designStore/designStore'
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js'
+import { ref, onBeforeUnmount, nextTick } from 'vue';
+import { useDesignStore } from '@/store/modules/designStore/designStore';
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
 
 export const useMonacoEditor = (language = 'javascript') => {
-const designStore = useDesignStore()
+  const designStore = useDesignStore();
 
-  let monacoEditor: monaco.editor.IStandaloneCodeEditor | null = null
-  let initReadOnly = false
-  const el = ref<HTMLElement | null>(null)
+  let monacoEditor: monaco.editor.IStandaloneCodeEditor | null = null;
+  let initReadOnly = false;
+  const el = ref<HTMLElement | null>(null);
 
   // 格式化
   const onFormatDoc = async () => {
-    await monacoEditor?.getAction('monacoEditor.action.formatDocument')?.run()
-  }
+    await monacoEditor?.getAction('monacoEditor.action.formatDocument')?.run();
+  };
 
   // 更新
   const updateVal = (val: string) => {
     nextTick(async () => {
-      monacoEditor?.setValue(val)
-      initReadOnly && monacoEditor?.updateOptions({ readOnly: false })
-      await onFormatDoc()
-      initReadOnly && monacoEditor?.updateOptions({ readOnly: true })
-    })
-  }
+      monacoEditor?.setValue(val);
+      initReadOnly && monacoEditor?.updateOptions({ readOnly: false });
+      await onFormatDoc();
+      initReadOnly && monacoEditor?.updateOptions({ readOnly: true });
+    });
+  };
 
   // 创建实例
   const createEditor = (editorOption: monaco.editor.IStandaloneEditorConstructionOptions = {}) => {
-    if (!el.value) return
-    const javascriptModel = monaco.editor.createModel('', language)
-    initReadOnly = !!editorOption.readOnly
+    if (!el.value) return;
+    const javascriptModel = monaco.editor.createModel('', language);
+    initReadOnly = !!editorOption.readOnly;
     // 创建
     monacoEditor = monaco.editor.create(el.value, {
       model: javascriptModel,
@@ -43,7 +43,7 @@ const designStore = useDesignStore()
       // 滚动条
       scrollbar: {
         verticalScrollbarSize: 8,
-        horizontalScrollbarSize: 8
+        horizontalScrollbarSize: 8,
       },
       // 行号
       lineNumbers: 'off',
@@ -55,22 +55,22 @@ const designStore = useDesignStore()
       autoIndent: 'advanced',
       // 自动布局
       automaticLayout: true,
-      ...editorOption
-    })
+      ...editorOption,
+    });
 
-    return monacoEditor
-  }
+    return monacoEditor;
+  };
 
   // 卸载
   onBeforeUnmount(() => {
-    if (monacoEditor) monacoEditor.dispose()
-  })
+    if (monacoEditor) monacoEditor.dispose();
+  });
 
   return {
     el,
     updateVal,
     getEditor: () => monacoEditor,
     createEditor,
-    onFormatDoc
-  }
-}
+    onFormatDoc,
+  };
+};
