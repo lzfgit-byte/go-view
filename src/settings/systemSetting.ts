@@ -1,4 +1,4 @@
-import { SettingStoreEnums, ToolsStatusEnum } from '@/store/modules/settingStore/settingStore.d'
+import { SettingStoreEnums, ToolsStatusEnum } from '@/store/modules/settingStore/settingStore.d';
 
 // * 用户配置项
 export const systemSetting = {
@@ -16,4 +16,4 @@ export const systemSetting = {
   [SettingStoreEnums.CHART_TOOLS_STATUS]: ToolsStatusEnum.ASIDE,
   // 图表工具栏状态隐藏（刚开始不隐藏）
   [SettingStoreEnums.CHART_TOOLS_STATUS_HIDE]: false,
-}
+};
