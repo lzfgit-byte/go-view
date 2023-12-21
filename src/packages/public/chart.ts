@@ -1,14 +1,14 @@
 import merge from 'lodash/merge'
 import pick from 'lodash/pick'
 import { EchartsDataType } from '../index.d'
-import { globalThemeJson } from '@/settings/chartThemes/index'
+import { globalThemeJson } from '@/settings/chartThemes'
 import type VChart from 'vue-echarts'
 
 /**
  * * 合并 color 和全局配置项
  * @param option 配置
  * @param themeSetting 设置
- * @param excludes 排除元素
+ * @param includes
  * @returns object
  */
 export const mergeTheme = <T, U>(option: T, themeSetting: U, includes: string[]) => {
@@ -18,6 +18,7 @@ export const mergeTheme = <T, U>(option: T, themeSetting: U, includes: string[])
 /**
  * * ECharts option 统一前置处理
  * @param option
+ * @param includes
  * @return option
  */
 export const echartOptionProfixHandle = (option: any, includes: string[]) => {
@@ -28,6 +29,7 @@ export const echartOptionProfixHandle = (option: any, includes: string[]) => {
 /**
  * * 设置数据
  * @param option
+ * @param data
  * @return option
  */
 export const setData = (option: any, data: EchartsDataType) => {
