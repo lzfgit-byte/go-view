@@ -1,5 +1,5 @@
-import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d'
+import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const Border08Config: ConfigType = {
   key: 'Border08',
@@ -10,5 +10,5 @@ export const Border08Config: ConfigType = {
   categoryName: ChatCategoryEnumName.BORDER,
   package: PackagesCategoryEnum.DECORATES,
   chartFrame: ChartFrameEnum.STATIC,
-  image: 'border08.png'
-}
+  image: 'border08.png',
+};
