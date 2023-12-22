@@ -1,6 +1,6 @@
-import image from '@/assets/images/chart/tables/tables_categary.png'
-import { ConfigType, PackagesCategoryEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d'
+import image from '@/assets/images/chart/tables/tables_categary.png';
+import { ConfigType, PackagesCategoryEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const TableCategoryConfig: ConfigType = {
   key: 'TableCategory',
@@ -10,5 +10,5 @@ export const TableCategoryConfig: ConfigType = {
   category: ChatCategoryEnum.TABLE,
   categoryName: ChatCategoryEnumName.TABLE,
   package: PackagesCategoryEnum.TABLES,
-  image
-}
+  image,
+};

@@ -1,6 +1,6 @@
-import image from '@/assets/images/chart/informations/title_diamond.png'
-import { ConfigType, PackagesCategoryEnum } from '@/packages/index.d'
-import { ChatCategoryEnum,ChatCategoryEnumName } from '../../index.d'
+import image from '@/assets/images/chart/informations/title_diamond.png';
+import { ConfigType, PackagesCategoryEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const TitleCommonConfig: ConfigType = {
   key: 'TitleCommon',
@@ -10,5 +10,5 @@ export const TitleCommonConfig: ConfigType = {
   category: ChatCategoryEnum.TITLE,
   categoryName: ChatCategoryEnumName.TITLE,
   package: PackagesCategoryEnum.INFORMATIONS,
-  image
-}
+  image,
+};

@@ -1,6 +1,6 @@
-import image from '@/assets/images/chart/tables/tables.png'
-import { ConfigType, PackagesCategoryEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d'
+import image from '@/assets/images/chart/tables/tables.png';
+import { ConfigType, PackagesCategoryEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const TableCommonConfig: ConfigType = {
   key: 'TableCommon',
@@ -10,5 +10,5 @@ export const TableCommonConfig: ConfigType = {
   category: ChatCategoryEnum.TABLE,
   categoryName: ChatCategoryEnumName.TABLE,
   package: PackagesCategoryEnum.TABLES,
-  image
-}
+  image,
+};

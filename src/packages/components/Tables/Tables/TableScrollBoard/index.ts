@@ -1,5 +1,5 @@
-import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d'
+import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const TableScrollBoardConfig: ConfigType = {
   key: 'TableScrollBoard',
@@ -10,5 +10,5 @@ export const TableScrollBoardConfig: ConfigType = {
   categoryName: ChatCategoryEnumName.TABLE,
   package: PackagesCategoryEnum.TABLES,
   chartFrame: ChartFrameEnum.COMMON,
-  image: 'table_scrollboard.png'
-}
+  image: 'table_scrollboard.png',
+};

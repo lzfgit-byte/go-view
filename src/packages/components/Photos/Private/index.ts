@@ -1,49 +1,49 @@
-import { ChartFrameEnum, ConfigType, PackagesCategoryEnum } from '@/packages/index.d'
-import { ImageConfig } from '@/packages/components/Informations/Mores/Image/index'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../index.d'
-import { setLocalStorage, getLocalStorage, goDialog } from '@/utils'
-import { StorageEnum } from '@/enums/storageEnum'
-import { FileTypeEnum } from '@/enums/fileTypeEnum'
-import { backgroundImageSize } from '@/settings/designSetting'
-import { usePackagesStore } from '@/store/modules/packagesStore/packagesStore'
+import { ChartFrameEnum, ConfigType, PackagesCategoryEnum } from '@/packages/index.d';
+import { ImageConfig } from '@/packages/components/Informations/Mores/Image/index';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../index.d';
+import { setLocalStorage, getLocalStorage, goDialog } from '@/utils';
+import { StorageEnum } from '@/enums/storageEnum';
+import { FileTypeEnum } from '@/enums/fileTypeEnum';
+import { backgroundImageSize } from '@/settings/designSetting';
+import { usePackagesStore } from '@/store/modules/packagesStore/packagesStore';
 
-const StoreKey = StorageEnum.GO_USER_MEDIA_PHOTOS
+const StoreKey = StorageEnum.GO_USER_MEDIA_PHOTOS;
 
 /**
  * 上传完成事件类型
  */
 type UploadCompletedEventType = {
-  fileName: string
-  url: string
-}
+  fileName: string;
+  url: string;
+};
 
-const userPhotosList: ConfigType[] = getLocalStorage(StoreKey) || []
+const userPhotosList: ConfigType[] = getLocalStorage(StoreKey) || [];
 
 const uploadFile = (callback: Function | null = null) => {
-  const input = document.createElement('input')
-  input.type = 'file'
-  input.accept = '.png,.jpg,.jpeg,.gif' // 这里只允许部分图片类型
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.png,.jpg,.jpeg,.gif'; // 这里只允许部分图片类型
   input.onchange = async () => {
-    if (!input.files || !input.files.length) return
-    const file = input.files[0]
-    const { name, size, type } = file
+    if (!input.files || !input.files.length) return;
+    const file = input.files[0];
+    const { name, size, type } = file;
     if (size > 1024 * 1024 * backgroundImageSize) {
-      window['$message'].warning(`图片超出 ${backgroundImageSize}M 限制，请重新上传！`)
-      return false
+      window['$message'].warning(`图片超出 ${backgroundImageSize}M 限制，请重新上传！`);
+      return false;
     }
     if (type !== FileTypeEnum.PNG && type !== FileTypeEnum.JPEG && type !== FileTypeEnum.GIF) {
-      window['$message'].warning('文件格式不符合，请重新上传！')
-      return false
+      window['$message'].warning('文件格式不符合，请重新上传！');
+      return false;
     }
-    const reader = new FileReader()
+    const reader = new FileReader();
     reader.onload = () => {
-      const eventObj: UploadCompletedEventType = { fileName: name, url: reader.result as string }
-      callback && callback(eventObj)
-    }
-    reader.readAsDataURL(file)
-  }
-  input.click()
-}
+      const eventObj: UploadCompletedEventType = { fileName: name, url: reader.result as string };
+      callback && callback(eventObj);
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+};
 
 const addConfig = {
   ...ImageConfig,
@@ -64,7 +64,7 @@ const addConfig = {
         onPositiveCallback: () => {
           uploadFile((e: UploadCompletedEventType) => {
             // 和上传组件一样配置，更换标题，图片，预设数据
-            const packagesStore = usePackagesStore()
+            const packagesStore = usePackagesStore();
             const newPhoto = {
               ...ImageConfig,
               category: ChatCategoryEnum.PRIVATE,
@@ -74,18 +74,18 @@ const addConfig = {
               title: e.fileName,
               image: e.url,
               dataset: e.url,
-              redirectComponent: `${ImageConfig.package}/${ImageConfig.category}/${ImageConfig.key}` // 跳转组件路径规则：packageName/categoryName/componentKey
-            }
-            userPhotosList.unshift(newPhoto)
+              redirectComponent: `${ImageConfig.package}/${ImageConfig.category}/${ImageConfig.key}`, // 跳转组件路径规则：packageName/categoryName/componentKey
+            };
+            userPhotosList.unshift(newPhoto);
             // 存储在本地数据中
-            setLocalStorage(StoreKey, userPhotosList)
+            setLocalStorage(StoreKey, userPhotosList);
             // 插入到上传按钮前的位置
-            packagesStore.addPhotos(newPhoto, 1)
-          })
-        }
-      })
-    }
-  }
-}
+            packagesStore.addPhotos(newPhoto, 1);
+          });
+        },
+      });
+    },
+  },
+};
 
-export default [addConfig, ...userPhotosList]
+export default [addConfig, ...userPhotosList];

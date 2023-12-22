@@ -33,63 +33,63 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, toRefs, watch, reactive, ref } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
-import { icon } from '@/plugins'
+  import { computed, PropType, toRefs, watch, reactive, ref } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
+  import { icon } from '@/plugins';
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
 
-const { SearchIcon } = icon.ionicons5
+  const { SearchIcon } = icon.ionicons5;
 
-//查询字段
-const inputData = ref('')
-//前台过滤
-const filterData = computed(() => {
-  return option?.dataset?.source?.filter((item: any) => {
-    return Object.values(item).some(val => {
-      return String(val).toLowerCase().includes(inputData.value.toLowerCase())
-    })
-  })
-})
+  //查询字段
+  const inputData = ref('');
+  //前台过滤
+  const filterData = computed(() => {
+    return option?.dataset?.source?.filter((item: any) => {
+      return Object.values(item).some((val) => {
+        return String(val).toLowerCase().includes(inputData.value.toLowerCase());
+      });
+    });
+  });
 
-const { align, pagination, inputShow } = toRefs(props.chartConfig.option)
+  const { align, pagination, inputShow } = toRefs(props.chartConfig.option);
 
-pagination.value.onChange = (page: number) => {
-  pagination.value.page = page
-}
+  pagination.value.onChange = (page: number) => {
+    pagination.value.page = page;
+  };
 
-const { w, h } = toRefs(props.chartConfig.attr)
+  const { w, h } = toRefs(props.chartConfig.attr);
 
-const option = reactive({
-  dataset: props.chartConfig.option.dataset,
-  style: props.chartConfig.option.style
-})
+  const option = reactive({
+    dataset: props.chartConfig.option.dataset,
+    style: props.chartConfig.option.style,
+  });
 
-watch(
-  () => props.chartConfig.option.dataset,
-  (newData: any) => {
-    option.dataset = newData
-    option?.dataset?.dimensions?.forEach((header: any) => {
-      header.align = align.value
-    })
-  },
-  {
-    immediate: true,
-    deep: true
-  }
-)
+  watch(
+    () => props.chartConfig.option.dataset,
+    (newData: any) => {
+      option.dataset = newData;
+      option?.dataset?.dimensions?.forEach((header: any) => {
+        header.align = align.value;
+      });
+    },
+    {
+      immediate: true,
+      deep: true,
+    }
+  );
 </script>
 
 <style lang="scss" scoped>
-@include go('tables-basic') {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  align-items: flex-end;
-}
+  @include go('tables-basic') {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-end;
+  }
 </style>

@@ -1,8 +1,8 @@
-import { PublicConfigClass } from '@/packages/public'
-import { CreateComponentType } from '@/packages/index.d'
-import { TableListConfig } from './index'
-import cloneDeep from 'lodash/cloneDeep'
-import dataJson from './data.json'
+import { PublicConfigClass } from '@/packages/public';
+import { CreateComponentType } from '@/packages/index.d';
+import { TableListConfig } from './index';
+import cloneDeep from 'lodash/cloneDeep';
+import dataJson from './data.json';
 
 export const option = {
   // 数据
@@ -26,11 +26,13 @@ export const option = {
   //右侧数据字体大小
   rightFontSize: 12,
   // 格式化
-  valueFormatter(item: { value: any}) { return item.value}
-}
+  valueFormatter(item: { value: any }) {
+    return item.value;
+  },
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key = TableListConfig.key
-  public chartConfig = cloneDeep(TableListConfig)
-  public option = cloneDeep(option)
+  public key = TableListConfig.key;
+  public chartConfig = cloneDeep(TableListConfig);
+  public option = cloneDeep(option);
 }

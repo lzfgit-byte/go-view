@@ -1,5 +1,5 @@
-import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d'
+import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const TablesBasicConfig: ConfigType = {
   key: 'TablesBasic',
@@ -10,5 +10,5 @@ export const TablesBasicConfig: ConfigType = {
   categoryName: ChatCategoryEnumName.TABLE,
   package: PackagesCategoryEnum.TABLES,
   chartFrame: ChartFrameEnum.COMMON,
-  image: 'tables_basic.png'
-}
+  image: 'tables_basic.png',
+};
