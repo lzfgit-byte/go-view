@@ -1,3 +1,3 @@
-import ChartsOptionContent from './index.vue'
+import ChartsOptionContent from './index.vue';
 
-export { ChartsOptionContent }
+export { ChartsOptionContent };

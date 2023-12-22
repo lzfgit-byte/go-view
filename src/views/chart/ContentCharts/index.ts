@@ -1,3 +1,3 @@
-import ContentCharts from './index.vue'
+import ContentCharts from './index.vue';
 
-export { ContentCharts }
+export { ContentCharts };

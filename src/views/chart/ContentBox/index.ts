@@ -1,3 +1,3 @@
-import ContentBox from './index.vue'
+import ContentBox from './index.vue';
 
-export { ContentBox }
+export { ContentBox };

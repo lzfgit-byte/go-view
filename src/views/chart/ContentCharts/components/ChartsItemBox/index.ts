@@ -1,3 +1,3 @@
-import ChartsItemBox from './index.vue'
+import ChartsItemBox from './index.vue';
 
-export { ChartsItemBox }
+export { ChartsItemBox };

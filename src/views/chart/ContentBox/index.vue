@@ -12,16 +12,24 @@
       </n-space>
       <n-space class="go-flex-no-wrap" align="center" style="gap: 4px">
         <slot name="top-right"></slot>
-        <n-icon v-show="backIcon" size="20" class="go-cursor-pointer go-d-block" @click="backHandle">
+        <n-icon
+          v-show="backIcon"
+          size="20"
+          class="go-cursor-pointer go-d-block"
+          @click="backHandle"
+        >
           <chevron-back-outline-icon></chevron-back-outline-icon>
         </n-icon>
       </n-space>
     </div>
 
-    <div class="content" :class="{
-      'content-height-show-top-bottom': showBottom || showTop,
-      'content-height-show-both': showBottom && showTop
-    }">
+    <div
+      class="content"
+      :class="{
+        'content-height-show-top-bottom': showBottom || showTop,
+        'content-height-show-both': showBottom && showTop,
+      }"
+    >
       <template v-if="disabledScroll">
         <slot></slot>
       </template>
@@ -50,135 +58,135 @@
 </template>
 
 <script setup lang="ts">
-import { icon } from '@/plugins'
-const { ChevronBackOutlineIcon } = icon.ionicons5
+  import { icon } from '@/plugins';
+  const { ChevronBackOutlineIcon } = icon.ionicons5;
 
-const emit = defineEmits(['back'])
+  const emit = defineEmits(['back']);
 
-defineProps({
-  title: String,
-  showTop: {
-    type: Boolean,
-    default: true
-  },
-  showBottom: {
-    type: Boolean,
-    default: false
-  },
-  flex: {
-    type: Boolean,
-    default: false
-  },
-  // back
-  backIcon: {
-    type: Boolean,
-    default: true
-  },
-  // 背景深度
-  depth: {
-    type: Number,
-    default: 1
-  },
-  // x 轴滚动
-  xScroll: {
-    type: Boolean,
-    default: false
-  },
-  disabledScroll: {
-    type: Boolean,
-    default: false
-  },
-})
+  defineProps({
+    title: String,
+    showTop: {
+      type: Boolean,
+      default: true,
+    },
+    showBottom: {
+      type: Boolean,
+      default: false,
+    },
+    flex: {
+      type: Boolean,
+      default: false,
+    },
+    // back
+    backIcon: {
+      type: Boolean,
+      default: true,
+    },
+    // 背景深度
+    depth: {
+      type: Number,
+      default: 1,
+    },
+    // x 轴滚动
+    xScroll: {
+      type: Boolean,
+      default: false,
+    },
+    disabledScroll: {
+      type: Boolean,
+      default: false,
+    },
+  });
 
-const backHandle = () => {
-  emit('back')
-}
+  const backHandle = () => {
+    emit('back');
+  };
 </script>
 
 <style lang="scss" scoped>
-$topOrBottomHeight: 40px;
+  $topOrBottomHeight: 40px;
 
-@include go(content-box) {
-  height: calc(100vh - #{$--header-height});
-  margin: 1px;
-  margin-bottom: 0;
-
-  &.bg-depth0 {
-    @include fetch-bg-color('background-color1');
-
-    .bottom,
-    .top {
-      @include fetch-bg-color('background-color1');
-    }
-  }
-
-  &.bg-depth1 {
-    @include fetch-bg-color('background-color1');
-
-    .bottom,
-    .top {
-      @include fetch-bg-color('background-color2');
-    }
-  }
-
-  &.bg-depth2 {
-    @include fetch-bg-color('background-color2');
-
-    .bottom,
-    .top {
-      @include fetch-bg-color('background-color3');
-    }
-  }
-
-  &.bg-depth3 {
-    @include fetch-bg-color('background-color3');
-
-    .bottom,
-    .top {
-      @include fetch-bg-color('background-color4');
-    }
-  }
-
-  &.flex {
-    flex: 1;
-  }
-
-  .top,
-  .bottom {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    align-items: center;
-    height: $topOrBottomHeight;
-    padding: 0 10px;
-    border-top: 1px solid;
-    @include fetch-border-color('hover-border-color');
-
-    .mt-1 {
-      margin-top: 2px;
-    }
-  }
-
-  .top {
-    border-bottom: 1px solid;
-    @include fetch-border-color('background-color1');
-  }
-
-  .content {
+  @include go(content-box) {
     height: calc(100vh - #{$--header-height});
-    overflow: hidden;
-  }
+    margin: 1px;
+    margin-bottom: 0;
 
-  .aside {
-    position: relative;
-  }
+    &.bg-depth0 {
+      @include fetch-bg-color('background-color1');
 
-  .content-height-show-top-bottom {
-    height: calc(100vh - #{$--header-height} - #{$topOrBottomHeight});
-  }
+      .bottom,
+      .top {
+        @include fetch-bg-color('background-color1');
+      }
+    }
 
-  .content-height-show-both {
-    height: calc(100vh - #{$--header-height} - #{$topOrBottomHeight} - #{$topOrBottomHeight});
+    &.bg-depth1 {
+      @include fetch-bg-color('background-color1');
+
+      .bottom,
+      .top {
+        @include fetch-bg-color('background-color2');
+      }
+    }
+
+    &.bg-depth2 {
+      @include fetch-bg-color('background-color2');
+
+      .bottom,
+      .top {
+        @include fetch-bg-color('background-color3');
+      }
+    }
+
+    &.bg-depth3 {
+      @include fetch-bg-color('background-color3');
+
+      .bottom,
+      .top {
+        @include fetch-bg-color('background-color4');
+      }
+    }
+
+    &.flex {
+      flex: 1;
+    }
+
+    .top,
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      align-items: center;
+      height: $topOrBottomHeight;
+      padding: 0 10px;
+      border-top: 1px solid;
+      @include fetch-border-color('hover-border-color');
+
+      .mt-1 {
+        margin-top: 2px;
+      }
+    }
+
+    .top {
+      border-bottom: 1px solid;
+      @include fetch-border-color('background-color1');
+    }
+
+    .content {
+      height: calc(100vh - #{$--header-height});
+      overflow: hidden;
+    }
+
+    .aside {
+      position: relative;
+    }
+
+    .content-height-show-top-bottom {
+      height: calc(100vh - #{$--header-height} - #{$topOrBottomHeight});
+    }
+
+    .content-height-show-both {
+      height: calc(100vh - #{$--header-height} - #{$topOrBottomHeight} - #{$topOrBottomHeight});
+    }
   }
-}
 </style>

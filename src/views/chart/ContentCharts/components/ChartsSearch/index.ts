@@ -1,3 +1,3 @@
-import ChartsSearch from './index.vue'
+import ChartsSearch from './index.vue';
 
-export { ChartsSearch }
+export { ChartsSearch };

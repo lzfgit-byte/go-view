@@ -1,3 +1,3 @@
-import ChartsItemImage from './index.vue'
+import ChartsItemImage from './index.vue';
 
-export { ChartsItemImage }
+export { ChartsItemImage };
