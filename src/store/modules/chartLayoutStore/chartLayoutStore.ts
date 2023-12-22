@@ -1,14 +1,14 @@
-import { defineStore } from 'pinia'
-import { ChartLayoutType, LayerModeEnum, ChartModeEnum } from './chartLayoutStore.d'
-import { setLocalStorage, getLocalStorage } from '@/utils'
-import { StorageEnum } from '@/enums/storageEnum'
-import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
+import { defineStore } from 'pinia';
+import { ChartLayoutType, LayerModeEnum, ChartModeEnum } from './chartLayoutStore.d';
+import { setLocalStorage, getLocalStorage } from '@/utils';
+import { StorageEnum } from '@/enums/storageEnum';
+import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
 
-const chartEditStore = useChartEditStore()
+const chartEditStore = useChartEditStore();
 
-const { GO_CHART_LAYOUT_STORE } = StorageEnum
+const { GO_CHART_LAYOUT_STORE } = StorageEnum;
 
-const storageChartLayout: Partial<ChartLayoutType> = getLocalStorage(GO_CHART_LAYOUT_STORE)
+const storageChartLayout: Partial<ChartLayoutType> = getLocalStorage(GO_CHART_LAYOUT_STORE);
 
 // 编辑区域布局和静态设置
 export const useChartLayoutStore = defineStore({
@@ -29,30 +29,30 @@ export const useChartLayoutStore = defineStore({
     // 是否重置当前画布位置
     rePositionCanvas: false,
     // 防止值不存在
-    ...storageChartLayout
+    ...storageChartLayout,
   }),
   getters: {
     getLayers(): boolean {
-      return this.layers
+      return this.layers;
     },
     getCharts(): boolean {
-      return this.charts
+      return this.charts;
     },
     getDetails(): boolean {
-      return this.details
+      return this.details;
     },
     getChartType(): ChartModeEnum {
-      return this.chartType
+      return this.chartType;
     },
     getLayerType(): LayerModeEnum {
-      return this.layerType
+      return this.layerType;
     },
     getPercentage(): number {
-      return this.percentage
+      return this.percentage;
     },
     getRePositionCanvas(): boolean {
-      return this.rePositionCanvas
-    }
+      return this.rePositionCanvas;
+    },
   },
   actions: {
     setItem<T extends keyof ChartLayoutType, K extends ChartLayoutType[T]>(
@@ -60,24 +60,27 @@ export const useChartLayoutStore = defineStore({
       value: K,
       computedScale = true
     ): void {
-      this.$patch(state => {
-        state[key] = value
-      })
+      this.$patch((state) => {
+        state[key] = value;
+      });
       // 存储本地
-      setLocalStorage(GO_CHART_LAYOUT_STORE, this.$state)
+      setLocalStorage(GO_CHART_LAYOUT_STORE, this.$state);
       // 这里需要标记重置画布位置
       this.rePositionCanvas = true;
       // 重新计算拖拽区域缩放比例
       if (computedScale) {
         setTimeout(() => {
-          chartEditStore.computedScale()
-        }, 500)
+          chartEditStore.computedScale();
+        }, 500);
       }
     },
-    setItemUnHandle<T extends keyof ChartLayoutType, K extends ChartLayoutType[T]>(key: T, value: K): void {
-      this.$patch(state => {
-        state[key] = value
-      })
-    }
-  }
-})
+    setItemUnHandle<T extends keyof ChartLayoutType, K extends ChartLayoutType[T]>(
+      key: T,
+      value: K
+    ): void {
+      this.$patch((state) => {
+        state[key] = value;
+      });
+    },
+  },
+});

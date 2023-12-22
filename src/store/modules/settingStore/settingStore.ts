@@ -1,14 +1,12 @@
-import { defineStore } from 'pinia'
-import { systemSetting } from '@/settings/systemSetting'
-import { asideCollapsedWidth } from '@/settings/designSetting'
-import { SettingStoreType, ToolsStatusEnum } from './settingStore.d'
-import { setLocalStorage, getLocalStorage } from '@/utils'
-import { StorageEnum } from '@/enums/storageEnum'
-const { GO_SETTING_STORE } = StorageEnum
+import { defineStore } from 'pinia';
+import { systemSetting } from '@/settings/systemSetting';
+import { asideCollapsedWidth } from '@/settings/designSetting';
+import { SettingStoreType, ToolsStatusEnum } from './settingStore.d';
+import { setLocalStorage, getLocalStorage } from '@/utils';
+import { StorageEnum } from '@/enums/storageEnum';
+const { GO_SETTING_STORE } = StorageEnum;
 
-const storageSetting: SettingStoreType = getLocalStorage(
-  GO_SETTING_STORE
-)
+const storageSetting: SettingStoreType = getLocalStorage(GO_SETTING_STORE);
 
 // 全局设置
 export const useSettingStore = defineStore({
@@ -16,28 +14,28 @@ export const useSettingStore = defineStore({
   state: (): SettingStoreType => storageSetting || systemSetting,
   getters: {
     getHidePackageOneCategory(): boolean {
-      return this.hidePackageOneCategory
+      return this.hidePackageOneCategory;
     },
     getChangeLangReload(): boolean {
-      return this.changeLangReload
+      return this.changeLangReload;
     },
     getAsideAllCollapsed(): boolean {
-      return this.asideAllCollapsed
+      return this.asideAllCollapsed;
     },
     getAsideCollapsedWidth(): number {
-      return this.asideAllCollapsed ? 0 : asideCollapsedWidth
+      return this.asideAllCollapsed ? 0 : asideCollapsedWidth;
     },
     getChartMoveDistance(): number {
-      return this.chartMoveDistance
+      return this.chartMoveDistance;
     },
     getChartAlignRange(): number {
-      return this.chartAlignRange
+      return this.chartAlignRange;
     },
     getChartToolsStatus(): ToolsStatusEnum {
-      return this.chartToolsStatus
+      return this.chartToolsStatus;
     },
     getChartToolsStatusHide(): boolean {
-      return this.chartToolsStatusHide
+      return this.chartToolsStatusHide;
     },
   },
   actions: {
@@ -45,10 +43,10 @@ export const useSettingStore = defineStore({
       key: T,
       value: K
     ): void {
-      this.$patch(state => {
-        state[key] = value
-      })
-      setLocalStorage(GO_SETTING_STORE, this.$state)
-    }
-  }
-})
+      this.$patch((state) => {
+        state[key] = value;
+      });
+      setLocalStorage(GO_SETTING_STORE, this.$state);
+    },
+  },
+});

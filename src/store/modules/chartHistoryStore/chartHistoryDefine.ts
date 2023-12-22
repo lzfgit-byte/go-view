@@ -1,4 +1,4 @@
-import { HistoryTargetTypeEnum, HistoryActionTypeEnum } from './chartHistoryStore.d'
+import { HistoryTargetTypeEnum, HistoryActionTypeEnum } from './chartHistoryStore.d';
 
 export const historyActionTypeName = {
   [HistoryActionTypeEnum.ADD]: '新增',
@@ -19,5 +19,5 @@ export const historyActionTypeName = {
   [HistoryActionTypeEnum.HIDE]: '隐藏',
   [HistoryActionTypeEnum.SHOW]: '显示',
 
-  [HistoryTargetTypeEnum.CANVAS]: '画布初始化'
-}
+  [HistoryTargetTypeEnum.CANVAS]: '画布初始化',
+};
