@@ -1,3 +1,3 @@
-import ProjectItemsCard from './index.vue'
+import ProjectItemsCard from './index.vue';
 
-export { ProjectItemsCard }
+export { ProjectItemsCard };

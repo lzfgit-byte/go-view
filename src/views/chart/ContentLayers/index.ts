@@ -1,3 +1,3 @@
-import ContentLayers from './index.vue'
+import ContentLayers from './index.vue';
 
-export { ContentLayers }
+export { ContentLayers };

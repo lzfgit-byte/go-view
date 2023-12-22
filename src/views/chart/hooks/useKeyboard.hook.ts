@@ -1,17 +1,17 @@
-import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
-import { useSync } from './useSync.hook' 
-import { WinKeyboard, MacKeyboard, MenuEnum } from '@/enums/editPageEnum'
-import throttle from 'lodash/throttle'
-import debounce from 'lodash/debounce'
-import keymaster from 'keymaster'
-import { setKeyboardDressShow } from '@/utils'
+import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
+import { useSync } from './useSync.hook';
+import { WinKeyboard, MacKeyboard, MenuEnum } from '@/enums/editPageEnum';
+import throttle from 'lodash/throttle';
+import debounce from 'lodash/debounce';
+import keymaster from 'keymaster';
+import { setKeyboardDressShow } from '@/utils';
 
 // Keymaster可以支持识别以下组合键： ⇧，shift，option，⌥，alt，ctrl，control，command，和⌘
-const chartEditStore = useChartEditStore()
-const useSyncIns = useSync()
-const winCtrlMerge = (e: string) => `${WinKeyboard.CTRL}+${e}`
-const winShiftMerge = (e: string) => `${WinKeyboard.SHIFT}+${e}`
-const winAltMerge = (e: string) => `${WinKeyboard.ALT}+${e}`
+const chartEditStore = useChartEditStore();
+const useSyncIns = useSync();
+const winCtrlMerge = (e: string) => `${WinKeyboard.CTRL}+${e}`;
+const winShiftMerge = (e: string) => `${WinKeyboard.SHIFT}+${e}`;
+const winAltMerge = (e: string) => `${WinKeyboard.ALT}+${e}`;
 
 export const winKeyboardValue = {
   [MenuEnum.ARROW_UP]: winCtrlMerge('up'),
@@ -30,13 +30,13 @@ export const winKeyboardValue = {
   [MenuEnum.LOCK]: winCtrlMerge('l'),
   [MenuEnum.UNLOCK]: winCtrlMerge(winShiftMerge('l')),
   [MenuEnum.HIDE]: winCtrlMerge('h'),
-  [MenuEnum.SHOW]: winCtrlMerge(winShiftMerge('h'))
-}
+  [MenuEnum.SHOW]: winCtrlMerge(winShiftMerge('h')),
+};
 
 // 这个 Ctrl 后面还是换成了 ⌘
-const macCtrlMerge = (e: string) => `${MacKeyboard.CTRL}+${e}`
-const macShiftMerge = (e: string) => `${MacKeyboard.SHIFT}+${e}`
-const macAltMerge = (e: string) => `${MacKeyboard.ALT}+${e}`
+const macCtrlMerge = (e: string) => `${MacKeyboard.CTRL}+${e}`;
+const macShiftMerge = (e: string) => `${MacKeyboard.SHIFT}+${e}`;
+const macAltMerge = (e: string) => `${MacKeyboard.ALT}+${e}`;
 
 // 没有测试 macOS 系统，因为我没有😤👻
 export const macKeyboardValue = {
@@ -56,8 +56,8 @@ export const macKeyboardValue = {
   [MenuEnum.LOCK]: macCtrlMerge('l'),
   [MenuEnum.UNLOCK]: macCtrlMerge(macShiftMerge('l')),
   [MenuEnum.HIDE]: macCtrlMerge('h'),
-  [MenuEnum.SHOW]: macCtrlMerge(macShiftMerge('h'))
-}
+  [MenuEnum.SHOW]: macCtrlMerge(macShiftMerge('h')),
+};
 
 // Win 快捷键列表
 const winKeyList: Array<string> = [
@@ -82,8 +82,8 @@ const winKeyList: Array<string> = [
   winKeyboardValue.unLock,
 
   winKeyboardValue.hide,
-  winKeyboardValue.show
-]
+  winKeyboardValue.show,
+];
 
 // Mac 快捷键列表
 const macKeyList: Array<string> = [
@@ -108,134 +108,244 @@ const macKeyList: Array<string> = [
   macKeyboardValue.unLock,
 
   macKeyboardValue.hide,
-  macKeyboardValue.show
-]
+  macKeyboardValue.show,
+];
 
 // 处理键盘记录
 const keyRecordHandle = () => {
   // 默认赋值
   window.$KeyboardActive = {
     ctrl: false,
-    space: false
-  }
+    space: false,
+  };
 
   document.onkeydown = (e: KeyboardEvent) => {
-    const { keyCode } = e
-    if (keyCode == 32 && e.target == document.body) e.preventDefault()
+    const { keyCode } = e;
+    if (keyCode == 32 && e.target == document.body) e.preventDefault();
 
     if ([17, 32].includes(keyCode) && window.$KeyboardActive) {
-      setKeyboardDressShow(e.keyCode)
+      setKeyboardDressShow(e.keyCode);
       switch (keyCode) {
-        case 17: window.$KeyboardActive.ctrl = true; break
-        case 32: window.$KeyboardActive.space = true; break
+        case 17:
+          window.$KeyboardActive.ctrl = true;
+          break;
+        case 32:
+          window.$KeyboardActive.space = true;
+          break;
       }
     }
-  }
+  };
 
   document.onkeyup = (e: KeyboardEvent) => {
-    const { keyCode } = e
-    if (keyCode == 32 && e.target == document.body) e.preventDefault()
+    const { keyCode } = e;
+    if (keyCode == 32 && e.target == document.body) e.preventDefault();
 
     if ([17, 32].includes(keyCode) && window.$KeyboardActive) {
-      setKeyboardDressShow()
+      setKeyboardDressShow();
       switch (keyCode) {
-        case 17: window.$KeyboardActive.ctrl = false; break
-        case 32: window.$KeyboardActive.space = false; break
+        case 17:
+          window.$KeyboardActive.ctrl = false;
+          break;
+        case 32:
+          window.$KeyboardActive.space = false;
+          break;
       }
     }
-  }
-}
+  };
+};
 
 // 初始化监听事件
 export const useAddKeyboard = () => {
-  const throttleTime = 50
+  const throttleTime = 50;
   const switchHandle = (keyboardValue: typeof winKeyboardValue, e: string) => {
     switch (e) {
       // ct+↑
       case keyboardValue.up:
-        keymaster(e, throttle(() => { chartEditStore.setMove(MenuEnum.ARROW_UP); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setMove(MenuEnum.ARROW_UP);
+            return false;
+          }, throttleTime)
+        );
         break;
       // ct+→
       case keyboardValue.right:
-        keymaster(e, throttle(() => { chartEditStore.setMove(MenuEnum.ARROW_RIGHT); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setMove(MenuEnum.ARROW_RIGHT);
+            return false;
+          }, throttleTime)
+        );
         break;
       // ct+↓
       case keyboardValue.down:
-        keymaster(e, throttle(() => { chartEditStore.setMove(MenuEnum.ARROW_DOWN); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setMove(MenuEnum.ARROW_DOWN);
+            return false;
+          }, throttleTime)
+        );
         break;
       // ct+←
       case keyboardValue.left:
-        keymaster(e, throttle(() => { chartEditStore.setMove(MenuEnum.ARROW_LEFT); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setMove(MenuEnum.ARROW_LEFT);
+            return false;
+          }, throttleTime)
+        );
         break;
 
       // 删除 delete
       case keyboardValue.delete:
-        keymaster(e, debounce(() => { chartEditStore.removeComponentList(); return false }, throttleTime))
+        keymaster(
+          e,
+          debounce(() => {
+            chartEditStore.removeComponentList();
+            return false;
+          }, throttleTime)
+        );
         break;
       // 复制 ct+v
       case keyboardValue.copy:
-        keymaster(e, debounce(() => { chartEditStore.setCopy(); return false }, throttleTime))
+        keymaster(
+          e,
+          debounce(() => {
+            chartEditStore.setCopy();
+            return false;
+          }, throttleTime)
+        );
         break;
       // 剪切 ct+x
       case keyboardValue.cut:
-        keymaster(e, debounce(() => { chartEditStore.setCut(); return false }, throttleTime))
+        keymaster(
+          e,
+          debounce(() => {
+            chartEditStore.setCut();
+            return false;
+          }, throttleTime)
+        );
         break;
       // 粘贴 ct+v
       case keyboardValue.parse:
-        keymaster(e, throttle(() => { chartEditStore.setParse(); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setParse();
+            return false;
+          }, throttleTime)
+        );
         break;
 
       // 撤回 ct+z
       case keyboardValue.back:
-        keymaster(e, throttle(() => { chartEditStore.setBack(); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setBack();
+            return false;
+          }, throttleTime)
+        );
         break;
       // 前进 ct+sh+z
       case keyboardValue.forward:
-        keymaster(e, throttle(() => { chartEditStore.setForward(); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setForward();
+            return false;
+          }, throttleTime)
+        );
         break;
-      
+
       // 创建分组 ct+g
       case keyboardValue.group:
-        keymaster(e, throttle(() => { chartEditStore.setGroup(); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setGroup();
+            return false;
+          }, throttleTime)
+        );
         break;
       // 解除分组 ct+sh+g
       case keyboardValue.unGroup:
-        keymaster(e, throttle(() => { chartEditStore.setUnGroup(); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setUnGroup();
+            return false;
+          }, throttleTime)
+        );
         break;
 
       // 锁定 ct+l
       case keyboardValue.lock:
-        keymaster(e, throttle(() => { chartEditStore.setLock(); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setLock();
+            return false;
+          }, throttleTime)
+        );
         break;
       // 解除锁定 ct+sh+l
       case keyboardValue.unLock:
-        keymaster(e, throttle(() => { chartEditStore.setUnLock(); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setUnLock();
+            return false;
+          }, throttleTime)
+        );
         break;
 
       // 隐藏 ct+h
       case keyboardValue.hide:
-        keymaster(e, throttle(() => { chartEditStore.setHide(); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setHide();
+            return false;
+          }, throttleTime)
+        );
         break;
       // 解除隐藏 ct+sh+h
       case keyboardValue.show:
-        keymaster(e, throttle(() => { chartEditStore.setShow(); return false }, throttleTime))
+        keymaster(
+          e,
+          throttle(() => {
+            chartEditStore.setShow();
+            return false;
+          }, throttleTime)
+        );
         break;
 
       // 保存 ct+s
       case keyboardValue.save:
-        keymaster(e, throttle(() => { useSyncIns.dataSyncUpdate(); return false }, 200))
+        keymaster(
+          e,
+          throttle(() => {
+            useSyncIns.dataSyncUpdate();
+            return false;
+          }, 200)
+        );
         break;
     }
-  }
+  };
   winKeyList.forEach((key: string) => {
-    switchHandle(winKeyboardValue, key)
-  })
+    switchHandle(winKeyboardValue, key);
+  });
   macKeyList.forEach((key: string) => {
-    switchHandle(macKeyboardValue, key)
-  })
+    switchHandle(macKeyboardValue, key);
+  });
 
-  keyRecordHandle()
-}
+  keyRecordHandle();
+};
 
 // 卸载监听事件
 export const useRemoveKeyboard = () => {
@@ -243,9 +353,9 @@ export const useRemoveKeyboard = () => {
   document.onkeyup = () => {};
 
   winKeyList.forEach((key: string) => {
-    keymaster.unbind(key)
-  })
+    keymaster.unbind(key);
+  });
   macKeyList.forEach((key: string) => {
-    keymaster.unbind(key)
-  })
-}
+    keymaster.unbind(key);
+  });
+};

@@ -1,3 +1,3 @@
-import PreviewRenderList from './index.vue'
+import PreviewRenderList from './index.vue';
 
-export { PreviewRenderList }
+export { PreviewRenderList };

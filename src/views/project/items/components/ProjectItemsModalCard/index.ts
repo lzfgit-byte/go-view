@@ -1,3 +1,3 @@
-import ProjectItemsModalCard from './index.vue'
+import ProjectItemsModalCard from './index.vue';
 
-export { ProjectItemsModalCard }
+export { ProjectItemsModalCard };

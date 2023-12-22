@@ -9,7 +9,7 @@
             :hidden="['remove']"
             @close="deleteHandle"
             @resize="resizeHandle"
-         ></mac-os-control-btn>
+          ></mac-os-control-btn>
         </div>
         <!-- 中间 -->
         <div class="list-content-img" @click="resizeHandle">
@@ -20,7 +20,7 @@
             :src="`${cardData.image}?time=${new Date().getTime()}`"
             :alt="cardData.title"
             :fallback-src="requireErrorImg()"
-         ></n-image>
+          ></n-image>
         </div>
       </div>
       <template #action>
@@ -36,12 +36,8 @@
                   class="go-animation-twinkle"
                   dot
                   :color="cardData.release ? '#34c749' : '#fcbc40'"
-              ></n-badge>
-                {{
-                  cardData.release
-                    ? $t('project.release')
-                    : $t('project.unreleased')
-                }}
+                ></n-badge>
+                {{ cardData.release ? $t('project.release') : $t('project.unreleased') }}
               </n-text>
 
               <template v-for="item in fnBtnList" :key="item.key">
@@ -73,7 +69,7 @@
                 </n-tooltip>
               </template>
             </n-space>
-          <!-- end -->
+            <!-- end -->
           </div>
         </div>
       </template>
@@ -82,147 +78,147 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, PropType } from 'vue'
-import { renderIcon, renderLang,  requireErrorImg } from '@/utils'
-import { icon } from '@/plugins'
-import { MacOsControlBtn } from '@/components/Tips/MacOsControlBtn'
-import { Chartype } from '../../index.d'
-import { log } from 'console'
-const {
-  EllipsisHorizontalCircleSharpIcon,
-  CopyIcon,
-  TrashIcon,
-  PencilIcon,
-  DownloadIcon,
-  BrowsersOutlineIcon,
-  HammerIcon,
-  SendIcon
-} = icon.ionicons5
+  import { reactive, ref, PropType } from 'vue';
+  import { renderIcon, renderLang, requireErrorImg } from '@/utils';
+  import { icon } from '@/plugins';
+  import { MacOsControlBtn } from '@/components/Tips/MacOsControlBtn';
+  import { Chartype } from '../../index.d';
+  import { log } from 'console';
+  const {
+    EllipsisHorizontalCircleSharpIcon,
+    CopyIcon,
+    TrashIcon,
+    PencilIcon,
+    DownloadIcon,
+    BrowsersOutlineIcon,
+    HammerIcon,
+    SendIcon,
+  } = icon.ionicons5;
 
-const emit = defineEmits(['preview', 'delete', 'resize', 'edit', 'release'])
+  const emit = defineEmits(['preview', 'delete', 'resize', 'edit', 'release']);
 
-const props = defineProps({
-  cardData: Object as PropType<Chartype>
-})
+  const props = defineProps({
+    cardData: Object as PropType<Chartype>,
+  });
 
-const fnBtnList = reactive([
-  {
-    label: renderLang('global.r_edit'),
-    key: 'edit',
-    icon: renderIcon(HammerIcon)
-  },
-  {
-    lable: renderLang('global.r_more'),
-    key: 'select',
-    icon: renderIcon(EllipsisHorizontalCircleSharpIcon)
-  }
-])
+  const fnBtnList = reactive([
+    {
+      label: renderLang('global.r_edit'),
+      key: 'edit',
+      icon: renderIcon(HammerIcon),
+    },
+    {
+      lable: renderLang('global.r_more'),
+      key: 'select',
+      icon: renderIcon(EllipsisHorizontalCircleSharpIcon),
+    },
+  ]);
 
-const selectOptions = ref([
-  {
-    label: renderLang('global.r_preview'),
-    key: 'preview',
-    icon: renderIcon(BrowsersOutlineIcon)
-  },
-  {
-    label: props.cardData?.release
-      ? renderLang('global.r_unpublish')
-      : renderLang('global.r_publish'),
-    key: 'release',
-    icon: renderIcon(SendIcon)
-  },
-  {
-    label: renderLang('global.r_delete'),
-    key: 'delete',
-    icon: renderIcon(TrashIcon)
-  }
-])
+  const selectOptions = ref([
+    {
+      label: renderLang('global.r_preview'),
+      key: 'preview',
+      icon: renderIcon(BrowsersOutlineIcon),
+    },
+    {
+      label: props.cardData?.release
+        ? renderLang('global.r_unpublish')
+        : renderLang('global.r_publish'),
+      key: 'release',
+      icon: renderIcon(SendIcon),
+    },
+    {
+      label: renderLang('global.r_delete'),
+      key: 'delete',
+      icon: renderIcon(TrashIcon),
+    },
+  ]);
 
-const handleSelect = (key: string) => {
-  switch (key) {
-    case 'preview':
-      previewHandle()
-      break
-    case 'delete':
-      deleteHandle()
-      break
-    case 'release':
-      releaseHandle()
-      break
-    case 'edit':
-      editHandle()
-      break
-  }
-}
+  const handleSelect = (key: string) => {
+    switch (key) {
+      case 'preview':
+        previewHandle();
+        break;
+      case 'delete':
+        deleteHandle();
+        break;
+      case 'release':
+        releaseHandle();
+        break;
+      case 'edit':
+        editHandle();
+        break;
+    }
+  };
 
-// 预览处理
-const previewHandle = () => {
-  emit('preview', props.cardData)
-}
+  // 预览处理
+  const previewHandle = () => {
+    emit('preview', props.cardData);
+  };
 
-// 删除处理
-const deleteHandle = () => {
-  emit('delete', props.cardData)
-}
+  // 删除处理
+  const deleteHandle = () => {
+    emit('delete', props.cardData);
+  };
 
-// 编辑处理
-const editHandle = () => {
-  emit('edit', props.cardData)
-}
+  // 编辑处理
+  const editHandle = () => {
+    emit('edit', props.cardData);
+  };
 
-// 编辑处理
-const releaseHandle = () => {
-  emit('release', props.cardData)
-}
+  // 编辑处理
+  const releaseHandle = () => {
+    emit('release', props.cardData);
+  };
 
-// 放大处理
-const resizeHandle = () => {
-  emit('resize', props.cardData)
-}
+  // 放大处理
+  const resizeHandle = () => {
+    emit('resize', props.cardData);
+  };
 </script>
 
 <style lang="scss" scoped>
-$contentHeight: 180px;
-@include go('items-list-card') {
-  position: relative;
-  border-radius: $--border-radius-base;
-  border: 1px solid rgba(0, 0, 0, 0);
-  @extend .go-transition;
-  &:hover {
-    @include hover-border-color('hover-border-color');
-  }
-  .list-content {
-    margin-top: 20px;
-    margin-bottom: 5px;
-    cursor: pointer;
+  $contentHeight: 180px;
+  @include go('items-list-card') {
+    position: relative;
     border-radius: $--border-radius-base;
-    @include background-image('background-point');
-    @extend .go-point-bg;
-    &-top {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      height: 22px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    @extend .go-transition;
+    &:hover {
+      @include hover-border-color('hover-border-color');
     }
-    &-img {
-      height: $contentHeight;
-      @extend .go-flex-center;
-      @extend .go-border-radius;
-      @include deep() {
-        img {
-          @extend .go-border-radius;
+    .list-content {
+      margin-top: 20px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      border-radius: $--border-radius-base;
+      @include background-image('background-point');
+      @extend .go-point-bg;
+      &-top {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        height: 22px;
+      }
+      &-img {
+        height: $contentHeight;
+        @extend .go-flex-center;
+        @extend .go-border-radius;
+        @include deep() {
+          img {
+            @extend .go-border-radius;
+          }
         }
       }
     }
-  }
-  .list-footer {
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    line-height: 30px;
-    &-ri {
-      justify-content: flex-end;
-      min-width: 180px;
+    .list-footer {
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      line-height: 30px;
+      &-ri {
+        justify-content: flex-end;
+        min-width: 180px;
+      }
     }
   }
-}
 </style>

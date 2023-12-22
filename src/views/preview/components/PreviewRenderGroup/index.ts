@@ -1,3 +1,3 @@
-import PreviewRenderGroup from './index.vue'
+import PreviewRenderGroup from './index.vue';
 
-export { PreviewRenderGroup }
+export { PreviewRenderGroup };

@@ -1,3 +1,3 @@
-import ContentLoad from './index.vue'
+import ContentLoad from './index.vue';
 
-export { ContentLoad }
+export { ContentLoad };

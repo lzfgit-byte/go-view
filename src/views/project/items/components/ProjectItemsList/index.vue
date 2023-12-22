@@ -45,32 +45,34 @@
 </template>
 
 <script setup lang="ts">
-import { ProjectItemsCard } from '../ProjectItemsCard/index'
-import { ProjectItemsModalCard } from '../ProjectItemsModalCard/index'
-import { icon } from '@/plugins'
-import { useModalDataInit } from './hooks/useModal.hook'
-import { useDataListInit } from './hooks/useData.hook'
+  import { ProjectItemsCard } from '../ProjectItemsCard/index';
+  import { ProjectItemsModalCard } from '../ProjectItemsModalCard/index';
+  import { icon } from '@/plugins';
+  import { useModalDataInit } from './hooks/useModal.hook';
+  import { useDataListInit } from './hooks/useData.hook';
 
-const { CopyIcon, EllipsisHorizontalCircleSharpIcon } = icon.ionicons5
-const { modalData, modalShow, closeModal, previewHandle, resizeHandle, editHandle } = useModalDataInit()
-const { loading, paginat, list, changeSize, changePage, releaseHandle, deleteHandle } = useDataListInit()
+  const { CopyIcon, EllipsisHorizontalCircleSharpIcon } = icon.ionicons5;
+  const { modalData, modalShow, closeModal, previewHandle, resizeHandle, editHandle } =
+    useModalDataInit();
+  const { loading, paginat, list, changeSize, changePage, releaseHandle, deleteHandle } =
+    useDataListInit();
 </script>
 
 <style lang="scss" scoped>
-$contentHeight: 250px;
-@include go('items-list') {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: calc(100vh - #{$--header-height} - 40px - 2px);
-  .list-content {
-    position: relative;
-    height: $contentHeight;
-  }
-  .list-pagination {
+  $contentHeight: 250px;
+  @include go('items-list') {
     display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100vh - #{$--header-height} - 40px - 2px);
+    .list-content {
+      position: relative;
+      height: $contentHeight;
+    }
+    .list-pagination {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
   }
-}
 </style>
