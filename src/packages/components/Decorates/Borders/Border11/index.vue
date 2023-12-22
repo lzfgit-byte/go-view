@@ -16,16 +16,12 @@
       <polyline
         class="go-border-line-3"
         :stroke="colors[1]"
-        :points="`10, 10 ${w - 16}, 10 ${w - 16}, ${h - 16} 10, ${
-          h - 16
-        } 10, 10`"
+        :points="`10, 10 ${w - 16}, 10 ${w - 16}, ${h - 16} 10, ${h - 16} 10, 10`"
       />
       <polyline
         class="go-border-line-3"
         :stroke="colors[1]"
-        :points="`16, 16 ${w - 10}, 16 ${w - 10}, ${h - 10} 16, ${
-          h - 10
-        } 16, 16`"
+        :points="`16, 16 ${w - 10}, 16 ${w - 10}, ${h - 10} 16, ${h - 10} 16, 16`"
       />
       <polyline
         class="go-border-line-3"
@@ -37,30 +33,30 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, toRefs } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
+  import { PropType, toRefs } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
 
-const { w, h } = toRefs(props.chartConfig.attr)
-const { colors, backgroundColor } = toRefs(props.chartConfig.option)
+  const { w, h } = toRefs(props.chartConfig.attr);
+  const { colors, backgroundColor } = toRefs(props.chartConfig.option);
 </script>
 
 <style lang="scss" scoped>
-@include go('border-box') {
-  polyline {
-    fill: none;
+  @include go('border-box') {
+    polyline {
+      fill: none;
+    }
+    .go-line-line-1 {
+      stroke-width: 1;
+    }
+    .go-line-line-3 {
+      stroke-width: 3;
+    }
   }
-  .go-line-line-1 {
-    stroke-width: 1;
-  }
-  .go-line-line-3 {
-    stroke-width: 3;
-  }
-}
 </style>

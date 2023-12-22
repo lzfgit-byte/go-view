@@ -27,85 +27,61 @@
         :stroke="colors[0]"
         :points="`7, ${h - 40} 7, ${h - 75}`"
       />
-      <polyline
-        class="go-border-line-4"
-        :stroke="colors[0]"
-        :points="`28, 24 13, 41 13, 64`"
-      />
-      <polyline
-        class="go-border-line-5"
-        :stroke="colors[0]"
-        :points="`5, 45 5, 140`"
-      />
-      <polyline
-        class="go-border-line-6"
-        :stroke="colors[1]"
-        :points="`14, 75 14, 180`"
-      />
+      <polyline class="go-border-line-4" :stroke="colors[0]" :points="`28, 24 13, 41 13, 64`" />
+      <polyline class="go-border-line-5" :stroke="colors[0]" :points="`5, 45 5, 140`" />
+      <polyline class="go-border-line-6" :stroke="colors[1]" :points="`14, 75 14, 180`" />
       <polyline
         class="go-border-line-7"
         :stroke="colors[1]"
         :points="`55, 11 147, 11 167, 26 250, 26`"
       />
-      <polyline
-        class="go-border-line-8"
-        :stroke="colors[1]"
-        :points="`158, 5 173, 16`"
-      />
-      <polyline
-        class="go-border-line-9"
-        :stroke="colors[0]"
-        :points="`200, 17 ${w - 10}, 17`"
-      />
-      <polyline
-        class="go-border-line-10"
-        :stroke="colors[1]"
-        :points="`385, 17 ${w - 10}, 17`"
-      />
+      <polyline class="go-border-line-8" :stroke="colors[1]" :points="`158, 5 173, 16`" />
+      <polyline class="go-border-line-9" :stroke="colors[0]" :points="`200, 17 ${w - 10}, 17`" />
+      <polyline class="go-border-line-10" :stroke="colors[1]" :points="`385, 17 ${w - 10}, 17`" />
     </svg>
   </div>
 </template>
 
 <script setup lang="ts">
-import { PropType, toRefs } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
+  import { PropType, toRefs } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
 
-const { w, h } = toRefs(props.chartConfig.attr)
-const { colors, backgroundColor } = toRefs(props.chartConfig.option)
+  const { w, h } = toRefs(props.chartConfig.attr);
+  const { colors, backgroundColor } = toRefs(props.chartConfig.option);
 </script>
 
 <style lang="scss" scoped>
-@include go('border-box') {
-  polyline {
-    fill: none;
+  @include go('border-box') {
+    polyline {
+      fill: none;
+    }
+    .go-border-line-1,
+    .go-border-line-2,
+    .go-border-line-3,
+    .go-border-line-6,
+    .go-border-line-7,
+    .go-border-line-10 {
+      stroke-width: 1;
+    }
+    .go-border-line-3,
+    .go-border-line-4,
+    .go-border-line-8,
+    .go-border-line-9 {
+      stroke-width: 3px;
+      stroke-linecap: round;
+    }
+    .go-border-line-9 {
+      stroke-dasharray: 100 250;
+    }
+    .go-border-line-10 {
+      stroke-dasharray: 80 270;
+    }
   }
-  .go-border-line-1,
-  .go-border-line-2,
-  .go-border-line-3,
-  .go-border-line-6,
-  .go-border-line-7,
-  .go-border-line-10 {
-    stroke-width: 1;
-  }
-  .go-border-line-3,
-  .go-border-line-4,
-  .go-border-line-8,
-  .go-border-line-9 {
-    stroke-width: 3px;
-    stroke-linecap: round;
-  }
-  .go-border-line-9 {
-    stroke-dasharray: 100 250;
-  }
-  .go-border-line-10 {
-    stroke-dasharray: 80 270;
-  }
-}
 </style>
