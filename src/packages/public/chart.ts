@@ -1,8 +1,8 @@
-import merge from 'lodash/merge'
-import pick from 'lodash/pick'
-import { EchartsDataType } from '../index.d'
-import { globalThemeJson } from '@/settings/chartThemes'
-import type VChart from 'vue-echarts'
+import merge from 'lodash/merge';
+import pick from 'lodash/pick';
+import { EchartsDataType } from '../index.d';
+import { globalThemeJson } from '@/settings/chartThemes';
+import type VChart from 'vue-echarts';
 
 /**
  * * 合并 color 和全局配置项
@@ -12,8 +12,8 @@ import type VChart from 'vue-echarts'
  * @returns object
  */
 export const mergeTheme = <T, U>(option: T, themeSetting: U, includes: string[]) => {
-  return (option = merge({}, pick(themeSetting, includes), option))
-}
+  return (option = merge({}, pick(themeSetting, includes), option));
+};
 
 /**
  * * ECharts option 统一前置处理
@@ -22,9 +22,9 @@ export const mergeTheme = <T, U>(option: T, themeSetting: U, includes: string[])
  * @return option
  */
 export const echartOptionProfixHandle = (option: any, includes: string[]) => {
-  option['backgroundColor'] = 'rgba(0,0,0,0)'
-  return mergeTheme(option, globalThemeJson, includes)
-}
+  option['backgroundColor'] = 'rgba(0,0,0,0)';
+  return mergeTheme(option, globalThemeJson, includes);
+};
 
 /**
  * * 设置数据
@@ -33,9 +33,9 @@ export const echartOptionProfixHandle = (option: any, includes: string[]) => {
  * @return option
  */
 export const setData = (option: any, data: EchartsDataType) => {
-  option.dataset = data
-  return option
-}
+  option.dataset = data;
+  return option;
+};
 
 /**
  * * 配置公共 setOption 方法
@@ -43,8 +43,8 @@ export const setData = (option: any, data: EchartsDataType) => {
  * @param data
  */
 export const setOption = <T extends typeof VChart | undefined, D>(instance: T, data: D) => {
-  if (!instance) return
-  const option = instance.getOption()
-  option.dataset = null
-  instance.setOption(data)
-}
+  if (!instance) return;
+  const option = instance.getOption();
+  option.dataset = null;
+  instance.setOption(data);
+};
