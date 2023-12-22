@@ -1,5 +1,5 @@
-import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d'
+import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const InputsTabConfig: ConfigType = {
   key: 'InputsTab',
@@ -10,5 +10,5 @@ export const InputsTabConfig: ConfigType = {
   categoryName: ChatCategoryEnumName.INPUTS,
   package: PackagesCategoryEnum.INFORMATIONS,
   chartFrame: ChartFrameEnum.STATIC,
-  image: 'inputs_tab.png'
-}
+  image: 'inputs_tab.png',
+};

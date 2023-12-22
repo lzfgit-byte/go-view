@@ -1,4 +1,4 @@
-import { InteractEventOn, InteractActionsType } from '@/enums/eventEnum'
+import { InteractEventOn, InteractActionsType } from '@/enums/eventEnum';
 
 // 时间组件类型
 export enum ComponentInteractEventEnum {
@@ -11,7 +11,7 @@ export enum ComponentInteractEventEnum {
   YEAR = 'year',
   YEAR_RANGE = 'yearrange',
   QUARTER = 'quarter',
-  QUARTER_RANGE = 'quarterrange'
+  QUARTER_RANGE = 'quarterrange',
 }
 
 // 联动参数
@@ -19,13 +19,13 @@ export enum ComponentInteractParamsEnum {
   DATE = 'date',
   DATE_START = 'dateStart',
   DATE_END = 'dateEnd',
-  DATE_RANGE = 'daterange'
+  DATE_RANGE = 'daterange',
 }
 
 export enum DefaultTypeEnum {
-  NONE = "none",
-  STATIC = "static",
-  DYNAMIC = "dynamic"
+  NONE = 'none',
+  STATIC = 'static',
+  DYNAMIC = 'dynamic',
 }
 
 export enum DifferUnitEnum {
@@ -51,29 +51,29 @@ export const DifferUnitObject = {
   [DifferUnitEnum.MINUTE]: '分钟',
   [DifferUnitEnum.SECOND]: '秒',
   [DifferUnitEnum.MILLISECOND]: '毫秒',
-}
+};
 
 const time = [
   {
     value: ComponentInteractParamsEnum.DATE,
-    label: '日期'
-  }
-]
+    label: '日期',
+  },
+];
 
 const timeRange = [
   {
     value: ComponentInteractParamsEnum.DATE_START,
-    label: '开始时间'
+    label: '开始时间',
   },
   {
     value: ComponentInteractParamsEnum.DATE_END,
-    label: '结束时间'
+    label: '结束时间',
   },
   {
     value: ComponentInteractParamsEnum.DATE_RANGE,
-    label: '日期范围'
-  }
-]
+    label: '日期范围',
+  },
+];
 
 // 定义组件触发回调事件
 export const interactActions: InteractActionsType[] = [
@@ -90,6 +90,6 @@ export const interactActions: InteractActionsType[] = [
       [ComponentInteractEventEnum.QUARTER_RANGE]: timeRange,
       [ComponentInteractEventEnum.YEAR]: time,
       [ComponentInteractEventEnum.YEAR_RANGE]: timeRange,
-    }
-  }
-]
+    },
+  },
+];

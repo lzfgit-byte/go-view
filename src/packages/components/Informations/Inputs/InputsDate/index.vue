@@ -10,94 +10,97 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, ref, shallowReactive, toRefs, watch } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
-import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
-import { useChartInteract } from '@/hooks'
-import { InteractEventOn } from '@/enums/eventEnum'
-import {ComponentInteractEventEnum, ComponentInteractParamsEnum, DefaultTypeEnum} from './interact'
-import dayjs, {ManipulateType} from 'dayjs'
-import quarterOfYear from 'dayjs/plugin/quarterOfYear';
+  import { computed, PropType, ref, shallowReactive, toRefs, watch } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
+  import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
+  import { useChartInteract } from '@/hooks';
+  import { InteractEventOn } from '@/enums/eventEnum';
+  import {
+    ComponentInteractEventEnum,
+    ComponentInteractParamsEnum,
+    DefaultTypeEnum,
+  } from './interact';
+  import dayjs, { ManipulateType } from 'dayjs';
+  import quarterOfYear from 'dayjs/plugin/quarterOfYear';
 
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true
-  }
-})
+  const { w, h } = toRefs(props.chartConfig.attr);
+  const rangeDate = ref<number | number[]>();
 
-const { w, h } = toRefs(props.chartConfig.attr)
-const rangeDate = ref<number | number[]>()
+  const option = shallowReactive({
+    dataset: props.chartConfig.option.dataset,
+  });
 
-const option = shallowReactive({
-  dataset: props.chartConfig.option.dataset
-})
+  const isRange = computed(() => {
+    return props.chartConfig.option.componentInteractEventKey.endsWith('range');
+  });
 
-const isRange = computed(() => {
-  return props.chartConfig.option.componentInteractEventKey.endsWith('range')
-})
-
-// 监听事件改变
-const onChange = (v: number | number[] | null) => {
-  if (isRange.value) {
-    let dateStart = null
-    let dateEnd = null
-    let daterange = null
-    if(v instanceof Array){
-      dateStart = v[0]
-      dateEnd = v[1]
-      daterange = `${v[0]}-${v[1]}`
-    }
-    // 存储到联动数据
-    useChartInteract(
+  // 监听事件改变
+  const onChange = (v: number | number[] | null) => {
+    if (isRange.value) {
+      let dateStart = null;
+      let dateEnd = null;
+      let daterange = null;
+      if (v instanceof Array) {
+        dateStart = v[0];
+        dateEnd = v[1];
+        daterange = `${v[0]}-${v[1]}`;
+      }
+      // 存储到联动数据
+      useChartInteract(
         props.chartConfig,
         useChartEditStore,
         {
           [ComponentInteractParamsEnum.DATE_START]: dateStart,
           [ComponentInteractParamsEnum.DATE_END]: dateEnd,
-          [ComponentInteractParamsEnum.DATE_RANGE]: daterange
+          [ComponentInteractParamsEnum.DATE_RANGE]: daterange,
         },
         InteractEventOn.CHANGE
-    )
-  } else {
-    // 存储到联动数据
-    useChartInteract(
+      );
+    } else {
+      // 存储到联动数据
+      useChartInteract(
         props.chartConfig,
         useChartEditStore,
         { [ComponentInteractParamsEnum.DATE]: v },
         InteractEventOn.CHANGE
-    )
-  }
-}
+      );
+    }
+  };
 
-const getDiffDate = (type: ComponentInteractEventEnum, date: dayjs.Dayjs) => {
-  // 注册 quarterOfYear 插件
-  dayjs.extend(quarterOfYear)
-  switch (type) {
-    case ComponentInteractEventEnum.DATE:
-    case ComponentInteractEventEnum.DATE_RANGE:
-      date = date.startOf('day')
-      break
-    case ComponentInteractEventEnum.MONTH:
-    case ComponentInteractEventEnum.MONTH_RANGE:
-      date = date.startOf('month')
-      break
-    case ComponentInteractEventEnum.YEAR:
-    case ComponentInteractEventEnum.YEAR_RANGE:
-      date = date.startOf('year')
-        break
-    case ComponentInteractEventEnum.QUARTER:
-    case ComponentInteractEventEnum.QUARTER_RANGE:
-      date = date.startOf('quarter')
-      break
-    default:
-      break
-  }
-  return date
-}
+  const getDiffDate = (type: ComponentInteractEventEnum, date: dayjs.Dayjs) => {
+    // 注册 quarterOfYear 插件
+    dayjs.extend(quarterOfYear);
+    switch (type) {
+      case ComponentInteractEventEnum.DATE:
+      case ComponentInteractEventEnum.DATE_RANGE:
+        date = date.startOf('day');
+        break;
+      case ComponentInteractEventEnum.MONTH:
+      case ComponentInteractEventEnum.MONTH_RANGE:
+        date = date.startOf('month');
+        break;
+      case ComponentInteractEventEnum.YEAR:
+      case ComponentInteractEventEnum.YEAR_RANGE:
+        date = date.startOf('year');
+        break;
+      case ComponentInteractEventEnum.QUARTER:
+      case ComponentInteractEventEnum.QUARTER_RANGE:
+        date = date.startOf('quarter');
+        break;
+      default:
+        break;
+    }
+    return date;
+  };
 
-watch(
+  watch(
     () => {
       return {
         type: props.chartConfig.option.componentInteractEventKey as ComponentInteractEventEnum,
@@ -113,18 +116,32 @@ watch(
       const hasDifferValueChanged = newData.differValue !== oldData?.differValue;
       const hasDifferUnitChanged = newData.differUnit !== oldData?.differUnit;
 
-      if (hasTypeChanged || hasDefaultTypeChanged || hasDifferValueChanged || hasDifferUnitChanged) {
+      if (
+        hasTypeChanged ||
+        hasDefaultTypeChanged ||
+        hasDifferValueChanged ||
+        hasDifferUnitChanged
+      ) {
         if (newData.defaultType === DefaultTypeEnum.NONE) {
           props.chartConfig.option.dataset = null;
         } else if (newData.defaultType === DefaultTypeEnum.DYNAMIC) {
           let date = dayjs();
           if (isRange.value) {
             props.chartConfig.option.dataset = [
-             getDiffDate(newData.type,date.add(newData.differValue[0], newData.differUnit[0])).valueOf(),
-             getDiffDate(newData.type,date.add(newData.differValue[1], newData.differUnit[1])).valueOf(),
+              getDiffDate(
+                newData.type,
+                date.add(newData.differValue[0], newData.differUnit[0])
+              ).valueOf(),
+              getDiffDate(
+                newData.type,
+                date.add(newData.differValue[1], newData.differUnit[1])
+              ).valueOf(),
             ];
           } else {
-            props.chartConfig.option.dataset = getDiffDate(newData.type,date.add(newData.differValue[0], newData.differUnit[0])).valueOf()
+            props.chartConfig.option.dataset = getDiffDate(
+              newData.type,
+              date.add(newData.differValue[0], newData.differUnit[0])
+            ).valueOf();
           }
         }
       }
@@ -134,15 +151,15 @@ watch(
     {
       immediate: true,
     }
-);
+  );
 </script>
 
 <style lang="scss" scoped>
-@include deep() {
-  .n-input {
-    height: v-bind('h + "px"');
-    display: flex;
-    align-items: center;
+  @include deep() {
+    .n-input {
+      height: v-bind('h + "px"');
+      display: flex;
+      align-items: center;
+    }
   }
-}
 </style>

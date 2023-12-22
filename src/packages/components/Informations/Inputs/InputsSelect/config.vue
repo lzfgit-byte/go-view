@@ -7,14 +7,14 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType } from 'vue'
-import { CollapseItem, SettingItemBox } from '@/components/Pages/ChartItemSetting'
-import { option } from './config'
+  import { PropType } from 'vue';
+  import { CollapseItem, SettingItemBox } from '@/components/Pages/ChartItemSetting';
+  import { option } from './config';
 
-defineProps({
-  optionData: {
-    type: Object as PropType<typeof option>,
-    required: true
-  }
-})
+  defineProps({
+    optionData: {
+      type: Object as PropType<typeof option>,
+      required: true,
+    },
+  });
 </script>
