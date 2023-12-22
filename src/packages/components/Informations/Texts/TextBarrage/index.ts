@@ -1,5 +1,5 @@
-import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d'
-import { ChatCategoryEnum,ChatCategoryEnumName } from '../../index.d'
+import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const TextBarrageConfig: ConfigType = {
   key: 'TextBarrage',
@@ -10,5 +10,5 @@ export const TextBarrageConfig: ConfigType = {
   categoryName: ChatCategoryEnumName.TEXT,
   package: PackagesCategoryEnum.INFORMATIONS,
   chartFrame: ChartFrameEnum.COMMON,
-  image: 'text_barrage.png'
-}
+  image: 'text_barrage.png',
+};

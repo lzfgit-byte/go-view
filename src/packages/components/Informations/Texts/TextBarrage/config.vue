@@ -10,17 +10,29 @@
   <collapse-item name="样式" :expanded="true">
     <setting-item-box name="文字">
       <setting-item name="颜色">
-        <n-color-picker size="small" :modes="['hex']" v-model:value="optionData.fontColor"></n-color-picker>
+        <n-color-picker
+          size="small"
+          :modes="['hex']"
+          v-model:value="optionData.fontColor"
+        ></n-color-picker>
       </setting-item>
       <setting-item name="字体大小">
-        <n-input-number v-model:value="optionData.fontSize" size="small" placeholder="字体大小"></n-input-number>
+        <n-input-number
+          v-model:value="optionData.fontSize"
+          size="small"
+          placeholder="字体大小"
+        ></n-input-number>
       </setting-item>
       <setting-item name="字体粗细">
         <n-select v-model:value="optionData.fontWeight" size="small" :options="fontWeightOptions" />
       </setting-item>
 
       <setting-item name="字间距">
-        <n-input-number v-model:value="optionData.letterSpacing" size="small" placeholder="输入字间距"></n-input-number>
+        <n-input-number
+          v-model:value="optionData.letterSpacing"
+          size="small"
+          placeholder="输入字间距"
+        ></n-input-number>
       </setting-item>
     </setting-item-box>
     <setting-item-box name="阴影">
@@ -31,7 +43,11 @@
         </n-space>
       </setting-item>
       <setting-item name="颜色">
-        <n-color-picker size="small" :modes="['hex']" v-model:value="optionData.colorShadow"></n-color-picker
+        <n-color-picker
+          size="small"
+          :modes="['hex']"
+          v-model:value="optionData.colorShadow"
+        ></n-color-picker
       ></setting-item>
       <setting-item name="x">
         <n-input-number v-model:value="optionData.hShadow" size="small"></n-input-number
@@ -66,24 +82,24 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
-import { option, FontWeightEnum, FontWeightObject } from './config'
-import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<typeof option>,
-    required: true
-  }
-})
+  import { PropType } from 'vue';
+  import { option, FontWeightEnum, FontWeightObject } from './config';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<typeof option>,
+      required: true,
+    },
+  });
 
-const fontWeightOptions = [
-  {
-    label: FontWeightEnum.NORMAL,
-    value: FontWeightObject[FontWeightEnum.NORMAL]
-  },
-  {
-    label: FontWeightEnum.BOLD,
-    value: FontWeightObject[FontWeightEnum.BOLD]
-  }
-]
+  const fontWeightOptions = [
+    {
+      label: FontWeightEnum.NORMAL,
+      value: FontWeightObject[FontWeightEnum.NORMAL],
+    },
+    {
+      label: FontWeightEnum.BOLD,
+      value: FontWeightObject[FontWeightEnum.BOLD],
+    },
+  ];
 </script>
