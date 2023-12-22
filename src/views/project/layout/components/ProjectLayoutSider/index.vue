@@ -22,7 +22,7 @@
           :collapsed-width="getAsideCollapsedWidth"
           :collapsed-icon-size="22"
           :default-expanded-keys="defaultExpandedKeys"
-       ></n-menu>
+        ></n-menu>
       </aside>
       <!-- 底部提示 -->
       <div class="sider-bottom">
@@ -33,67 +33,67 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, toRefs } from 'vue'
-import { ProjectLayoutCreate } from '../ProjectLayoutCreate/index'
-import { ProjectLayoutAsideFooter } from '../ProjectLayoutAsideFooter/index'
-import { asideWidth } from '@/settings/designSetting'
-import { useRoute } from 'vue-router'
-import { useSettingStore } from '@/store/modules/settingStore/settingStore'
-import { menuOptionsInit, expandedKeys } from './menu'
+  import { ref, computed, onMounted, onUnmounted, toRefs } from 'vue';
+  import { ProjectLayoutCreate } from '../ProjectLayoutCreate/index';
+  import { ProjectLayoutAsideFooter } from '../ProjectLayoutAsideFooter/index';
+  import { asideWidth } from '@/settings/designSetting';
+  import { useRoute } from 'vue-router';
+  import { useSettingStore } from '@/store/modules/settingStore/settingStore';
+  import { menuOptionsInit, expandedKeys } from './menu';
 
-const collapsed = ref<boolean>(false)
-const { getAsideCollapsedWidth } = toRefs(useSettingStore())
+  const collapsed = ref<boolean>(false);
+  const { getAsideCollapsedWidth } = toRefs(useSettingStore());
 
-const route = useRoute()
-const menuValue = computed(() => route.name)
+  const route = useRoute();
+  const menuValue = computed(() => route.name);
 
-const menuOptions = menuOptionsInit()
+  const menuOptions = menuOptionsInit();
 
-const defaultExpandedKeys = expandedKeys()
+  const defaultExpandedKeys = expandedKeys();
 
-const watchWidth = () => {
-  const Width = document.body.clientWidth
-  if (Width <= 950) {
-    collapsed.value = true
-  } else collapsed.value = false
-}
+  const watchWidth = () => {
+    const Width = document.body.clientWidth;
+    if (Width <= 950) {
+      collapsed.value = true;
+    } else collapsed.value = false;
+  };
 
-onMounted(() => {
-  window.addEventListener('resize', watchWidth)
-})
+  onMounted(() => {
+    window.addEventListener('resize', watchWidth);
+  });
 
-onUnmounted(()=> {
-  window.removeEventListener('resize', watchWidth)
-})
+  onUnmounted(() => {
+    window.removeEventListener('resize', watchWidth);
+  });
 </script>
 
 <style lang="scss" scoped>
-$siderHeight: 100vh;
+  $siderHeight: 100vh;
 
-@include go(project) {
-  &-sider {
-    @include fetch-bg-color('aside-background-color');
-    &-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-direction: column;
-      margin-top: 30px;
-      margin-bottom: 20px;
+  @include go(project) {
+    &-sider {
+      @include fetch-bg-color('aside-background-color');
+      &-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+      &-flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: $siderHeight;
+      }
     }
-    &-flex {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    &-layout-sider {
       height: $siderHeight;
     }
+    .content-top {
+      top: $--header-height;
+      margin-top: 1px;
+    }
   }
-  &-layout-sider {
-    height: $siderHeight;
-  }
-  .content-top {
-    top: $--header-height;
-    margin-top: 1px;
-  }
-}
 </style>

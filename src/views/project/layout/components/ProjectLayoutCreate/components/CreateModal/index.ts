@@ -1,3 +1,3 @@
-import CreateModal from './index.vue'
+import CreateModal from './index.vue';
 
-export { CreateModal }
+export { CreateModal };

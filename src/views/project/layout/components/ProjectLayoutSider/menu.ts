@@ -1,20 +1,20 @@
-import { reactive, h } from 'vue'
-import { renderIcon } from '@/utils'
-import { RouterLink } from 'vue-router'
-import { PageEnum } from '@/enums/pageEnum'
-import { MenuOption, MenuGroupOption } from 'naive-ui'
-import { icon } from '@/plugins'
+import { reactive, h } from 'vue';
+import { renderIcon } from '@/utils';
+import { RouterLink } from 'vue-router';
+import { PageEnum } from '@/enums/pageEnum';
+import { MenuOption, MenuGroupOption } from 'naive-ui';
+import { icon } from '@/plugins';
 
-const { GridIcon, TvOutlineIcon } = icon.ionicons5
-const { StoreIcon, ObjectStorageIcon, DevicesIcon } = icon.carbon
+const { GridIcon, TvOutlineIcon } = icon.ionicons5;
+const { StoreIcon, ObjectStorageIcon, DevicesIcon } = icon.carbon;
 export const renderMenuLabel = (option: MenuOption | MenuGroupOption) => {
-  return option.label
-}
+  return option.label;
+};
 
-export const expandedKeys = () => ['all-project']
+export const expandedKeys = () => ['all-project'];
 
 export const menuOptionsInit = () => {
-  const t = window['$t']
+  const t = window['$t'];
 
   return reactive([
     {
@@ -82,5 +82,5 @@ export const menuOptionsInit = () => {
       key: PageEnum.BASE_HOME_TEMPLATE_MARKET_NAME,
       icon: renderIcon(StoreIcon),
     },
-  ])
-}
+  ]);
+};

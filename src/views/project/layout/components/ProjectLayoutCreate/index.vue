@@ -30,25 +30,25 @@
   <CreateModal :show="modalShow" @close="closeHandle"></CreateModal>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useDesignStore } from '@/store/modules/designStore/designStore'
-import { CreateModal } from './components/CreateModal/index'
-import { icon } from '@/plugins'
+  import { ref } from 'vue';
+  import { useDesignStore } from '@/store/modules/designStore/designStore';
+  import { CreateModal } from './components/CreateModal/index';
+  import { icon } from '@/plugins';
 
-const { DuplicateIcon, DuplicateOutlineIcon } = icon.ionicons5
-const designStore = useDesignStore()
+  const { DuplicateIcon, DuplicateOutlineIcon } = icon.ionicons5;
+  const designStore = useDesignStore();
 
-const props = defineProps({
-  collapsed: Boolean
-})
+  const props = defineProps({
+    collapsed: Boolean,
+  });
 
-const modalShow = ref<boolean>(false)
+  const modalShow = ref<boolean>(false);
 
-const clickHandle = () => {
-  modalShow.value = true
-}
+  const clickHandle = () => {
+    modalShow.value = true;
+  };
 
-const closeHandle = () => {
-  modalShow.value = false
-}
+  const closeHandle = () => {
+    modalShow.value = false;
+  };
 </script>

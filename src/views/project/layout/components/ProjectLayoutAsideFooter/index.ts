@@ -1,3 +1,3 @@
-import ProjectLayoutAsideFooter from './index.vue'
+import ProjectLayoutAsideFooter from './index.vue';
 
-export { ProjectLayoutAsideFooter }
+export { ProjectLayoutAsideFooter };

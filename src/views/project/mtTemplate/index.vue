@@ -6,19 +6,19 @@
         height="300"
         preview-disabled
         :src="requireErrorImg()"
-     ></n-image>
+      ></n-image>
       <n-h3>暂时还没有东西呢(aka 没做)</n-h3>
     </n-space>
   </div>
 </template>
 
 <script setup lang="ts">
-import { requireErrorImg } from '@/utils'
+  import { requireErrorImg } from '@/utils';
 </script>
 
 <style lang="scss" scoped>
-@include go('project-my-template') {
-  margin-top: 100px;
-  @extend .go-flex-center;
-}
+  @include go('project-my-template') {
+    margin-top: 100px;
+    @extend .go-flex-center;
+  }
 </style>

@@ -1,3 +1,3 @@
-import ProjectLayoutCreate from './index.vue'
+import ProjectLayoutCreate from './index.vue';
 
-export { ProjectLayoutCreate }
+export { ProjectLayoutCreate };

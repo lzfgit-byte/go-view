@@ -53,25 +53,25 @@
   </div>
 </template>
 <script setup lang="ts">
-import { openDoc, openGiteeSourceCode } from '@/utils'
+  import { openDoc, openGiteeSourceCode } from '@/utils';
 
-import { icon } from '@/plugins'
-const { DocumentTextIcon, CodeSlashIcon } = icon.ionicons5
+  import { icon } from '@/plugins';
+  const { DocumentTextIcon, CodeSlashIcon } = icon.ionicons5;
 
-const props = defineProps({
-  collapsed: Boolean
-})
+  const props = defineProps({
+    collapsed: Boolean,
+  });
 
-const handleDoc = () => {
-  openDoc()
-}
-const handleCode = () => {
-  openGiteeSourceCode()
-}
+  const handleDoc = () => {
+    openDoc();
+  };
+  const handleCode = () => {
+    openGiteeSourceCode();
+  };
 </script>
 
 <style lang="scss" scoped>
-@include go('aside-footer') {
-  padding-bottom: 20px;
-}
+  @include go('aside-footer') {
+    padding-bottom: 20px;
+  }
 </style>

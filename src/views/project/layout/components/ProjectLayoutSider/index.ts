@@ -1,3 +1,3 @@
-import ProjectLayoutSider from './index.vue'
+import ProjectLayoutSider from './index.vue';
 
-export { ProjectLayoutSider }
+export { ProjectLayoutSider };
