@@ -18,70 +18,70 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, toRefs, watch, ref } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
-import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
-import { useChartDataFetch } from '@/hooks'
-import { Flipper } from '@/components/Pages/Flipper'
-import { OptionType } from './config'
+  import { PropType, toRefs, watch, ref } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
+  import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
+  import { useChartDataFetch } from '@/hooks';
+  import { Flipper } from '@/components/Pages/Flipper';
+  import { OptionType } from './config';
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
 
-const { w, h } = toRefs(props.chartConfig.attr)
+  const { w, h } = toRefs(props.chartConfig.attr);
 
-const {
-  flipperLength,
-  flipperBgColor,
-  flipperTextColor,
-  flipperWidth,
-  flipperHeight,
-  flipperRadius,
-  flipperGap,
-  flipperType,
-  flipperSpeed,
-  flipperBorderWidth
-} = toRefs(props.chartConfig.option as OptionType)
+  const {
+    flipperLength,
+    flipperBgColor,
+    flipperTextColor,
+    flipperWidth,
+    flipperHeight,
+    flipperRadius,
+    flipperGap,
+    flipperType,
+    flipperSpeed,
+    flipperBorderWidth,
+  } = toRefs(props.chartConfig.option as OptionType);
 
-const flipperData = ref<string[] | number[]>([])
-const getFlipperData = (val: string | number) => {
-  return val
-    .toString()
-    .padStart(flipperLength.value, '0') // 左侧填充|右对齐
-    .split('') // 转数组
-    .slice(flipperLength.value * -1) // 从后面取指定长度
-}
-const updateDatasetHandler = (newVal: string | number) => {
-  flipperData.value = getFlipperData(newVal)
-}
+  const flipperData = ref<string[] | number[]>([]);
+  const getFlipperData = (val: string | number) => {
+    return val
+      .toString()
+      .padStart(flipperLength.value, '0') // 左侧填充|右对齐
+      .split('') // 转数组
+      .slice(flipperLength.value * -1); // 从后面取指定长度
+  };
+  const updateDatasetHandler = (newVal: string | number) => {
+    flipperData.value = getFlipperData(newVal);
+  };
 
-watch(
-  () => props.chartConfig.option,
-  newVal => {
-    try {
-      updateDatasetHandler((newVal as any as OptionType).dataset)
-    } catch (error) {
-      console.log(error)
+  watch(
+    () => props.chartConfig.option,
+    (newVal) => {
+      try {
+        updateDatasetHandler((newVal as any as OptionType).dataset);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    {
+      immediate: true,
+      deep: true,
     }
-  },
-  {
-    immediate: true,
-    deep: true
-  }
-)
+  );
 
-useChartDataFetch(props.chartConfig, useChartEditStore, (newVal: string | number) => {
-  updateDatasetHandler(newVal)
-})
+  useChartDataFetch(props.chartConfig, useChartEditStore, (newVal: string | number) => {
+    updateDatasetHandler(newVal);
+  });
 </script>
 
 <style lang="scss" scoped>
-@include go('decorates-flipper-number') {
-  width: v-bind('`${w}px`');
-  height: v-bind('`${h}px`');
-}
+  @include go('decorates-flipper-number') {
+    width: v-bind('`${w}px`');
+    height: v-bind('`${h}px`');
+  }
 </style>

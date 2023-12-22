@@ -14,98 +14,101 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, toRefs, ref, onMounted, onUnmounted } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
-import { option } from './config'
+  import { PropType, toRefs, ref, onMounted, onUnmounted } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
+  import { option } from './config';
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType & typeof option>,
-    required: true
-  }
-})
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType & typeof option>,
+      required: true,
+    },
+  });
 
-let { border, bgColor, borderColor } = toRefs(props.chartConfig.option)
-const isFullscreen = ref(false)
-const checkFullscreen = () => {
-  isFullscreen.value = !!(
-    document.fullscreenElement ||
-    (document as any).webkitFullscreenElement ||
-    (document as any).mozFullScreenElement ||
-    (document as any).msFullscreenElement
-  )
-}
-checkFullscreen()
+  let { border, bgColor, borderColor } = toRefs(props.chartConfig.option);
+  const isFullscreen = ref(false);
+  const checkFullscreen = () => {
+    isFullscreen.value = !!(
+      document.fullscreenElement ||
+      (document as any).webkitFullscreenElement ||
+      (document as any).mozFullScreenElement ||
+      (document as any).msFullscreenElement
+    );
+  };
+  checkFullscreen();
 
-const requestFullscreen = (element: Element) => {
-  if (element.requestFullscreen) {
-    element.requestFullscreen()
-  } else if ((document as any).mozRequestFullScreen) {
-    /* Firefox */
-    (document as any).mozRequestFullScreen()
-  } else if ((document as any).webkitRequestFullscreen) {
-    /* Chrome, Safari and Opera */
-    (document as any).webkitRequestFullscreen()
-  } else if ((document as any).msRequestFullscreen) {
-    /* IE/Edge */
-    (document as any).msRequestFullscreen()
-  }
-}
+  const requestFullscreen = (element: Element) => {
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if ((document as any).mozRequestFullScreen) {
+      /* Firefox */
+      (document as any).mozRequestFullScreen();
+    } else if ((document as any).webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      (document as any).webkitRequestFullscreen();
+    } else if ((document as any).msRequestFullscreen) {
+      /* IE/Edge */
+      (document as any).msRequestFullscreen();
+    }
+  };
 
-const exitFullscreen = () => {
-  if (document.fullscreenElement && document.exitFullscreen) {
-    document.exitFullscreen()
-  } else if ((document as any).mozFullScreenElement && (document as any).mozCancelFullScreen) {
-    /* Firefox */
-    (document as any).mozCancelFullScreen()
-  } else if ((document as any).webkitFullscreenElement && (document as any).webkitExitFullscreen) {
-    /* Chrome, Safari and Opera */
-    (document as any).webkitExitFullscreen()
-  } else if ((document as any).msFullscreenElement && (document as any).msExitFullscreen) {
-    /* IE/Edge */
-    (document as any).msExitFullscreen()
-  }
-}
+  const exitFullscreen = () => {
+    if (document.fullscreenElement && document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if ((document as any).mozFullScreenElement && (document as any).mozCancelFullScreen) {
+      /* Firefox */
+      (document as any).mozCancelFullScreen();
+    } else if (
+      (document as any).webkitFullscreenElement &&
+      (document as any).webkitExitFullscreen
+    ) {
+      /* Chrome, Safari and Opera */
+      (document as any).webkitExitFullscreen();
+    } else if ((document as any).msFullscreenElement && (document as any).msExitFullscreen) {
+      /* IE/Edge */
+      (document as any).msExitFullscreen();
+    }
+  };
 
-const toggleFullscreen = () => {
-  if (!isFullscreen.value) {
-    requestFullscreen(document.documentElement)
-  } else {
-    exitFullscreen()
-  }
-  isFullscreen.value = !isFullscreen.value
-  // 由于全屏状态的改变不会立即生效，所以需要延迟一段时间再去获取全屏状态
-  setTimeout(() => {
-    checkFullscreen()
-  }, 1000)
-}
+  const toggleFullscreen = () => {
+    if (!isFullscreen.value) {
+      requestFullscreen(document.documentElement);
+    } else {
+      exitFullscreen();
+    }
+    isFullscreen.value = !isFullscreen.value;
+    // 由于全屏状态的改变不会立即生效，所以需要延迟一段时间再去获取全屏状态
+    setTimeout(() => {
+      checkFullscreen();
+    }, 1000);
+  };
 
-// 监听全屏状态的改变，保证多个全屏组件的状态一致
-onMounted(() => {
-  document.addEventListener('fullscreenchange', checkFullscreen)
-  document.addEventListener('webkitfullscreenchange', checkFullscreen)
-  document.addEventListener('mozfullscreenchange', checkFullscreen)
-  document.addEventListener('MSFullscreenChange', checkFullscreen)
-})
+  // 监听全屏状态的改变，保证多个全屏组件的状态一致
+  onMounted(() => {
+    document.addEventListener('fullscreenchange', checkFullscreen);
+    document.addEventListener('webkitfullscreenchange', checkFullscreen);
+    document.addEventListener('mozfullscreenchange', checkFullscreen);
+    document.addEventListener('MSFullscreenChange', checkFullscreen);
+  });
 
-onUnmounted(() => {
-  document.removeEventListener('fullscreenchange', checkFullscreen)
-  document.removeEventListener('webkitfullscreenchange', checkFullscreen)
-  document.removeEventListener('mozfullscreenchange', checkFullscreen)
-  document.removeEventListener('MSFullscreenChange', checkFullscreen)
-})
+  onUnmounted(() => {
+    document.removeEventListener('fullscreenchange', checkFullscreen);
+    document.removeEventListener('webkitfullscreenchange', checkFullscreen);
+    document.removeEventListener('mozfullscreenchange', checkFullscreen);
+    document.removeEventListener('MSFullscreenChange', checkFullscreen);
+  });
 </script>
 
 <style lang="scss" scoped>
-svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-.fullScreen-border {
-  stroke: v-bind('borderColor');
-  stroke-width: v-bind('border+"px"');
-  fill: v-bind('bgColor');
-}
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  .fullScreen-border {
+    stroke: v-bind('borderColor');
+    stroke-width: v-bind('border+"px"');
+    fill: v-bind('bgColor');
+  }
 </style>

@@ -2,11 +2,7 @@
   <CollapseItem name="内容" :expanded="true">
     <SettingItemBox name="数值">
       <SettingItem name="终点值">
-        <n-input-number
-          v-model:value="optionData.dataset"
-          size="small"
-          :min="1"
-        ></n-input-number>
+        <n-input-number v-model:value="optionData.dataset" size="small" :min="1"></n-input-number>
       </SettingItem>
       <SettingItem name="大小">
         <n-input-number
@@ -16,11 +12,7 @@
         ></n-input-number>
       </SettingItem>
       <SettingItem name="精度">
-        <n-input-number
-          v-model:value="optionData.precision"
-          size="small"
-          :min="0"
-        ></n-input-number>
+        <n-input-number v-model:value="optionData.precision" size="small" :min="0"></n-input-number>
       </SettingItem>
       <SettingItem>
         <n-space>
@@ -79,18 +71,14 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
-import {
-  CollapseItem,
-  SettingItemBox,
-  SettingItem,
-} from '@/components/Pages/ChartItemSetting'
-import { option } from './config'
+  import { PropType } from 'vue';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
+  import { option } from './config';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<typeof option>,
-    required: true,
-  },
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<typeof option>,
+      required: true,
+    },
+  });
 </script>
