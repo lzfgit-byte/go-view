@@ -1,3 +1,3 @@
-import Tables from './Tables'
+import Tables from './Tables';
 
-export const TableList = [...Tables]
+export const TableList = [...Tables];
