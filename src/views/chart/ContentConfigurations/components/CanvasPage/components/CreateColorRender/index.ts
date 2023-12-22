@@ -1,3 +1,3 @@
-import CreateColorRender from './index.vue'
+import CreateColorRender from './index.vue';
 
-export { CreateColorRender }
+export { CreateColorRender };

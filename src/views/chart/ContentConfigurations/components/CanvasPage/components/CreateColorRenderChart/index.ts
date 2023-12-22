@@ -1,3 +1,3 @@
-import CreateColorRenderChart from './index.vue'
+import CreateColorRenderChart from './index.vue';
 
-export { CreateColorRenderChart }
+export { CreateColorRenderChart };

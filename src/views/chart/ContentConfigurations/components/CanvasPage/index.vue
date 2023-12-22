@@ -30,7 +30,12 @@
         :onBeforeUpload="beforeUploadHandle"
       >
         <n-upload-dragger>
-          <img v-if="canvasConfig.backgroundImage" class="upload-show" :src="canvasConfig.backgroundImage" alt="背景" />
+          <img
+            v-if="canvasConfig.backgroundImage"
+            class="upload-show"
+            :src="canvasConfig.backgroundImage"
+            alt="背景"
+          />
           <div class="upload-img" v-show="!canvasConfig.backgroundImage">
             <img src="@/assets/images/canvas/noImage.png" />
             <n-text class="upload-desc" depth="3">
@@ -67,10 +72,20 @@
       </n-space>
       <n-space>
         <n-text>背景控制</n-text>
-        <n-button class="clear-btn" size="small" :disabled="!canvasConfig.backgroundImage" @click="clearImage">
+        <n-button
+          class="clear-btn"
+          size="small"
+          :disabled="!canvasConfig.backgroundImage"
+          @click="clearImage"
+        >
           清除背景
         </n-button>
-        <n-button class="clear-btn" size="small" :disabled="!canvasConfig.background" @click="clearColor">
+        <n-button
+          class="clear-btn"
+          size="small"
+          :disabled="!canvasConfig.background"
+          @click="clearColor"
+        >
           清除颜色
         </n-button>
       </n-space>
@@ -126,236 +141,244 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick, watch } from 'vue'
-import { backgroundImageSize } from '@/settings/designSetting'
-import { swatchesColors } from '@/settings/chartThemes/index'
-import { FileTypeEnum } from '@/enums/fileTypeEnum'
-import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
-import { EditCanvasConfigEnum } from '@/store/modules/chartEditStore/chartEditStore.d'
-import { useSystemStore } from '@/store/modules/systemStore/systemStore'
-import { StylesSetting } from '@/components/Pages/ChartItemSetting'
-import { UploadCustomRequestOptions } from 'naive-ui'
-import { loadAsyncComponent, fetchRouteParamsLocation } from '@/utils'
-import { PreviewScaleEnum } from '@/enums/styleEnum'
-import { ResultEnum } from '@/enums/httpEnum'
-import { icon } from '@/plugins'
-import { uploadFile } from '@/api/path'
+  import { ref, nextTick, watch } from 'vue';
+  import { backgroundImageSize } from '@/settings/designSetting';
+  import { swatchesColors } from '@/settings/chartThemes/index';
+  import { FileTypeEnum } from '@/enums/fileTypeEnum';
+  import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
+  import { EditCanvasConfigEnum } from '@/store/modules/chartEditStore/chartEditStore.d';
+  import { useSystemStore } from '@/store/modules/systemStore/systemStore';
+  import { StylesSetting } from '@/components/Pages/ChartItemSetting';
+  import { UploadCustomRequestOptions } from 'naive-ui';
+  import { loadAsyncComponent, fetchRouteParamsLocation } from '@/utils';
+  import { PreviewScaleEnum } from '@/enums/styleEnum';
+  import { ResultEnum } from '@/enums/httpEnum';
+  import { icon } from '@/plugins';
+  import { uploadFile } from '@/api/path';
 
-const { ColorPaletteIcon } = icon.ionicons5
-const { ScaleIcon, FitToScreenIcon, FitToHeightIcon, FitToWidthIcon } = icon.carbon
+  const { ColorPaletteIcon } = icon.ionicons5;
+  const { ScaleIcon, FitToScreenIcon, FitToHeightIcon, FitToWidthIcon } = icon.carbon;
 
-const chartEditStore = useChartEditStore()
-const systemStore = useSystemStore()
-const canvasConfig = chartEditStore.getEditCanvasConfig
-const editCanvas = chartEditStore.getEditCanvas
+  const chartEditStore = useChartEditStore();
+  const systemStore = useSystemStore();
+  const canvasConfig = chartEditStore.getEditCanvasConfig;
+  const editCanvas = chartEditStore.getEditCanvas;
 
-const uploadFileListRef = ref()
-const switchSelectColorLoading = ref(false)
-const selectColorValue = ref(0)
+  const uploadFileListRef = ref();
+  const switchSelectColorLoading = ref(false);
+  const selectColorValue = ref(0);
 
-const ChartThemeColor = loadAsyncComponent(() => import('./components/ChartThemeColor/index.vue'))
+  const ChartThemeColor = loadAsyncComponent(
+    () => import('./components/ChartThemeColor/index.vue')
+  );
 
-// 默认应用类型
-const selectColorOptions = [
-  {
-    label: '应用颜色',
-    value: 0
-  },
-  {
-    label: '应用背景',
-    value: 1
-  }
-]
+  // 默认应用类型
+  const selectColorOptions = [
+    {
+      label: '应用颜色',
+      value: 0,
+    },
+    {
+      label: '应用背景',
+      value: 1,
+    },
+  ];
 
-const globalTabList = [
-  {
-    key: 'ChartTheme',
-    title: '主题颜色',
-    icon: ColorPaletteIcon,
-    render: ChartThemeColor
-  }
-]
+  const globalTabList = [
+    {
+      key: 'ChartTheme',
+      title: '主题颜色',
+      icon: ColorPaletteIcon,
+      render: ChartThemeColor,
+    },
+  ];
 
-const previewTypeList = [
-  {
-    key: PreviewScaleEnum.FIT,
-    title: '自适应',
-    icon: ScaleIcon,
-    desc: '自适应比例展示，页面会有留白'
-  },
-  {
-    key: PreviewScaleEnum.SCROLL_Y,
-    title: 'Y轴滚动',
-    icon: FitToWidthIcon,
-    desc: 'X轴铺满，Y轴自适应滚动'
-  },
-  {
-    key: PreviewScaleEnum.SCROLL_X,
-    title: 'X轴滚动',
-    icon: FitToHeightIcon,
-    desc: 'Y轴铺满，X轴自适应滚动'
-  },
-  {
-    key: PreviewScaleEnum.FULL,
-    title: '铺满',
-    icon: FitToScreenIcon,
-    desc: '强行拉伸画面，填充所有视图'
-  }
-]
+  const previewTypeList = [
+    {
+      key: PreviewScaleEnum.FIT,
+      title: '自适应',
+      icon: ScaleIcon,
+      desc: '自适应比例展示，页面会有留白',
+    },
+    {
+      key: PreviewScaleEnum.SCROLL_Y,
+      title: 'Y轴滚动',
+      icon: FitToWidthIcon,
+      desc: 'X轴铺满，Y轴自适应滚动',
+    },
+    {
+      key: PreviewScaleEnum.SCROLL_X,
+      title: 'X轴滚动',
+      icon: FitToHeightIcon,
+      desc: 'Y轴铺满，X轴自适应滚动',
+    },
+    {
+      key: PreviewScaleEnum.FULL,
+      title: '铺满',
+      icon: FitToScreenIcon,
+      desc: '强行拉伸画面，填充所有视图',
+    },
+  ];
 
-watch(
-  () => canvasConfig.selectColor,
-  newValue => {
-    selectColorValue.value = newValue ? 0 : 1
-  },
-  {
-    immediate: true
-  }
-)
-
-// 画布尺寸规则
-const validator = (x: number) => x > 50
-
-// 修改尺寸
-const changeSizeHandle = () => {
-  chartEditStore.computedScale()
-}
-
-// 上传图片前置处理
-//@ts-ignore
-const beforeUploadHandle = async ({ file }) => {
-  uploadFileListRef.value = []
-  const type = file.file.type
-  const size = file.file.size
-
-  if (size > 1024 * 1024 * backgroundImageSize) {
-    window['$message'].warning(`图片超出 ${backgroundImageSize}M 限制，请重新上传！`)
-    return false
-  }
-  if (type !== FileTypeEnum.PNG && type !== FileTypeEnum.JPEG && type !== FileTypeEnum.GIF) {
-    window['$message'].warning('文件格式不符合，请重新上传！')
-    return false
-  }
-  return true
-}
-
-// 应用颜色
-const selectColorValueHandle = (value: number) => {
-  canvasConfig.selectColor = value == 0
-}
-
-// 清除背景
-const clearImage = () => {
-  chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.BACKGROUND_IMAGE, undefined)
-  chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.SELECT_COLOR, true)
-}
-
-// 启用/关闭 颜色（强制更新）
-const switchSelectColorHandle = () => {
-  switchSelectColorLoading.value = true
-  setTimeout(() => {
-    switchSelectColorLoading.value = false
-  })
-}
-
-// 清除颜色
-const clearColor = () => {
-  chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.BACKGROUND, undefined)
-  if (canvasConfig.backgroundImage) {
-    chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.SELECT_COLOR, false)
-  }
-  switchSelectColorHandle()
-}
-
-// 自定义上传操作
-const customRequest = (options: UploadCustomRequestOptions) => {
-  const { file } = options
-  nextTick(async () => {
-    if (file.file) {
-      // 修改名称
-      const newNameFile = new File([file.file], `${fetchRouteParamsLocation()}_index_background.png`, {
-        type: file.file.type
-      })
-      let uploadParams = new FormData()
-      uploadParams.append('object', newNameFile)
-      const uploadRes = await uploadFile(uploadParams)
-
-      if (uploadRes && uploadRes.code === ResultEnum.SUCCESS) {
-        if (uploadRes.data.fileurl) {
-          chartEditStore.setEditCanvasConfig(
-            EditCanvasConfigEnum.BACKGROUND_IMAGE,
-            `${uploadRes.data.fileurl}?time=${new Date().getTime()}`
-          )
-        } else {
-          chartEditStore.setEditCanvasConfig(
-            EditCanvasConfigEnum.BACKGROUND_IMAGE,
-            `${systemStore.getFetchInfo.OSSUrl || ''}${uploadRes.data.fileName}?time=${new Date().getTime()}`
-          )
-        }
-        chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.SELECT_COLOR, false)
-        return
-      }
-      window['$message'].error('添加图片失败，请稍后重试！')
-    } else {
-      window['$message'].error('添加图片失败，请稍后重试！')
+  watch(
+    () => canvasConfig.selectColor,
+    (newValue) => {
+      selectColorValue.value = newValue ? 0 : 1;
+    },
+    {
+      immediate: true,
     }
-  })
-}
+  );
 
-// 选择适配方式
-const selectPreviewType = (key: PreviewScaleEnum) => {
-  chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.PREVIEW_SCALE_TYPE, key)
-}
+  // 画布尺寸规则
+  const validator = (x: number) => x > 50;
+
+  // 修改尺寸
+  const changeSizeHandle = () => {
+    chartEditStore.computedScale();
+  };
+
+  // 上传图片前置处理
+  //@ts-ignore
+  const beforeUploadHandle = async ({ file }) => {
+    uploadFileListRef.value = [];
+    const type = file.file.type;
+    const size = file.file.size;
+
+    if (size > 1024 * 1024 * backgroundImageSize) {
+      window['$message'].warning(`图片超出 ${backgroundImageSize}M 限制，请重新上传！`);
+      return false;
+    }
+    if (type !== FileTypeEnum.PNG && type !== FileTypeEnum.JPEG && type !== FileTypeEnum.GIF) {
+      window['$message'].warning('文件格式不符合，请重新上传！');
+      return false;
+    }
+    return true;
+  };
+
+  // 应用颜色
+  const selectColorValueHandle = (value: number) => {
+    canvasConfig.selectColor = value == 0;
+  };
+
+  // 清除背景
+  const clearImage = () => {
+    chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.BACKGROUND_IMAGE, undefined);
+    chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.SELECT_COLOR, true);
+  };
+
+  // 启用/关闭 颜色（强制更新）
+  const switchSelectColorHandle = () => {
+    switchSelectColorLoading.value = true;
+    setTimeout(() => {
+      switchSelectColorLoading.value = false;
+    });
+  };
+
+  // 清除颜色
+  const clearColor = () => {
+    chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.BACKGROUND, undefined);
+    if (canvasConfig.backgroundImage) {
+      chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.SELECT_COLOR, false);
+    }
+    switchSelectColorHandle();
+  };
+
+  // 自定义上传操作
+  const customRequest = (options: UploadCustomRequestOptions) => {
+    const { file } = options;
+    nextTick(async () => {
+      if (file.file) {
+        // 修改名称
+        const newNameFile = new File(
+          [file.file],
+          `${fetchRouteParamsLocation()}_index_background.png`,
+          {
+            type: file.file.type,
+          }
+        );
+        let uploadParams = new FormData();
+        uploadParams.append('object', newNameFile);
+        const uploadRes = await uploadFile(uploadParams);
+
+        if (uploadRes && uploadRes.code === ResultEnum.SUCCESS) {
+          if (uploadRes.data.fileurl) {
+            chartEditStore.setEditCanvasConfig(
+              EditCanvasConfigEnum.BACKGROUND_IMAGE,
+              `${uploadRes.data.fileurl}?time=${new Date().getTime()}`
+            );
+          } else {
+            chartEditStore.setEditCanvasConfig(
+              EditCanvasConfigEnum.BACKGROUND_IMAGE,
+              `${systemStore.getFetchInfo.OSSUrl || ''}${
+                uploadRes.data.fileName
+              }?time=${new Date().getTime()}`
+            );
+          }
+          chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.SELECT_COLOR, false);
+          return;
+        }
+        window['$message'].error('添加图片失败，请稍后重试！');
+      } else {
+        window['$message'].error('添加图片失败，请稍后重试！');
+      }
+    });
+  };
+
+  // 选择适配方式
+  const selectPreviewType = (key: PreviewScaleEnum) => {
+    chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.PREVIEW_SCALE_TYPE, key);
+  };
 </script>
 
 <style lang="scss" scoped>
-$uploadWidth: 326px;
-$uploadHeight: 193px;
-@include go(canvas-setting) {
-  padding-top: 20px;
-  .upload-box {
-    cursor: pointer;
-    margin-bottom: 20px;
-    @include deep() {
-      .n-upload-dragger {
-        padding: 5px;
-        width: $uploadWidth;
-        background-color: rgba(0, 0, 0, 0);
+  $uploadWidth: 326px;
+  $uploadHeight: 193px;
+  @include go(canvas-setting) {
+    padding-top: 20px;
+    .upload-box {
+      cursor: pointer;
+      margin-bottom: 20px;
+      @include deep() {
+        .n-upload-dragger {
+          padding: 5px;
+          width: $uploadWidth;
+          background-color: rgba(0, 0, 0, 0);
+        }
+      }
+      .upload-show {
+        width: -webkit-fill-available;
+        height: $uploadHeight;
+        border-radius: 5px;
+      }
+      .upload-img {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img {
+          height: 150px;
+        }
+        .upload-desc {
+          padding: 10px 0;
+        }
       }
     }
-    .upload-show {
-      width: -webkit-fill-available;
-      height: $uploadHeight;
-      border-radius: 5px;
+    .icon-position {
+      padding-top: 2px;
     }
-    .upload-img {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      img {
-        height: 150px;
-      }
-      .upload-desc {
-        padding: 10px 0;
-      }
+    .picker-height {
+      min-height: 35px;
+    }
+    .clear-btn {
+      padding-left: 2.25em;
+      padding-right: 2.25em;
+    }
+    .select-preview-icon {
+      padding-right: 0.68em;
+      padding-left: 0.68em;
+    }
+    .tabs-box {
+      margin-top: 20px;
     }
   }
-  .icon-position {
-    padding-top: 2px;
-  }
-  .picker-height {
-    min-height: 35px;
-  }
-  .clear-btn {
-    padding-left: 2.25em;
-    padding-right: 2.25em;
-  }
-  .select-preview-icon {
-    padding-right: 0.68em;
-    padding-left: 0.68em;
-  }
-  .tabs-box {
-    margin-top: 20px;
-  }
-}
 </style>

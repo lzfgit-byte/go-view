@@ -13,18 +13,15 @@
         :show-button="false"
         placeholder="为 0 不更新"
       >
-        <template #suffix>
-          秒
-        </template>
+        <template #suffix> 秒 </template>
       </n-input-number>
     </setting-item-box>
   </div>
 </template>
 
 <script setup lang="ts">
-import { SettingItemBox } from '@/components/Pages/ChartItemSetting'
-import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
+  import { SettingItemBox } from '@/components/Pages/ChartItemSetting';
+  import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
 
-const chartEditStore = useChartEditStore()
-
+  const chartEditStore = useChartEditStore();
 </script>

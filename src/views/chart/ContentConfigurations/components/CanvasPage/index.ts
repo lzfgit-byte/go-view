@@ -1,3 +1,3 @@
-import CanvasPage from './index.vue'
+import CanvasPage from './index.vue';
 
-export { CanvasPage }
+export { CanvasPage };
