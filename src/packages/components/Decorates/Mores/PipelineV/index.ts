@@ -1,5 +1,5 @@
-import { ConfigType, PackagesCategoryEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d'
+import { ConfigType, PackagesCategoryEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const PipelineVConfig: ConfigType = {
   key: 'PipelineV',
@@ -9,6 +9,5 @@ export const PipelineVConfig: ConfigType = {
   category: ChatCategoryEnum.MORE,
   categoryName: ChatCategoryEnumName.MORE,
   package: PackagesCategoryEnum.DECORATES,
-  image: 'Pipeline_V.png'
-}
-
+  image: 'Pipeline_V.png',
+};

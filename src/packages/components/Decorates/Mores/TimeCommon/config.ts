@@ -1,18 +1,18 @@
-import { PublicConfigClass } from '@/packages/public'
-import { CreateComponentType } from '@/packages/index.d'
-import { TimeCommonConfig } from './index'
-import cloneDeep from 'lodash/cloneDeep'
-import { chartInitConfig } from '@/settings/designSetting'
+import { PublicConfigClass } from '@/packages/public';
+import { CreateComponentType } from '@/packages/index.d';
+import { TimeCommonConfig } from './index';
+import cloneDeep from 'lodash/cloneDeep';
+import { chartInitConfig } from '@/settings/designSetting';
 
 export enum FontWeightEnum {
   NORMAL = '常规',
-  BOLD = '加粗'
+  BOLD = '加粗',
 }
 
 export const FontWeightObject = {
   [FontWeightEnum.NORMAL]: 'normal',
-  [FontWeightEnum.BOLD]: 'bold'
-}
+  [FontWeightEnum.BOLD]: 'bold',
+};
 
 export const option = {
   // 数据说明
@@ -23,16 +23,16 @@ export const option = {
   fontWeight: 'normal',
 
   //阴影
-  showShadow:  true,
+  showShadow: true,
   hShadow: 0,
   vShadow: 0,
   blurShadow: 8,
-  colorShadow: '#0075ff'
-}
+  colorShadow: '#0075ff',
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key = TimeCommonConfig.key
-  public attr = { ...chartInitConfig, w: 300, h: 50, zIndex: -1 }
-  public chartConfig = cloneDeep(TimeCommonConfig)
-  public option = cloneDeep(option)
+  public key = TimeCommonConfig.key;
+  public attr = { ...chartInitConfig, w: 300, h: 50, zIndex: -1 };
+  public chartConfig = cloneDeep(TimeCommonConfig);
+  public option = cloneDeep(option);
 }

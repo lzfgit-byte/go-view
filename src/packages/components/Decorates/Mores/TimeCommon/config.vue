@@ -2,18 +2,10 @@
   <CollapseItem name="内容" :expanded="true">
     <SettingItemBox name="字体">
       <SettingItem name="大小">
-        <n-input-number
-          v-model:value="optionData.timeSize"
-          size="small"
-          :min="1"
-        ></n-input-number>
+        <n-input-number v-model:value="optionData.timeSize" size="small" :min="1"></n-input-number>
       </SettingItem>
       <SettingItem name="粗细">
-        <n-select
-          v-model:value="optionData.fontWeight"
-          size="small"
-          :options="fontWeightOptions"
-        />
+        <n-select v-model:value="optionData.fontWeight" size="small" :options="fontWeightOptions" />
       </SettingItem>
     </SettingItemBox>
     <SettingItemBox name="间距">
@@ -56,10 +48,7 @@
         <n-input-number v-model:value="optionData.vShadow" size="small"></n-input-number
       ></SettingItem>
       <SettingItem name="模糊">
-        <n-input-number
-          v-model:value="optionData.blurShadow"
-          size="small"
-        ></n-input-number
+        <n-input-number v-model:value="optionData.blurShadow" size="small"></n-input-number
       ></SettingItem>
       <SettingItem name="颜色">
         <n-color-picker
@@ -72,28 +61,24 @@
   </CollapseItem>
 </template>
 <script setup lang="ts">
-import { PropType } from "vue";
-import {
-  CollapseItem,
-  SettingItemBox,
-  SettingItem,
-} from "@/components/Pages/ChartItemSetting";
-import { option, FontWeightEnum, FontWeightObject } from "./config";
+  import { PropType } from 'vue';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
+  import { option, FontWeightEnum, FontWeightObject } from './config';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<typeof option>,
-    required: true,
-  },
-});
-const fontWeightOptions = [
-  {
-    label: FontWeightEnum.NORMAL,
-    value: FontWeightObject[FontWeightEnum.NORMAL],
-  },
-  {
-    label: FontWeightEnum.BOLD,
-    value: FontWeightObject[FontWeightEnum.BOLD],
-  },
-];
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<typeof option>,
+      required: true,
+    },
+  });
+  const fontWeightOptions = [
+    {
+      label: FontWeightEnum.NORMAL,
+      value: FontWeightObject[FontWeightEnum.NORMAL],
+    },
+    {
+      label: FontWeightEnum.BOLD,
+      value: FontWeightObject[FontWeightEnum.BOLD],
+    },
+  ];
 </script>
