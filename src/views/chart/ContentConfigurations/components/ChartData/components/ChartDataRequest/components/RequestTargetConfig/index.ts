@@ -1,3 +1,3 @@
-import RequestTargetConfig from './index.vue'
+import RequestTargetConfig from './index.vue';
 
-export { RequestTargetConfig }
+export { RequestTargetConfig };

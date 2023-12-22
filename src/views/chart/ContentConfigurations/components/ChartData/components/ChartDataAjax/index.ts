@@ -1,3 +1,3 @@
-import ChartDataAjax from './index.vue'
+import ChartDataAjax from './index.vue';
 
-export { ChartDataAjax }
+export { ChartDataAjax };

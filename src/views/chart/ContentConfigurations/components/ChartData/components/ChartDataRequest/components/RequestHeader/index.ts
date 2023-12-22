@@ -1,3 +1,3 @@
-import RequestHeader from './index.vue'
+import RequestHeader from './index.vue';
 
-export { RequestHeader }
+export { RequestHeader };

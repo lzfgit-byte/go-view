@@ -5,12 +5,16 @@
     <setting-item-box
       name="服务"
       :itemRightStyle="{
-        gridTemplateColumns: '5fr 2fr 1fr'
+        gridTemplateColumns: '5fr 2fr 1fr',
       }"
     >
       <!-- 源地址 -->
       <setting-item name="前置 URL">
-        <n-input v-model:value.trim="requestOriginUrl" :disabled="editDisabled" placeholder="例：http://127.0.0.1/"></n-input>
+        <n-input
+          v-model:value.trim="requestOriginUrl"
+          :disabled="editDisabled"
+          placeholder="例：http://127.0.0.1/"
+        ></n-input>
       </setting-item>
       <setting-item name="更新间隔，为 0 只会初始化">
         <n-input-group>
@@ -65,44 +69,49 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs, computed } from 'vue'
-import { useDesignStore } from '@/store/modules/designStore/designStore'
-import { SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
-import { useTargetData } from '@/views/chart/ContentConfigurations/components/hooks/useTargetData.hook'
-import { selectTypeOptions, selectTimeOptions } from '@/views/chart/ContentConfigurations/components/ChartData/index.d'
-import { RequestGlobalHeaderTable } from '../RequestGlobalHeaderTable'
-import { icon } from '@/plugins'
+  import { ref, toRefs, computed } from 'vue';
+  import { useDesignStore } from '@/store/modules/designStore/designStore';
+  import { SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
+  import { useTargetData } from '@/views/chart/ContentConfigurations/components/hooks/useTargetData.hook';
+  import {
+    selectTypeOptions,
+    selectTimeOptions,
+  } from '@/views/chart/ContentConfigurations/components/ChartData/index.d';
+  import { RequestGlobalHeaderTable } from '../RequestGlobalHeaderTable';
+  import { icon } from '@/plugins';
 
-const { PencilIcon, ChevronDownOutlineIcon, ChevronUpOutlineIcon } = icon.ionicons5
-const { chartEditStore } = useTargetData()
-const { requestOriginUrl, requestInterval, requestIntervalUnit } = toRefs(chartEditStore.getRequestGlobalConfig)
-const editDisabled = ref(true)
+  const { PencilIcon, ChevronDownOutlineIcon, ChevronUpOutlineIcon } = icon.ionicons5;
+  const { chartEditStore } = useTargetData();
+  const { requestOriginUrl, requestInterval, requestIntervalUnit } = toRefs(
+    chartEditStore.getRequestGlobalConfig
+  );
+  const editDisabled = ref(true);
 
-const designStore = useDesignStore()
+  const designStore = useDesignStore();
 
-const showTable = ref(false)
-// 颜色
-const themeColor = computed(() => {
-  return designStore.getAppTheme
-})
+  const showTable = ref(false);
+  // 颜色
+  const themeColor = computed(() => {
+    return designStore.getAppTheme;
+  });
 </script>
 
 <style lang="scss" scoped>
-.n-card-shallow {
-  &:hover {
-    border-color: v-bind('themeColor');
+  .n-card-shallow {
+    &:hover {
+      border-color: v-bind('themeColor');
+    }
   }
-}
-.down {
-  cursor: pointer;
-  &:hover {
-    color: v-bind('themeColor');
+  .down {
+    cursor: pointer;
+    &:hover {
+      color: v-bind('themeColor');
+    }
   }
-}
-.select-time-number {
-  width: 100%;
-}
-.select-time-options {
-  width: 100px;
-}
+  .select-time-number {
+    width: 100%;
+  }
+  .select-time-options {
+    width: 100px;
+  }
 </style>

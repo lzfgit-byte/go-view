@@ -1,3 +1,3 @@
-import RequestGlobalConfig from './index.vue'
+import RequestGlobalConfig from './index.vue';
 
-export { RequestGlobalConfig }
+export { RequestGlobalConfig };

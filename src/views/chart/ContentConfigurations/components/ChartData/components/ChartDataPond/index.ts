@@ -1,3 +1,3 @@
-import ChartDataPond from './index.vue'
+import ChartDataPond from './index.vue';
 
-export { ChartDataPond }
+export { ChartDataPond };

@@ -1,3 +1,3 @@
-import ChartDataMatchingAndShow from './index.vue'
+import ChartDataMatchingAndShow from './index.vue';
 
-export { ChartDataMatchingAndShow }
+export { ChartDataMatchingAndShow };

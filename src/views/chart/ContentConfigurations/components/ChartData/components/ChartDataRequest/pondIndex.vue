@@ -1,6 +1,17 @@
 <template>
-  <n-modal class="go-chart-data-request" v-model:show="modelShowRef" :mask-closable="false" :closeOnEsc="false">
-    <n-card :bordered="false" role="dialog" size="small" aria-modal="true" style="width: 1000px; height: 800px">
+  <n-modal
+    class="go-chart-data-request"
+    v-model:show="modelShowRef"
+    :mask-closable="false"
+    :closeOnEsc="false"
+  >
+    <n-card
+      :bordered="false"
+      role="dialog"
+      size="small"
+      aria-modal="true"
+      style="width: 1000px; height: 800px"
+    >
       <template #header></template>
       <template #header-extra> </template>
       <n-scrollbar style="max-height: 718px">
@@ -17,7 +28,7 @@
       <template #action>
         <n-space justify="space-between">
           <n-space v-if="targetDataRequest">
-            <n-tag  :bordered="false" type="primary">名称：</n-tag>
+            <n-tag :bordered="false" type="primary">名称：</n-tag>
             <n-input
               v-model:value="targetDataRequest.dataPondName"
               ref="inputInstRef"
@@ -42,70 +53,72 @@
 </template>
 
 <script script lang="ts" setup>
-import { PropType, ref, watch } from 'vue'
-import { RequestContentTypeEnum } from '@/enums/httpEnum'
-import { useTargetData } from '../../../hooks/useTargetData.hook'
-import { RequestGlobalConfig } from './components/RequestGlobalConfig'
-import { RequestTargetConfig } from './components/RequestTargetConfig'
-import { RequestDataPondItemType } from '@/store/modules/chartEditStore/chartEditStore.d'
-import { useSync } from '@/views/chart/hooks/useSync.hook'
-import { goDialog } from '@/utils'
+  import { PropType, ref, watch } from 'vue';
+  import { RequestContentTypeEnum } from '@/enums/httpEnum';
+  import { useTargetData } from '../../../hooks/useTargetData.hook';
+  import { RequestGlobalConfig } from './components/RequestGlobalConfig';
+  import { RequestTargetConfig } from './components/RequestTargetConfig';
+  import { RequestDataPondItemType } from '@/store/modules/chartEditStore/chartEditStore.d';
+  import { useSync } from '@/views/chart/hooks/useSync.hook';
+  import { goDialog } from '@/utils';
 
-const props = defineProps({
-  modelShow: Boolean,
-  targetDataRequest: Object as PropType<RequestDataPondItemType>
-})
-const emit = defineEmits(['update:modelShow', 'editSaveHandle'])
+  const props = defineProps({
+    modelShow: Boolean,
+    targetDataRequest: Object as PropType<RequestDataPondItemType>,
+  });
+  const emit = defineEmits(['update:modelShow', 'editSaveHandle']);
 
-const { dataSyncUpdate } = useSync()
-const pondName = ref()
-const inputInstRef = ref()
-const modelShowRef = ref(false)
+  const { dataSyncUpdate } = useSync();
+  const pondName = ref();
+  const inputInstRef = ref();
+  const modelShowRef = ref(false);
 
-watch(() => props.modelShow, (newValue) => {
-  modelShowRef.value = newValue
-})
-
-
-const closeHandle = () => {
-  emit('update:modelShow', false)
-}
-
-const closeAndSendHandle = () => {
-  if (!props.targetDataRequest?.dataPondName) {
-    window.$message.warning('请在左下角输入名称！')
-    inputInstRef.value?.focus()
-    return
-  }
-  goDialog({
-    message: '保存内容将同步修改所有使用此接口的组件, 是否继续?',
-    isMaskClosable: true,
-    transformOrigin: 'center',
-    onPositiveCallback: () => {
-      emit('update:modelShow', false)
-      emit('editSaveHandle', props.targetDataRequest)
-      dataSyncUpdate()
+  watch(
+    () => props.modelShow,
+    (newValue) => {
+      modelShowRef.value = newValue;
     }
-  })
-}
+  );
+
+  const closeHandle = () => {
+    emit('update:modelShow', false);
+  };
+
+  const closeAndSendHandle = () => {
+    if (!props.targetDataRequest?.dataPondName) {
+      window.$message.warning('请在左下角输入名称！');
+      inputInstRef.value?.focus();
+      return;
+    }
+    goDialog({
+      message: '保存内容将同步修改所有使用此接口的组件, 是否继续?',
+      isMaskClosable: true,
+      transformOrigin: 'center',
+      onPositiveCallback: () => {
+        emit('update:modelShow', false);
+        emit('editSaveHandle', props.targetDataRequest);
+        dataSyncUpdate();
+      },
+    });
+  };
 </script>
 
 <style lang="scss" scoped>
-@include go('chart-data-request') {
-  &.n-card.n-modal,
-  .n-card {
-    @extend .go-background-filter;
-  }
-  .n-card-shallow {
-    background-color: rgba(0, 0, 0, 0) !important;
-  }
-  @include deep() {
-    & > .n-card__content {
-      padding-right: 0;
+  @include go('chart-data-request') {
+    &.n-card.n-modal,
+    .n-card {
+      @extend .go-background-filter;
     }
-    .n-card__content {
-      padding-bottom: 5px;
+    .n-card-shallow {
+      background-color: rgba(0, 0, 0, 0) !important;
+    }
+    @include deep() {
+      & > .n-card__content {
+        padding-right: 0;
+      }
+      .n-card__content {
+        padding-bottom: 5px;
+      }
     }
   }
-}
 </style>

@@ -1,3 +1,3 @@
-import ChartDataDisplay from './index.vue'
+import ChartDataDisplay from './index.vue';
 
-export { ChartDataDisplay }
+export { ChartDataDisplay };

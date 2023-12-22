@@ -1,3 +1,3 @@
-import  ChartDataMonacoEditor from './index.vue'
+import ChartDataMonacoEditor from './index.vue';
 
-export { ChartDataMonacoEditor }
+export { ChartDataMonacoEditor };

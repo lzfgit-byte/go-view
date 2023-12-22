@@ -1,3 +1,3 @@
-import RequestGlobalHeaderTable from './index.vue'
+import RequestGlobalHeaderTable from './index.vue';
 
-export { RequestGlobalHeaderTable }
+export { RequestGlobalHeaderTable };

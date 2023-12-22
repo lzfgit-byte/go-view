@@ -1,3 +1,3 @@
-import ChartDataPondControl from './index.vue'
+import ChartDataPondControl from './index.vue';
 
-export { ChartDataPondControl }
+export { ChartDataPondControl };
