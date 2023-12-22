@@ -1,10 +1,10 @@
-import { RouteRecordRaw } from 'vue-router'
-import { EditEnum } from '@/enums/pageEnum'
+import { RouteRecordRaw } from 'vue-router';
+import { EditEnum } from '@/enums/pageEnum';
 
 // 引入路径
 const importPath = {
-  [EditEnum.CHART_EDIT_NAME]: () => import('@/views/edit/index.vue')
-}
+  [EditEnum.CHART_EDIT_NAME]: () => import('@/views/edit/index.vue'),
+};
 
 const chartRoutes: RouteRecordRaw = {
   path: EditEnum.CHART_EDIT,
@@ -12,9 +12,8 @@ const chartRoutes: RouteRecordRaw = {
   component: importPath[EditEnum.CHART_EDIT_NAME],
   meta: {
     title: '编辑',
-    isRoot: true
-  }
-}
+    isRoot: true,
+  },
+};
 
-
-export default chartRoutes
+export default chartRoutes;

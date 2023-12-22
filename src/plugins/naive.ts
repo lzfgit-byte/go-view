@@ -1,4 +1,4 @@
-import type { App } from 'vue'
+import type { App } from 'vue';
 import {
   create,
   NA,
@@ -100,8 +100,8 @@ import {
   NColorPicker,
   NWatermark,
   NEmpty,
-  NCollapseTransition
-} from 'naive-ui'
+  NCollapseTransition,
+} from 'naive-ui';
 
 const naive = create({
   components: [
@@ -204,10 +204,10 @@ const naive = create({
     NColorPicker,
     NWatermark,
     NEmpty,
-    NCollapseTransition
-  ]
-})
+    NCollapseTransition,
+  ],
+});
 
 export function setupNaive(app: App<Element>) {
-  app.use(naive)
+  app.use(naive);
 }

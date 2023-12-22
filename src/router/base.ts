@@ -1,9 +1,15 @@
-import { RouteRecordRaw } from 'vue-router'
+import { RouteRecordRaw } from 'vue-router';
 import type { AppRouteRecordRaw } from '@/router/types';
-import { ErrorPage404, ErrorPage403, ErrorPage500, Layout, RedirectHome, RedirectUnPublish } from '@/router/constant';
-import { PageEnum } from '@/enums/pageEnum'
-import { GoReload } from '@/components/GoReload'
-
+import {
+  ErrorPage404,
+  ErrorPage403,
+  ErrorPage500,
+  Layout,
+  RedirectHome,
+  RedirectUnPublish,
+} from '@/router/constant';
+import { PageEnum } from '@/enums/pageEnum';
+import { GoReload } from '@/components/GoReload';
 
 export const LoginRoute: RouteRecordRaw = {
   path: PageEnum.BASE_LOGIN,
@@ -39,7 +45,7 @@ export const HttpErrorPage: RouteRecordRaw[] = [
       title: PageEnum.ERROR_PAGE_NAME_500,
     },
   },
-]
+];
 
 export const ErrorPageRoute: AppRouteRecordRaw = {
   path: '/:path(.*)*',
@@ -48,7 +54,7 @@ export const ErrorPageRoute: AppRouteRecordRaw = {
   meta: {
     title: PageEnum.ERROR_PAGE_NAME_404,
     hideBreadcrumb: true,
-  }
+  },
 };
 
 export const ReloadRoute: AppRouteRecordRaw = {
@@ -58,7 +64,7 @@ export const ReloadRoute: AppRouteRecordRaw = {
   meta: {
     title: PageEnum.RELOAD_NAME,
   },
-}
+};
 
 export const RedirectRoute: RouteRecordRaw[] = [
   {
@@ -77,4 +83,4 @@ export const RedirectRoute: RouteRecordRaw[] = [
       title: PageEnum.REDIRECT_UN_PUBLISH_NAME,
     },
   },
-]
+];

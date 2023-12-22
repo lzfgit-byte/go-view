@@ -1,6 +1,6 @@
 import { App } from 'vue';
-import VueLazyLoad from 'vue3-lazyload'
-import { requireErrorImg } from '@/utils'
+import VueLazyLoad from 'vue3-lazyload';
+import { requireErrorImg } from '@/utils';
 
 // import { x } from '@/directives';
 
@@ -12,6 +12,6 @@ export function setupDirectives(app: App) {
   // 图片懒加载
   app.use(VueLazyLoad, {
     error: requireErrorImg(),
-  })
+  });
   // app.directive('x', x);
 }

@@ -69,8 +69,8 @@ import {
   EyeOffOutline as EyeOffOutlineIcon,
   Albums as AlbumsIcon,
   Analytics as AnalyticsIcon,
-  AirplaneOutline as AirPlaneOutlineIcon
-} from '@vicons/ionicons5'
+  AirplaneOutline as AirPlaneOutlineIcon,
+} from '@vicons/ionicons5';
 
 import {
   TableSplit as TableSplitIcon,
@@ -103,8 +103,8 @@ import {
   Carbon3DSoftware as Carbon3DSoftwareIcon,
   Filter as FilterIcon,
   FilterEdit as FilterEditIcon,
-  Laptop as LaptopIcon
-} from '@vicons/carbon'
+  Laptop as LaptopIcon,
+} from '@vicons/carbon';
 
 const ionicons5 = {
   // 新增
@@ -248,8 +248,8 @@ const ionicons5 = {
   // 分析
   AnalyticsIcon,
   // 飞机
-  AirPlaneOutlineIcon
-}
+  AirPlaneOutlineIcon,
+};
 
 const carbon = {
   // 图表
@@ -303,12 +303,12 @@ const carbon = {
   FilterIcon,
   FilterEditIcon,
   // 图层
-  LaptopIcon
-}
+  LaptopIcon,
+};
 
 // https://www.xicons.org/#/ 还有很多
 
 export const icon = {
   ionicons5,
-  carbon
-}
+  carbon,
+};

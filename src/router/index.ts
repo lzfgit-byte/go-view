@@ -1,11 +1,11 @@
-import type { App } from 'vue'
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import { createRouterGuards } from './router-guards'
-import { PageEnum } from '@/enums/pageEnum'
-import { HttpErrorPage, LoginRoute, ReloadRoute, RedirectRoute } from '@/router/base'
-import { Layout } from '@/router/constant'
+import type { App } from 'vue';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import { createRouterGuards } from './router-guards';
+import { PageEnum } from '@/enums/pageEnum';
+import { HttpErrorPage, LoginRoute, ReloadRoute, RedirectRoute } from '@/router/base';
+import { Layout } from '@/router/constant';
 
-import modules from '@/router/modules'
+import modules from '@/router/modules';
 
 const RootRoute: Array<RouteRecordRaw> = [
   {
@@ -22,11 +22,10 @@ const RootRoute: Array<RouteRecordRaw> = [
       modules.projectRoutes,
       modules.chartRoutes,
       modules.previewRoutes,
-      modules.editRoutes
-    ]
-  }
-]
-
+      modules.editRoutes,
+    ],
+  },
+];
 
 export const constantRouter: any[] = [LoginRoute, ...RootRoute, ReloadRoute];
 
@@ -34,11 +33,11 @@ const router = createRouter({
   history: createWebHashHistory(''),
   routes: constantRouter,
   strict: true,
-})
+});
 
 export function setupRouter(app: App) {
   app.use(router);
   // 创建路由守卫
-  createRouterGuards(router)
+  createRouterGuards(router);
 }
-export default router
+export default router;
