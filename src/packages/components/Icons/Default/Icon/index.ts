@@ -1,5 +1,5 @@
-import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d'
+import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const IconConfig: ConfigType = {
   key: 'Icon',
@@ -10,5 +10,5 @@ export const IconConfig: ConfigType = {
   categoryName: ChatCategoryEnumName.DEFAULT,
   package: PackagesCategoryEnum.ICONS,
   chartFrame: ChartFrameEnum.STATIC,
-  image: 'icon.png'
-}
+  image: 'icon.png',
+};

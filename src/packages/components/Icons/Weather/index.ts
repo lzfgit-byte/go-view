@@ -1,6 +1,6 @@
-import { IconConfig } from '../Default/Icon/index'
-import { PackagesCategoryEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../index.d'
+import { IconConfig } from '../Default/Icon/index';
+import { PackagesCategoryEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../index.d';
 
 const iconNames = [
   'wi:cloud',
@@ -36,9 +36,9 @@ const iconNames = [
   'wi:night-alt-cloudy-high',
   'wi:night-alt-hail',
   'wi:night-alt-lightning',
-  'wi:umbrella'
-]
-const iconList = iconNames.map(name => ({
+  'wi:umbrella',
+];
+const iconList = iconNames.map((name) => ({
   ...IconConfig,
   category: ChatCategoryEnum.WEATHER,
   categoryName: ChatCategoryEnumName.WEATHER,
@@ -47,7 +47,7 @@ const iconList = iconNames.map(name => ({
   icon: name,
   dataset: name,
   title: name.replace('wi:', ''),
-  redirectComponent: `${IconConfig.package}/${IconConfig.category}/${IconConfig.key}` // 跳转组件路径规则：packageName/categoryName/componentKey
-}))
+  redirectComponent: `${IconConfig.package}/${IconConfig.category}/${IconConfig.key}`, // 跳转组件路径规则：packageName/categoryName/componentKey
+}));
 
-export default iconList
+export default iconList;

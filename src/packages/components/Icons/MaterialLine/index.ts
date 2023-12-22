@@ -1,6 +1,6 @@
-import { IconConfig } from '../Default/Icon/index'
-import { PackagesCategoryEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../index.d'
+import { IconConfig } from '../Default/Icon/index';
+import { PackagesCategoryEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../index.d';
 
 const iconNames = [
   'line-md:beer-alt-filled-loop',
@@ -28,9 +28,9 @@ const iconNames = [
   'line-md:star-pulsating-twotone-loop',
   'line-md:upload-loop',
   'line-md:upload-outline-loop',
-  'line-md:uploading-loop'
-]
-const iconList = iconNames.map(name => ({
+  'line-md:uploading-loop',
+];
+const iconList = iconNames.map((name) => ({
   ...IconConfig,
   category: ChatCategoryEnum.ML,
   categoryName: ChatCategoryEnumName.ML,
@@ -39,7 +39,7 @@ const iconList = iconNames.map(name => ({
   icon: name,
   dataset: name,
   title: name.replace('line-md:', ''),
-  redirectComponent: `${IconConfig.package}/${IconConfig.category}/${IconConfig.key}` // 跳转组件路径规则：packageName/categoryName/componentKey
-}))
+  redirectComponent: `${IconConfig.package}/${IconConfig.category}/${IconConfig.key}`, // 跳转组件路径规则：packageName/categoryName/componentKey
+}));
 
-export default iconList
+export default iconList;

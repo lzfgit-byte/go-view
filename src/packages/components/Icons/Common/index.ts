@@ -1,6 +1,6 @@
-import { IconConfig } from '../Default/Icon/index'
-import { PackagesCategoryEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../index.d'
+import { IconConfig } from '../Default/Icon/index';
+import { PackagesCategoryEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../index.d';
 
 const iconNames = [
   'uim:adobe',
@@ -67,9 +67,9 @@ const iconNames = [
   'uim:telegram-alt',
   'uim:user-md',
   'uim:toilet-paper',
-  'uim:youtube'
-]
-const iconList = iconNames.map(name => ({
+  'uim:youtube',
+];
+const iconList = iconNames.map((name) => ({
   ...IconConfig,
   category: ChatCategoryEnum.COMMON,
   categoryName: ChatCategoryEnumName.COMMON,
@@ -78,7 +78,7 @@ const iconList = iconNames.map(name => ({
   icon: name,
   dataset: name,
   title: name.replace('uim:', ''),
-  redirectComponent: `${IconConfig.package}/${IconConfig.category}/${IconConfig.key}` // 跳转组件路径规则：packageName/categoryName/componentKey
-}))
+  redirectComponent: `${IconConfig.package}/${IconConfig.category}/${IconConfig.key}`, // 跳转组件路径规则：packageName/categoryName/componentKey
+}));
 
-export default iconList
+export default iconList;
