@@ -1,64 +1,64 @@
 /**
  * * base64转file
- * @param dataurl 
- * @param fileName 
- * @returns 
+ * @param dataurl
+ * @param fileName
+ * @returns
  */
 export const base64toFile = (dataurl: string, fileName: string) => {
-  let dataArr = dataurl.split(","),
-  mime = (dataArr as any[])[0].match(/:(.*?);/)[1],
-  bstr = atob(dataArr[1]),
-  n = bstr.length,
-  u8arr = new Uint8Array(n);
+  let dataArr = dataurl.split(','),
+    mime = (dataArr as any[])[0].match(/:(.*?);/)[1],
+    bstr = atob(dataArr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n);
   }
   return new File([u8arr], fileName, { type: mime });
-}
+};
 
 /**
  * * file转url
  */
- export const fileToUrl = (file: File): string => {
-  const Url = URL || window.URL || window.webkitURL
-  const ImageUrl = Url.createObjectURL(file)
-  return ImageUrl
-}
+export const fileToUrl = (file: File): string => {
+  const Url = URL || window.URL || window.webkitURL;
+  const ImageUrl = Url.createObjectURL(file);
+  return ImageUrl;
+};
 
 /**
  * * url转file
  */
- export const urlToFile = (fileUrl: string, fileName = `${new Date().getTime()}`): File => {
-  const dataArr = fileUrl.split(',')
-  const mime = (dataArr as any[])[0].match(/:(.*);/)[1]
-  const originStr = atob(dataArr[1])
-  return new File([originStr], `${fileName}`, { type: mime })
-}
+export const urlToFile = (fileUrl: string, fileName = `${new Date().getTime()}`): File => {
+  const dataArr = fileUrl.split(',');
+  const mime = (dataArr as any[])[0].match(/:(.*);/)[1];
+  const originStr = atob(dataArr[1]);
+  return new File([originStr], `${fileName}`, { type: mime });
+};
 
 /**
  * * file转base64
  * @param file 文件数据
- * @param callback 回调函数 
+ * @param callback 回调函数
  */
 export const fileTobase64 = (file: File, callback: Function) => {
-  let reader = new FileReader()
-  reader.readAsDataURL(file)
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
   reader.onload = function (e: ProgressEvent<FileReader>) {
     if (e.target) {
-      let base64 = e.target.result
-      callback(base64)
+      let base64 = e.target.result;
+      callback(base64);
     }
-  }
-}
+  };
+};
 
 /**
  * * canvas转file
- * @param canvas 
+ * @param canvas
  */
 export const canvastoFile = (canvas: HTMLCanvasElement, name?: string) => {
-  const dataurl = canvas.toDataURL('image/png')
-  return urlToFile(dataurl, name)
-}
+  const dataurl = canvas.toDataURL('image/png');
+  return urlToFile(dataurl, name);
+};
 
 /**
  * *获取上传的文件数据
@@ -67,37 +67,37 @@ export const canvastoFile = (canvas: HTMLCanvasElement, name?: string) => {
 export const readFile = (file: File) => {
   return new Promise((resolve: Function) => {
     try {
-      const reader = new FileReader()
+      const reader = new FileReader();
       reader.onload = (evt: ProgressEvent<FileReader>) => {
         if (evt.target) {
-          resolve(evt.target.result)
+          resolve(evt.target.result);
         }
-      }
-      reader.readAsText(file)
+      };
+      reader.readAsText(file);
     } catch (error) {
-      window['$message'].error('文件读取失败！')
+      window['$message'].error('文件读取失败！');
     }
-  })
-}
+  });
+};
 
 /**
  * * 通过 a 标签下载数据
- * @param url 
- * @param filename 
- * @param fileSuffix 
+ * @param url
+ * @param filename
+ * @param fileSuffix
  */
 export const downloadByA = (url: string, filename = new Date().getTime(), fileSuffix?: string) => {
-  const ele = document.createElement('a') // 创建下载链接
-  ele.download = `${filename}.${fileSuffix}` //设置下载的名称
-  ele.style.display = 'none' // 隐藏的可下载链接
+  const ele = document.createElement('a'); // 创建下载链接
+  ele.download = `${filename}.${fileSuffix}`; //设置下载的名称
+  ele.style.display = 'none'; // 隐藏的可下载链接
   // 字符内容转变成blob地址
-  ele.href = url
+  ele.href = url;
   // 绑定点击时间
-  document.body.appendChild(ele)
-  ele.click()
+  document.body.appendChild(ele);
+  ele.click();
   // 然后移除
-  document.body.removeChild(ele)
-}
+  document.body.removeChild(ele);
+};
 
 /**
  * * 下载数据
@@ -111,6 +111,6 @@ export const downloadTextFile = (
   fileSuffix?: string
 ) => {
   // 字符内容转变成blob地址
-  const blob = new Blob([content])
-  downloadByA(URL.createObjectURL(blob), filename, fileSuffix)
-}
+  const blob = new Blob([content]);
+  downloadByA(URL.createObjectURL(blob), filename, fileSuffix);
+};
