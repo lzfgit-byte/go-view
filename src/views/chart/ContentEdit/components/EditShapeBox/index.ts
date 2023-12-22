@@ -1,3 +1,3 @@
-import EditShapeBox from './index.vue'
+import EditShapeBox from './index.vue';
 
-export { EditShapeBox }
+export { EditShapeBox };

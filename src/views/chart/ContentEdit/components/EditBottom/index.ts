@@ -1,3 +1,3 @@
-import EditBottom from './index.vue'
+import EditBottom from './index.vue';
 
-export { EditBottom }
+export { EditBottom };

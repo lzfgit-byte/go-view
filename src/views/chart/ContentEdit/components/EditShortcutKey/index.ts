@@ -1,3 +1,3 @@
-import EditShortcutKey from './index.vue'
+import EditShortcutKey from './index.vue';
 
-export { EditShortcutKey }
+export { EditShortcutKey };

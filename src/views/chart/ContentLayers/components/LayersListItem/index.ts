@@ -1,3 +1,3 @@
-import LayersListItem from './index.vue'
+import LayersListItem from './index.vue';
 
-export { LayersListItem }
+export { LayersListItem };

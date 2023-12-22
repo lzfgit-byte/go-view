@@ -1,3 +1,3 @@
-import ContentConfigurations from './index.vue'
+import ContentConfigurations from './index.vue';
 
-export { ContentConfigurations }
+export { ContentConfigurations };

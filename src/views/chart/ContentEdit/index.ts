@@ -1,3 +1,3 @@
-import ContentEdit from './index.vue'
+import ContentEdit from './index.vue';
 
-export { ContentEdit }
+export { ContentEdit };

@@ -1,3 +1,3 @@
-import EditWatermark from './index.vue'
+import EditWatermark from './index.vue';
 
-export { EditWatermark }
+export { EditWatermark };

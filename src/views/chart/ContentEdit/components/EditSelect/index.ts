@@ -1,3 +1,3 @@
-import EditSelect from './index.vue'
+import EditSelect from './index.vue';
 
-export { EditSelect }
+export { EditSelect };

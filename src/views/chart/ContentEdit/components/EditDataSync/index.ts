@@ -1,3 +1,3 @@
-import EditDataSync from './index.vue'
+import EditDataSync from './index.vue';
 
-export { EditDataSync }
+export { EditDataSync };

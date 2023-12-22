@@ -1,3 +1,3 @@
-import EditHistory from './index.vue'
+import EditHistory from './index.vue';
 
-export { EditHistory }
+export { EditHistory };

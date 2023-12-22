@@ -1,3 +1,3 @@
-import EditRule from './index.vue'
+import EditRule from './index.vue';
 
-export { EditRule }
+export { EditRule };

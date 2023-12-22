@@ -1,3 +1,3 @@
-import EditGroup from './index.vue'
+import EditGroup from './index.vue';
 
-export { EditGroup }
+export { EditGroup };

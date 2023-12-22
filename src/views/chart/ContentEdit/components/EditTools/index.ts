@@ -1,3 +1,3 @@
-import EditTools from './index.vue'
+import EditTools from './index.vue';
 
-export { EditTools }
+export { EditTools };

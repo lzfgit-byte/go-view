@@ -1,3 +1,3 @@
-import HeaderRightBtn from './index.vue'
+import HeaderRightBtn from './index.vue';
 
-export { HeaderRightBtn }
+export { HeaderRightBtn };

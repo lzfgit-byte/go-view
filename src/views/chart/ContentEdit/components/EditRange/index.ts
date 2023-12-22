@@ -1,3 +1,3 @@
-import EditRange from './index.vue'
+import EditRange from './index.vue';
 
-export { EditRange }
+export { EditRange };

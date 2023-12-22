@@ -1,3 +1,3 @@
-import LayersStatus from './index.vue'
+import LayersStatus from './index.vue';
 
-export { LayersStatus }
+export { LayersStatus };

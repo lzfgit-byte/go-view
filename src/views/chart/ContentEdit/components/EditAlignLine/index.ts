@@ -1,3 +1,3 @@
-import EditAlignLine from './index.vue'
+import EditAlignLine from './index.vue';
 
-export { EditAlignLine }
+export { EditAlignLine };

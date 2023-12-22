@@ -1,3 +1,3 @@
-import HeaderTitle from './index.vue'
+import HeaderTitle from './index.vue';
 
-export { HeaderTitle }
+export { HeaderTitle };

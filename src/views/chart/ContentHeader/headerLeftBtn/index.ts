@@ -1,3 +1,3 @@
-import HeaderLeftBtn from './index.vue'
+import HeaderLeftBtn from './index.vue';
 
-export { HeaderLeftBtn }
+export { HeaderLeftBtn };

@@ -1,16 +1,16 @@
-import { watch } from 'vue'
-import { useRoute } from 'vue-router'
-import throttle from 'lodash/throttle'
-import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
-import { EditCanvasTypeEnum } from '@/store/modules/chartEditStore/chartEditStore.d'
-import { useSync } from '@/views/chart/hooks/useSync.hook'
-import { ChartEnum } from '@/enums/pageEnum'
-import { SavePageEnum } from '@/enums/editPageEnum'
-import { editToJsonInterval } from '@/settings/designSetting'
-import { goDialog } from '@/utils'
+import { watch } from 'vue';
+import { useRoute } from 'vue-router';
+import throttle from 'lodash/throttle';
+import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
+import { EditCanvasTypeEnum } from '@/store/modules/chartEditStore/chartEditStore.d';
+import { useSync } from '@/views/chart/hooks/useSync.hook';
+import { ChartEnum } from '@/enums/pageEnum';
+import { SavePageEnum } from '@/enums/editPageEnum';
+import { editToJsonInterval } from '@/settings/designSetting';
+import { goDialog } from '@/utils';
 
-const { updateComponent, dataSyncUpdate } = useSync()
-const chartEditStore = useChartEditStore()
+const { updateComponent, dataSyncUpdate } = useSync();
+const chartEditStore = useChartEditStore();
 
 export const syncData = () => {
   goDialog({
@@ -18,33 +18,37 @@ export const syncData = () => {
     isMaskClosable: true,
     transformOrigin: 'center',
     onPositiveCallback: async () => {
-      window['$message'].success('正在同步编辑器...')
-      dataSyncUpdate && (await dataSyncUpdate())
-      dispatchEvent(new CustomEvent(SavePageEnum.CHART, { detail: chartEditStore.getStorageInfo() }))
-    }
-  })
-}
+      window['$message'].success('正在同步编辑器...');
+      dataSyncUpdate && (await dataSyncUpdate());
+      dispatchEvent(
+        new CustomEvent(SavePageEnum.CHART, { detail: chartEditStore.getStorageInfo() })
+      );
+    },
+  });
+};
 
 // 同步数据到预览页
 export const syncDataToPreview = () => {
-  dispatchEvent(new CustomEvent(SavePageEnum.CHART_TO_PREVIEW, { detail: chartEditStore.getStorageInfo() }))
-}
+  dispatchEvent(
+    new CustomEvent(SavePageEnum.CHART_TO_PREVIEW, { detail: chartEditStore.getStorageInfo() })
+  );
+};
 
 // 侦听器更新
 const useSyncUpdateHandle = () => {
   // 定义侦听器变量
-  let timer: any
+  let timer: any;
 
   // 更新处理
   const updateFn = (e: any) => {
-    window['$message'].success('正在进行更新...')
-    updateComponent(e!.detail, true)
-  }
+    window['$message'].success('正在进行更新...');
+    updateComponent(e!.detail, true);
+  };
 
   // 页面关闭处理
   const closeFn = () => {
-    chartEditStore.setEditCanvas(EditCanvasTypeEnum.IS_CODE_EDIT, false)
-  }
+    chartEditStore.setEditCanvas(EditCanvasTypeEnum.IS_CODE_EDIT, false);
+  };
 
   // 开启侦听
   const use = () => {
@@ -55,36 +59,36 @@ const useSyncUpdateHandle = () => {
     // }, editToJsonInterval)
 
     // 失焦同步数据
-    addEventListener('blur', syncDataToPreview)
+    addEventListener('blur', syncDataToPreview);
 
     // 监听编辑器保存事件 刷新工作台图表
-    addEventListener(SavePageEnum.JSON, updateFn)
+    addEventListener(SavePageEnum.JSON, updateFn);
 
     // 监听编辑页关闭
-    addEventListener(SavePageEnum.CLOSE, throttle(closeFn, 1000))
-  }
+    addEventListener(SavePageEnum.CLOSE, throttle(closeFn, 1000));
+  };
 
   // 关闭侦听
   const unUse = () => {
     // clearInterval(timer)
-    removeEventListener('blur', syncDataToPreview)
-    removeEventListener(SavePageEnum.JSON, updateFn)
-  }
+    removeEventListener('blur', syncDataToPreview);
+    removeEventListener(SavePageEnum.JSON, updateFn);
+  };
 
   // 路由变更时处理
   const watchHandler = (toName: any, fromName: any) => {
     if (fromName == ChartEnum.CHART_HOME_NAME) {
-      unUse()
+      unUse();
     }
     if (toName == ChartEnum.CHART_HOME_NAME) {
-      use()
+      use();
     }
-  }
+  };
 
-  return watchHandler
-}
+  return watchHandler;
+};
 
 export const useSyncUpdate = () => {
-  const routerParamsInfo = useRoute()
-  watch(() => routerParamsInfo.name, useSyncUpdateHandle(), { immediate: true })
-}
+  const routerParamsInfo = useRoute();
+  watch(() => routerParamsInfo.name, useSyncUpdateHandle(), { immediate: true });
+};

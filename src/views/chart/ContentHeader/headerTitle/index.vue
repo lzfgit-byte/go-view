@@ -28,62 +28,65 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick, computed, watchEffect } from 'vue'
-import { ResultEnum } from '@/enums/httpEnum'
-import { fetchRouteParamsLocation, httpErrorHandle, setTitle } from '@/utils'
-import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
-import { ProjectInfoEnum, EditCanvasConfigEnum } from '@/store/modules/chartEditStore/chartEditStore.d'
-import { updateProjectApi } from '@/api/path'
-import { useSync } from '../../hooks/useSync.hook'
-import { icon } from '@/plugins'
+  import { ref, nextTick, computed, watchEffect } from 'vue';
+  import { ResultEnum } from '@/enums/httpEnum';
+  import { fetchRouteParamsLocation, httpErrorHandle, setTitle } from '@/utils';
+  import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
+  import {
+    ProjectInfoEnum,
+    EditCanvasConfigEnum,
+  } from '@/store/modules/chartEditStore/chartEditStore.d';
+  import { updateProjectApi } from '@/api/path';
+  import { useSync } from '../../hooks/useSync.hook';
+  import { icon } from '@/plugins';
 
-const chartEditStore = useChartEditStore()
-const { dataSyncUpdate } = useSync()
-const { FishIcon } = icon.ionicons5
+  const chartEditStore = useChartEditStore();
+  const { dataSyncUpdate } = useSync();
+  const { FishIcon } = icon.ionicons5;
 
-const focus = ref<boolean>(false)
-const inputInstRef = ref(null)
+  const focus = ref<boolean>(false);
+  const inputInstRef = ref(null);
 
-const title = ref<string>(fetchRouteParamsLocation())
+  const title = ref<string>(fetchRouteParamsLocation());
 
-watchEffect(() => {
-  title.value = chartEditStore.getProjectInfo.projectName || ''
-})
+  watchEffect(() => {
+    title.value = chartEditStore.getProjectInfo.projectName || '';
+  });
 
-const comTitle = computed(() => {
-  // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-  title.value = title.value.replace(/\s/g, '')
-  const newTitle = title.value.length ? title.value : '新项目'
-  setTitle(`工作空间-${newTitle}`)
-  chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.PROJECT_NAME, newTitle)
-  return newTitle
-})
+  const comTitle = computed(() => {
+    // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+    title.value = title.value.replace(/\s/g, '');
+    const newTitle = title.value.length ? title.value : '新项目';
+    setTitle(`工作空间-${newTitle}`);
+    chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.PROJECT_NAME, newTitle);
+    return newTitle;
+  });
 
-const handleFocus = () => {
-  focus.value = true
-  nextTick(() => {
-    inputInstRef.value && (inputInstRef.value as any).focus()
-  })
-}
+  const handleFocus = () => {
+    focus.value = true;
+    nextTick(() => {
+      inputInstRef.value && (inputInstRef.value as any).focus();
+    });
+  };
 
-const handleBlur = async () => {
-  focus.value = false
-  chartEditStore.setProjectInfo(ProjectInfoEnum.PROJECT_NAME, title.value || '')
-  const res = (await updateProjectApi({
-    id: fetchRouteParamsLocation(),
-    projectName: title.value
-  }))
-  if (res && res.code === ResultEnum.SUCCESS) {
-    dataSyncUpdate()
-  } else {
-    httpErrorHandle()
-  }
-}
+  const handleBlur = async () => {
+    focus.value = false;
+    chartEditStore.setProjectInfo(ProjectInfoEnum.PROJECT_NAME, title.value || '');
+    const res = await updateProjectApi({
+      id: fetchRouteParamsLocation(),
+      projectName: title.value,
+    });
+    if (res && res.code === ResultEnum.SUCCESS) {
+      dataSyncUpdate();
+    } else {
+      httpErrorHandle();
+    }
+  };
 </script>
 <style lang="scss" scoped>
-.title {
-  padding-left: 5px;
-  padding-right: 5px;
-  font-size: 15px;
-}
+  .title {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 15px;
+  }
 </style>
