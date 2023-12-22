@@ -29,19 +29,19 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, computed, toRefs } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
+  import { PropType, computed, toRefs } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true,
-  },
-})
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
 
-const { w, h } = toRefs(props.chartConfig.attr)
-const { colors, dur, endWidth, lineHeight } = toRefs(props.chartConfig.option)
+  const { w, h } = toRefs(props.chartConfig.attr);
+  const { colors, dur, endWidth, lineHeight } = toRefs(props.chartConfig.option);
 
-const rectX = computed(() => 0)
-const rectY = computed(() => h.value / 2)
+  const rectX = computed(() => 0);
+  const rectY = computed(() => h.value / 2);
 </script>

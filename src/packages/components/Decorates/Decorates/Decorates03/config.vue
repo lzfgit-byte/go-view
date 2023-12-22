@@ -15,11 +15,7 @@
         ></n-color-picker>
       </SettingItem>
       <SettingItem name="大小">
-        <n-input-number
-          v-model:value="optionData.textSize"
-          size="small"
-          :min="12"
-        ></n-input-number>
+        <n-input-number v-model:value="optionData.textSize" size="small" :min="12"></n-input-number>
       </SettingItem>
     </SettingItemBox>
   </CollapseItem>
@@ -38,10 +34,7 @@
         ></n-color-picker>
       </SettingItem>
       <SettingItem>
-        <n-button
-          size="small"
-          @click="optionData.colors[index] = option.colors[index]"
-        >
+        <n-button size="small" @click="optionData.colors[index] = option.colors[index]">
           恢复默认
         </n-button>
       </SettingItem>
@@ -50,19 +43,15 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
-import {
-  CollapseItem,
-  SettingItemBox,
-  SettingItem,
-} from '@/components/Pages/ChartItemSetting'
-import { GlobalThemeJsonType } from '@/settings/chartThemes/index'
-import { option } from './config'
+  import { PropType } from 'vue';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
+  import { GlobalThemeJsonType } from '@/settings/chartThemes/index';
+  import { option } from './config';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<typeof option & GlobalThemeJsonType>,
-    required: true,
-  },
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<typeof option & GlobalThemeJsonType>,
+      required: true,
+    },
+  });
 </script>

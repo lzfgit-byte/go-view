@@ -14,9 +14,7 @@
         points="2, 0 11, 10 2, 20"
       />
     </svg>
-    <span :style="`color: ${textColor};font-size: ${textSize}px`">
-      {{ dataset }}</span
-    >
+    <span :style="`color: ${textColor};font-size: ${textSize}px`"> {{ dataset }}</span>
     <svg :width="20" :height="20">
       <polyline
         stroke-width="4"
@@ -35,28 +33,28 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, toRefs } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
+  import { PropType, toRefs } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true,
-  },
-})
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
 
-const { w, h } = toRefs(props.chartConfig.attr)
-const { colors, dataset, textSize, textColor } = toRefs(props.chartConfig.option)
+  const { w, h } = toRefs(props.chartConfig.attr);
+  const { colors, dataset, textSize, textColor } = toRefs(props.chartConfig.option);
 </script>
 
 <style lang="scss" scoped>
-@include go('border-03') {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  span {
-    text-align: center;
-    flex: 1;
+  @include go('border-03') {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span {
+      text-align: center;
+      flex: 1;
+    }
   }
-}
 </style>

@@ -17,23 +17,23 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, toRefs } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
+  import { PropType, toRefs } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true,
-  },
-})
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
 
-const { w, h } = toRefs(props.chartConfig.attr)
-const { colors, dur, lineHeight } = toRefs(props.chartConfig.option)
+  const { w, h } = toRefs(props.chartConfig.attr);
+  const { colors, dur, lineHeight } = toRefs(props.chartConfig.option);
 </script>
 <style lang="scss" scoped>
-@include go('decorates-2') {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  @include go('decorates-2') {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 </style>

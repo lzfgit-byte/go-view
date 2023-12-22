@@ -13,26 +13,17 @@
         ></n-color-picker>
       </SettingItem>
       <SettingItem>
-        <n-button
-          size="small"
-          @click="optionData.colors[index] = option.colors[index]"
-        >
+        <n-button size="small" @click="optionData.colors[index] = option.colors[index]">
           恢复默认
         </n-button>
       </SettingItem>
     </SettingItemBox>
     <SettingItemBox name="具体">
       <SettingItem name="线条高度">
-        <n-input-number
-          size="small"
-          v-model:value="optionData.lineHeight"
-        ></n-input-number>
+        <n-input-number size="small" v-model:value="optionData.lineHeight"></n-input-number>
       </SettingItem>
       <SettingItem name="末端长度">
-        <n-input-number
-          size="small"
-          v-model:value="optionData.endWidth"
-        ></n-input-number>
+        <n-input-number size="small" v-model:value="optionData.endWidth"></n-input-number>
       </SettingItem>
     </SettingItemBox>
   </CollapseItem>
@@ -52,18 +43,14 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
-import {
-  CollapseItem,
-  SettingItemBox,
-  SettingItem
-} from '@/components/Pages/ChartItemSetting'
-import { option } from './config'
+  import { PropType } from 'vue';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
+  import { option } from './config';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<typeof option>,
-    required: true
-  }
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<typeof option>,
+      required: true,
+    },
+  });
 </script>
