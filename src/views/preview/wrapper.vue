@@ -13,7 +13,7 @@
 
   let key = ref(Date.now());
 
-  // 数据变更 -> 组件销毁重建
+  // 数据变更 -> 组件销毁重建 自定义事件
   [SavePageEnum.JSON, SavePageEnum.CHART_TO_PREVIEW].forEach((saveEvent: string) => {
     if (!window?.opener && !window?.opener?.addEventListener) {
       return;

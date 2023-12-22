@@ -25,7 +25,7 @@
       </div>
       <template #action>
         <div class="go-flex-items-center list-footer" justify="space-between">
-          <n-text class="go-ellipsis-1">
+          <n-text class="go-ellipsis-1" :title="cardData.title">
             {{ cardData.title || cardData.id || '未命名' }}
           </n-text>
           <!-- 工具 -->
@@ -83,7 +83,6 @@
   import { icon } from '@/plugins';
   import { MacOsControlBtn } from '@/components/Tips/MacOsControlBtn';
   import { Chartype } from '../../index.d';
-  import { log } from 'console';
   const {
     EllipsisHorizontalCircleSharpIcon,
     CopyIcon,
