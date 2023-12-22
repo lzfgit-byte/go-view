@@ -1,4 +1,3 @@
-
 export interface IEvents {
-  resize: () => void
+  resize: () => void;
 }

@@ -4,31 +4,42 @@
  */
 
 interface ITextures {
-  name: string
-  url: string
+  name: string;
+  url: string;
 }
 
 export interface IResources {
-  textures?: ITextures[]
+  textures?: ITextures[];
 }
 
-const fileSuffix = ['earth', 'gradient', 'redCircle', 'label', 'aperture', 'glow', 'light_column', 'aircraft']
-const textures: ITextures[] = []
+const fileSuffix = [
+  'earth',
+  'gradient',
+  'redCircle',
+  'label',
+  'aperture',
+  'glow',
+  'light_column',
+  'aircraft',
+];
+const textures: ITextures[] = [];
 
-const modules: Record<string, { default: string }> = import.meta.glob("../../images/earth/*", { eager: true })
+const modules: Record<string, { default: string }> = import.meta.glob('../../images/earth/*', {
+  eager: true,
+});
 
-for(let item in modules) {
-  const n = item.split('/').pop()
-  if(n) {
+for (let item in modules) {
+  const n = item.split('/').pop();
+  if (n) {
     textures.push({
       name: n.split('.')[0],
-      url: modules[item].default
-    })
+      url: modules[item].default,
+    });
   }
 }
 
 const resources: IResources = {
-  textures
-}
+  textures,
+};
 
-export { resources }
+export { resources };

@@ -1,5 +1,5 @@
-import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d'
+import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const ThreeEarth01Config: ConfigType = {
   key: 'ThreeEarth01',
@@ -10,5 +10,5 @@ export const ThreeEarth01Config: ConfigType = {
   categoryName: ChatCategoryEnumName.THREE,
   package: PackagesCategoryEnum.DECORATES,
   chartFrame: ChartFrameEnum.COMMON,
-  image: 'threeEarth01.png'
-}
+  image: 'threeEarth01.png',
+};
