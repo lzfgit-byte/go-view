@@ -1,11 +1,7 @@
 <template>
   <div class="go-border-05">
     <svg :width="w" :height="h">
-      <polyline
-        :stroke="colors[1]"
-        stroke-width="2"
-        :points="`0, ${h / 2} ${w}, ${h / 2}`"
-      />
+      <polyline :stroke="colors[1]" stroke-width="2" :points="`0, ${h / 2} ${w}, ${h / 2}`" />
 
       <polyline
         :stroke="colors[0]"
@@ -146,29 +142,29 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, toRefs } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
-import { getUUID } from '@/utils'
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true,
-  },
-})
+  import { PropType, toRefs } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
+  import { getUUID } from '@/utils';
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
 
-const id = getUUID()
-const { w, h } = toRefs(props.chartConfig.attr)
-const { colors, dur } = toRefs(props.chartConfig.option)
-const animationId1 = `d10ani1${id}`
-const animationId2 = `d10ani2${id}`
-const animationId3 = `d10ani3${id}`
-const animationId4 = `d10ani4${id}`
-const animationId5 = `d10ani5${id}`
-const animationId6 = `d10ani6${id}`
-const animationId7 = `d10ani7${id}`
+  const id = getUUID();
+  const { w, h } = toRefs(props.chartConfig.attr);
+  const { colors, dur } = toRefs(props.chartConfig.option);
+  const animationId1 = `d10ani1${id}`;
+  const animationId2 = `d10ani2${id}`;
+  const animationId3 = `d10ani3${id}`;
+  const animationId4 = `d10ani4${id}`;
+  const animationId5 = `d10ani5${id}`;
+  const animationId6 = `d10ani6${id}`;
+  const animationId7 = `d10ani7${id}`;
 </script>
 
 <style lang="scss" scoped>
-@include go('border-04') {
-}
+  @include go('border-04') {
+  }
 </style>

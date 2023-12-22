@@ -13,10 +13,7 @@
         ></n-color-picker>
       </SettingItem>
       <SettingItem>
-        <n-button
-          size="small"
-          @click="optionData.colors[index] = option.colors[index]"
-        >
+        <n-button size="small" @click="optionData.colors[index] = option.colors[index]">
           恢复默认
         </n-button>
       </SettingItem>
@@ -38,18 +35,14 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
-import {
-  CollapseItem,
-  SettingItemBox,
-  SettingItem,
-} from '@/components/Pages/ChartItemSetting'
-import { option } from './config'
+  import { PropType } from 'vue';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
+  import { option } from './config';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<typeof option>,
-    required: true,
-  },
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<typeof option>,
+      required: true,
+    },
+  });
 </script>
