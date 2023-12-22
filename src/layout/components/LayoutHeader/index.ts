@@ -1,3 +1,3 @@
-import LayoutHeader from './index.vue'
+import LayoutHeader from './index.vue';
 
-export { LayoutHeader }
+export { LayoutHeader };

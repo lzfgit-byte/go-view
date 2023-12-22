@@ -23,45 +23,45 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { GoThemeSelect } from '@/components/GoThemeSelect'
-import { GoLangSelect } from '@/components/GoLangSelect'
-import { ThemeColorSelect } from '@/components/Pages/ThemeColorSelect'
-import { PageEnum } from '@/enums/pageEnum'
+  import { computed } from 'vue';
+  import { useRoute } from 'vue-router';
+  import { GoThemeSelect } from '@/components/GoThemeSelect';
+  import { GoLangSelect } from '@/components/GoLangSelect';
+  import { ThemeColorSelect } from '@/components/Pages/ThemeColorSelect';
+  import { PageEnum } from '@/enums/pageEnum';
 
-const route = useRoute()
+  const route = useRoute();
 
-const isProject = computed(() => {
-  return route.fullPath === PageEnum.BASE_HOME_ITEMS
-})
+  const isProject = computed(() => {
+    return route.fullPath === PageEnum.BASE_HOME_ITEMS;
+  });
 </script>
 
 <style lang="scss" scoped>
-$min-width: 520px;
-@include go(header) {
-  &-box {
-    display: grid;
-    grid-template-columns: repeat(3, 33%);
-    &.is-project {
-      grid-template-columns: none;
+  $min-width: 520px;
+  @include go(header) {
+    &-box {
+      display: grid;
+      grid-template-columns: repeat(3, 33%);
+      &.is-project {
+        grid-template-columns: none;
+      }
+      .header-item {
+        display: flex;
+        align-items: center;
+        min-width: $min-width;
+        &.left {
+          justify-content: start;
+        }
+        &.center {
+          justify-content: center;
+        }
+        &.right {
+          justify-content: end;
+        }
+      }
+      height: $--header-height;
+      padding: 0 20px 0 60px;
     }
-    .header-item {
-      display: flex;
-      align-items: center;
-      min-width: $min-width;
-      &.left {
-        justify-content: start;
-      }
-      &.center {
-        justify-content: center;
-      }
-      &.right {
-        justify-content: end;
-      }
-    }
-    height: $--header-height;
-    padding: 0 20px 0 60px;
   }
-}
 </style>

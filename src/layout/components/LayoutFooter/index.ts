@@ -1,3 +1,3 @@
-import LayoutFooter from './index.vue'
+import LayoutFooter from './index.vue';
 
-export { LayoutFooter }
+export { LayoutFooter };
