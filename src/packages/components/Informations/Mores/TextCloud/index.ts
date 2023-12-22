@@ -1,6 +1,6 @@
-import image from '@/assets/images/chart/informations/words_cloud.png'
-import { ConfigType, PackagesCategoryEnum } from '@/packages/index.d'
-import { ChatCategoryEnum,ChatCategoryEnumName } from '../../index.d'
+import image from '@/assets/images/chart/informations/words_cloud.png';
+import { ConfigType, PackagesCategoryEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const TextCloudConfig: ConfigType = {
   key: 'TextCloud',
@@ -10,5 +10,5 @@ export const TextCloudConfig: ConfigType = {
   category: ChatCategoryEnum.MORE,
   categoryName: ChatCategoryEnumName.MORE,
   package: PackagesCategoryEnum.INFORMATIONS,
-  image
-}
+  image,
+};

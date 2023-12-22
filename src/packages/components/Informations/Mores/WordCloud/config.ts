@@ -1,10 +1,10 @@
-import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public'
-import { WordCloudConfig } from './index'
-import { CreateComponentType } from '@/packages/index.d'
-import cloneDeep from 'lodash/cloneDeep'
-import dataJson from './data.json'
+import { echartOptionProfixHandle, PublicConfigClass } from '@/packages/public';
+import { WordCloudConfig } from './index';
+import { CreateComponentType } from '@/packages/index.d';
+import cloneDeep from 'lodash/cloneDeep';
+import dataJson from './data.json';
 
-export const includes = []
+export const includes = [];
 
 export const ShapeEnumList = [
   { label: '圆形', value: 'circle' },
@@ -13,8 +13,8 @@ export const ShapeEnumList = [
   { label: '右三角形', value: 'triangle-forward' },
   { label: '三角形', value: 'triangle' },
   { label: '五边形', value: 'pentagon' },
-  { label: '星星', value: 'star' }
-]
+  { label: '星星', value: 'star' },
+];
 
 export const option = {
   dataset: [...dataJson],
@@ -61,7 +61,7 @@ export const option = {
       // Global text style
       textStyle: {
         fontFamily: 'sans-serif',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
         // 颜色可以是回调功能或颜色字符串
         // color: function () {
         //   // 随机颜色
@@ -79,17 +79,17 @@ export const option = {
 
         textStyle: {
           shadowBlur: 10,
-          shadowColor: '#333'
-        }
+          shadowColor: '#333',
+        },
       },
-      data: [...dataJson]
-    }
-  ]
-}
+      data: [...dataJson],
+    },
+  ],
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key = WordCloudConfig.key
-  public chartConfig = cloneDeep(WordCloudConfig)
+  public key = WordCloudConfig.key;
+  public chartConfig = cloneDeep(WordCloudConfig);
   // 图表配置项
-  public option = echartOptionProfixHandle(option, includes)
+  public option = echartOptionProfixHandle(option, includes);
 }

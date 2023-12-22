@@ -1,14 +1,18 @@
 <template>
   <collapse-item name="路径" :expanded="true">
-      <setting-item v-for="(item, index) in optionData.dataset" :key="index">
-        <n-input-group>
-          <n-input v-model:value="optionData.dataset[index]" size="small" placeholder="请输入图片地址"></n-input>
-          <n-button ghost @click="optionData.dataset.splice(index, 1)"> - </n-button>
-        </n-input-group>
-      </setting-item>
-      <setting-item>
-        <n-button size="small" @click="optionData.dataset.push('')"> + 新增</n-button>
-      </setting-item>
+    <setting-item v-for="(item, index) in optionData.dataset" :key="index">
+      <n-input-group>
+        <n-input
+          v-model:value="optionData.dataset[index]"
+          size="small"
+          placeholder="请输入图片地址"
+        ></n-input>
+        <n-button ghost @click="optionData.dataset.splice(index, 1)"> - </n-button>
+      </n-input-group>
+    </setting-item>
+    <setting-item>
+      <n-button size="small" @click="optionData.dataset.push('')"> + 新增</n-button>
+    </setting-item>
   </collapse-item>
   <collapse-item name="轮播属性" :expanded="true">
     <setting-item-box name="播放器">
@@ -25,13 +29,21 @@
         </n-input-number>
       </setting-item>
       <setting-item name="轮播方向">
-        <n-select v-model:value="optionData.direction" :options="directions" placeholder="选择方向" />
+        <n-select
+          v-model:value="optionData.direction"
+          :options="directions"
+          placeholder="选择方向"
+        />
       </setting-item>
       <setting-item name="过渡效果">
         <n-select v-model:value="optionData.effect" :options="effects" placeholder="效果" />
       </setting-item>
       <setting-item name="每页数量">
-        <n-input-number v-model:value="optionData.slidesPerview" size="small" placeholder=""></n-input-number>
+        <n-input-number
+          v-model:value="optionData.slidesPerview"
+          size="small"
+          placeholder=""
+        ></n-input-number>
       </setting-item>
       <setting-item>
         <n-space>
@@ -48,7 +60,11 @@
         <n-select v-model:value="optionData.dotType" :options="dotTypes" placeholder="选择样式" />
       </setting-item>
       <setting-item name="位置">
-        <n-select v-model:value="optionData.dotPlacement" :options="dotPlacements" placeholder="选择位置" />
+        <n-select
+          v-model:value="optionData.dotPlacement"
+          :options="dotPlacements"
+          placeholder="选择位置"
+        />
       </setting-item>
       <setting-item>
         <n-space>
@@ -73,96 +89,96 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
-import { option } from './config'
-import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
+  import { PropType } from 'vue';
+  import { option } from './config';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
 
-const props = defineProps({
-  optionData: {
-    type: Object as PropType<typeof option>,
-    required: true
-  }
-})
+  const props = defineProps({
+    optionData: {
+      type: Object as PropType<typeof option>,
+      required: true,
+    },
+  });
 
-// 字典
-const dotTypes = [
-  {
-    label: '点',
-    value: 'dot'
-  },
-  {
-    label: '线',
-    value: 'line'
-  }
-]
-const directions = [
-  {
-    label: '水平方向',
-    value: 'horizontal'
-  },
-  {
-    label: '垂直方向',
-    value: 'vertical'
-  }
-]
-const effects = [
-  {
-    label: 'slide',
-    value: 'slide'
-  },
-  {
-    label: 'fade',
-    value: 'fade'
-  },
-  {
-    label: 'card',
-    value: 'card'
-  },
-  {
-    label: 'custom',
-    value: 'custom'
-  }
-]
-const dotPlacements = [
-  {
-    label: '上边',
-    value: 'top'
-  },
-  {
-    label: '下边',
-    value: 'bottom'
-  },
-  {
-    label: '左边',
-    value: 'left'
-  },
-  {
-    label: '右边',
-    value: 'right'
-  }
-]
+  // 字典
+  const dotTypes = [
+    {
+      label: '点',
+      value: 'dot',
+    },
+    {
+      label: '线',
+      value: 'line',
+    },
+  ];
+  const directions = [
+    {
+      label: '水平方向',
+      value: 'horizontal',
+    },
+    {
+      label: '垂直方向',
+      value: 'vertical',
+    },
+  ];
+  const effects = [
+    {
+      label: 'slide',
+      value: 'slide',
+    },
+    {
+      label: 'fade',
+      value: 'fade',
+    },
+    {
+      label: 'card',
+      value: 'card',
+    },
+    {
+      label: 'custom',
+      value: 'custom',
+    },
+  ];
+  const dotPlacements = [
+    {
+      label: '上边',
+      value: 'top',
+    },
+    {
+      label: '下边',
+      value: 'bottom',
+    },
+    {
+      label: '左边',
+      value: 'left',
+    },
+    {
+      label: '右边',
+      value: 'right',
+    },
+  ];
 
-// 适应类型
-const fitList = [
-  {
-    value: 'fill',
-    label: 'fill'
-  },
-  {
-    value: 'contain',
-    label: 'contain'
-  },
-  {
-    value: 'cover',
-    label: 'cover'
-  },
-  {
-    value: 'scale-down',
-    label: 'scale-down'
-  },
-  {
-    value: 'none',
-    label: 'none'
-  }
-]
+  // 适应类型
+  const fitList = [
+    {
+      value: 'fill',
+      label: 'fill',
+    },
+    {
+      value: 'contain',
+      label: 'contain',
+    },
+    {
+      value: 'cover',
+      label: 'cover',
+    },
+    {
+      value: 'scale-down',
+      label: 'scale-down',
+    },
+    {
+      value: 'none',
+      label: 'none',
+    },
+  ];
 </script>

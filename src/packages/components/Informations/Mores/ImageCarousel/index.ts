@@ -1,5 +1,5 @@
-import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d'
-import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d'
+import { ConfigType, PackagesCategoryEnum, ChartFrameEnum } from '@/packages/index.d';
+import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 
 export const ImageCarouselConfig: ConfigType = {
   key: 'ImageCarousel',
@@ -10,5 +10,5 @@ export const ImageCarouselConfig: ConfigType = {
   categoryName: ChatCategoryEnumName.MORE,
   package: PackagesCategoryEnum.INFORMATIONS,
   chartFrame: ChartFrameEnum.NAIVE_UI,
-  image: 'photo_carousel.png'
-}
+  image: 'photo_carousel.png',
+};

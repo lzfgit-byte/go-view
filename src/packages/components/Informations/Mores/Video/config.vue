@@ -26,38 +26,38 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
-import { option } from './config'
-import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
+  import { PropType } from 'vue';
+  import { option } from './config';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
 
-// 适应类型
-const fitList = [
-  {
-    value: 'fill',
-    label: 'fill'
-  },
-  {
-    value: 'contain',
-    label: 'contain'
-  },
-  {
-    value: 'cover',
-    label: 'cover'
-  },
-  {
-    value: 'scale-down',
-    label: 'scale-down'
-  },
-  {
-    value: 'none',
-    label: 'none'
-  }
-]
+  // 适应类型
+  const fitList = [
+    {
+      value: 'fill',
+      label: 'fill',
+    },
+    {
+      value: 'contain',
+      label: 'contain',
+    },
+    {
+      value: 'cover',
+      label: 'cover',
+    },
+    {
+      value: 'scale-down',
+      label: 'scale-down',
+    },
+    {
+      value: 'none',
+      label: 'none',
+    },
+  ];
 
-defineProps({
-  optionData: {
-    type: Object as PropType<typeof option>,
-    required: true
-  }
-})
+  defineProps({
+    optionData: {
+      type: Object as PropType<typeof option>,
+      required: true,
+    },
+  });
 </script>

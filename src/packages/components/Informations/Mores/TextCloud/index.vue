@@ -1,13 +1,7 @@
 <template>
-  <div>
-    词云
-  </div>
+  <div> 词云 </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

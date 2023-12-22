@@ -27,52 +27,52 @@
   </div>
 </template>
 <script setup lang="ts">
-import { PropType, toRefs, shallowReactive, watch } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
-import { requireErrorImg } from '@/utils'
-import { useChartDataFetch } from '@/hooks'
-import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
-import { option as configOption } from './config'
+  import { PropType, toRefs, shallowReactive, watch } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
+  import { requireErrorImg } from '@/utils';
+  import { useChartDataFetch } from '@/hooks';
+  import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
+  import { option as configOption } from './config';
 
-const props = defineProps({
-  chartConfig: {
-    type: Object as PropType<CreateComponentType>,
-    required: true
-  }
-})
+  const props = defineProps({
+    chartConfig: {
+      type: Object as PropType<CreateComponentType>,
+      required: true,
+    },
+  });
 
-const option = shallowReactive({
-  dataset: configOption.dataset
-})
+  const option = shallowReactive({
+    dataset: configOption.dataset,
+  });
 
-const { w, h } = toRefs(props.chartConfig.attr)
-const {
-  autoplay,
-  interval,
-  slidesPerview,
-  direction,
-  draggable,
-  centeredSlides,
-  effect,
-  dotType,
-  dotPlacement,
-  showArrow,
-  showDots,
-  fit
-} = toRefs(props.chartConfig.option)
+  const { w, h } = toRefs(props.chartConfig.attr);
+  const {
+    autoplay,
+    interval,
+    slidesPerview,
+    direction,
+    draggable,
+    centeredSlides,
+    effect,
+    dotType,
+    dotPlacement,
+    showArrow,
+    showDots,
+    fit,
+  } = toRefs(props.chartConfig.option);
 
-watch(
-  () => props.chartConfig.option.dataset,
-  (newData: any) => {
-    option.dataset = newData
-  },
-  {
-    immediate: true,
-    deep: false
-  }
-)
+  watch(
+    () => props.chartConfig.option.dataset,
+    (newData: any) => {
+      option.dataset = newData;
+    },
+    {
+      immediate: true,
+      deep: false,
+    }
+  );
 
-useChartDataFetch(props.chartConfig, useChartEditStore, (newData: any) => {
-  option.dataset = newData
-})
+  useChartDataFetch(props.chartConfig, useChartEditStore, (newData: any) => {
+    option.dataset = newData;
+  });
 </script>
