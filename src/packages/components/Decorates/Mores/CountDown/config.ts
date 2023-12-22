@@ -1,26 +1,26 @@
-import { PublicConfigClass } from '@/packages/public'
-import { CreateComponentType } from '@/packages/index.d'
-import { CountDownConfig } from './index'
-import cloneDeep from 'lodash/cloneDeep'
-import { chartInitConfig } from '@/settings/designSetting'
-import { FlipType } from '@/components/Pages/Flipper'
+import { PublicConfigClass } from '@/packages/public';
+import { CreateComponentType } from '@/packages/index.d';
+import { CountDownConfig } from './index';
+import cloneDeep from 'lodash/cloneDeep';
+import { chartInitConfig } from '@/settings/designSetting';
+import { FlipType } from '@/components/Pages/Flipper';
 
-type STYLE = '时分秒' | '冒号'
+type STYLE = '时分秒' | '冒号';
 
 export interface OptionType {
-  dataset: number
-  useEndDate: boolean
-  endDate: number
-  style: STYLE
-  showDay: boolean
-  flipperBgColor: string
-  flipperTextColor: string
-  flipperWidth: number
-  flipperHeight: number
-  flipperRadius: number
-  flipperGap: number
-  flipperType: FlipType
-  flipperSpeed: number
+  dataset: number;
+  useEndDate: boolean;
+  endDate: number;
+  style: STYLE;
+  showDay: boolean;
+  flipperBgColor: string;
+  flipperTextColor: string;
+  flipperWidth: number;
+  flipperHeight: number;
+  flipperRadius: number;
+  flipperGap: number;
+  flipperType: FlipType;
+  flipperSpeed: number;
 }
 
 export const option: OptionType = {
@@ -36,12 +36,12 @@ export const option: OptionType = {
   flipperRadius: 5,
   flipperGap: 10,
   flipperType: 'down',
-  flipperSpeed: 450
-}
+  flipperSpeed: 450,
+};
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key = CountDownConfig.key
-  public attr = { ...chartInitConfig, w: 500, h: 100, zIndex: -1 }
-  public chartConfig = cloneDeep(CountDownConfig)
-  public option = cloneDeep(option)
+  public key = CountDownConfig.key;
+  public attr = { ...chartInitConfig, w: 500, h: 100, zIndex: -1 };
+  public chartConfig = cloneDeep(CountDownConfig);
+  public option = cloneDeep(option);
 }

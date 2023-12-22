@@ -10,10 +10,16 @@
         ></n-input-number>
       </setting-item>
       <setting-item name="结束日期">
-        <n-date-picker v-model:value="optionData.endDate" type="datetime" :disabled="!optionData.useEndDate" />
+        <n-date-picker
+          v-model:value="optionData.endDate"
+          type="datetime"
+          :disabled="!optionData.useEndDate"
+        />
       </setting-item>
       <setting-item>
-        <n-checkbox v-model:checked="optionData.useEndDate" size="small">使用固定结束日期</n-checkbox>
+        <n-checkbox v-model:checked="optionData.useEndDate" size="small"
+          >使用固定结束日期</n-checkbox
+        >
       </setting-item>
     </setting-item-box>
 
@@ -24,7 +30,7 @@
           size="small"
           :options="[
             { label: '时分秒', value: '时分秒' },
-            { label: '冒号', value: '冒号' }
+            { label: '冒号', value: '冒号' },
           ]"
         ></n-select>
       </setting-item>
@@ -37,16 +43,32 @@
   <collapse-item name="翻牌" expanded>
     <setting-item-box name="样式">
       <setting-item name="宽度">
-        <n-input-number v-model:value="optionData.flipperWidth" size="small" :min="1"></n-input-number>
+        <n-input-number
+          v-model:value="optionData.flipperWidth"
+          size="small"
+          :min="1"
+        ></n-input-number>
       </setting-item>
       <setting-item name="高度">
-        <n-input-number v-model:value="optionData.flipperHeight" size="small" :min="1"></n-input-number>
+        <n-input-number
+          v-model:value="optionData.flipperHeight"
+          size="small"
+          :min="1"
+        ></n-input-number>
       </setting-item>
       <setting-item name="间隔">
-        <n-input-number v-model:value="optionData.flipperGap" size="small" :min="0"></n-input-number>
+        <n-input-number
+          v-model:value="optionData.flipperGap"
+          size="small"
+          :min="0"
+        ></n-input-number>
       </setting-item>
       <setting-item name="圆角">
-        <n-input-number v-model:value="optionData.flipperRadius" size="small" :min="0"></n-input-number>
+        <n-input-number
+          v-model:value="optionData.flipperRadius"
+          size="small"
+          :min="0"
+        ></n-input-number>
       </setting-item>
       <setting-item name="背景色">
         <n-color-picker
@@ -57,7 +79,11 @@
         ></n-color-picker>
       </setting-item>
       <setting-item name="字体色">
-        <n-color-picker size="small" :modes="['hex']" v-model:value="optionData.flipperTextColor"></n-color-picker>
+        <n-color-picker
+          size="small"
+          :modes="['hex']"
+          v-model:value="optionData.flipperTextColor"
+        ></n-color-picker>
       </setting-item>
     </setting-item-box>
 
@@ -68,7 +94,7 @@
           size="small"
           :options="[
             { label: '下翻', value: 'down' },
-            { label: '上翻', value: 'up' }
+            { label: '上翻', value: 'up' },
           ]"
         ></n-select>
       </setting-item>
@@ -85,14 +111,14 @@
   </collapse-item>
 </template>
 <script setup lang="ts">
-import { PropType } from 'vue'
-import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting'
-import { OptionType } from './config'
+  import { PropType } from 'vue';
+  import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/ChartItemSetting';
+  import { OptionType } from './config';
 
-defineProps({
-  optionData: {
-    type: Object as PropType<OptionType>,
-    required: true
-  }
-})
+  defineProps({
+    optionData: {
+      type: Object as PropType<OptionType>,
+      required: true,
+    },
+  });
 </script>
