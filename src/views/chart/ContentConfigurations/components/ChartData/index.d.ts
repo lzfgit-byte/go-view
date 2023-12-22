@@ -1,4 +1,9 @@
-import { RequestHttpEnum, RequestHttpIntervalEnum, RequestDataTypeEnum, SelectHttpTimeNameObj } from '@/enums/httpEnum'
+import {
+  RequestHttpEnum,
+  RequestHttpIntervalEnum,
+  RequestDataTypeEnum,
+  SelectHttpTimeNameObj,
+} from '@/enums/httpEnum';
 
 // 匹配结果
 export enum DataResultEnum {
@@ -20,17 +25,17 @@ export enum SelectCreateDataEnum {
 }
 
 export interface SelectCreateDataType {
-  label: SelectCreateDataEnum
-  value: RequestDataTypeEnum
-  disabled?: boolean
+  label: SelectCreateDataEnum;
+  value: RequestDataTypeEnum;
+  disabled?: boolean;
 }
 
 // ajax 请求类型
 export interface SelectHttpType {
-  label: RequestHttpEnum
-  value: RequestHttpEnum
-  disabled?: boolean
-  style?: object
+  label: RequestHttpEnum;
+  value: RequestHttpEnum;
+  disabled?: boolean;
+  style?: object;
 }
 
 // 类型选项
@@ -40,66 +45,66 @@ export const selectTypeOptions: SelectHttpType[] = [
     value: RequestHttpEnum.GET,
     style: {
       color: 'greenyellow',
-      fontWeight: 'bold'
-    }
+      fontWeight: 'bold',
+    },
   },
   {
     label: RequestHttpEnum.POST,
     value: RequestHttpEnum.POST,
     style: {
       color: 'skyblue',
-      fontWeight: 'bold'
-    }
+      fontWeight: 'bold',
+    },
   },
   {
     label: RequestHttpEnum.PUT,
     value: RequestHttpEnum.PUT,
     style: {
       color: 'goldenrod',
-      fontWeight: 'bold'
-    }
+      fontWeight: 'bold',
+    },
   },
   {
     label: RequestHttpEnum.PATCH,
     value: RequestHttpEnum.PATCH,
     style: {
       color: 'violet',
-      fontWeight: 'bold'
-    }
+      fontWeight: 'bold',
+    },
   },
   {
     label: RequestHttpEnum.DELETE,
     value: RequestHttpEnum.DELETE,
     disabled: true,
     style: {
-      fontWeight: 'bold'
-    }
+      fontWeight: 'bold',
+    },
   },
-]
+];
 
 // ajax 请求间隔
 export interface SelectHttpTimeType {
-  label: string
-  value: RequestHttpIntervalEnum
-  disabled?: boolean
+  label: string;
+  value: RequestHttpIntervalEnum;
+  disabled?: boolean;
 }
 
 // 时间选项
 export const selectTimeOptions: SelectHttpTimeType[] = [
   {
     label: SelectHttpTimeNameObj[RequestHttpIntervalEnum.SECOND],
-    value: RequestHttpIntervalEnum.SECOND
+    value: RequestHttpIntervalEnum.SECOND,
   },
   {
     label: SelectHttpTimeNameObj[RequestHttpIntervalEnum.MINUTE],
-    value: RequestHttpIntervalEnum.MINUTE
+    value: RequestHttpIntervalEnum.MINUTE,
   },
   {
     label: SelectHttpTimeNameObj[RequestHttpIntervalEnum.HOUR],
-    value: RequestHttpIntervalEnum.HOUR
+    value: RequestHttpIntervalEnum.HOUR,
   },
   {
     label: SelectHttpTimeNameObj[RequestHttpIntervalEnum.DAY],
-    value: RequestHttpIntervalEnum.DAY
+    value: RequestHttpIntervalEnum.DAY,
   },
-]
+];

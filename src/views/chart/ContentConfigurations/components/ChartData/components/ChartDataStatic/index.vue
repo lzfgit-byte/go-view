@@ -5,12 +5,12 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
-import { CreateComponentType } from '@/packages/index.d'
-import { ChartDataMatchingAndShow } from '../ChartDataMatchingAndShow'
+  import { PropType } from 'vue';
+  import { CreateComponentType } from '@/packages/index.d';
+  import { ChartDataMatchingAndShow } from '../ChartDataMatchingAndShow';
 </script>
 
 <style lang="scss" scoped>
-@include go('chart-configurations-data-static') {
-}
+  @include go('chart-configurations-data-static') {
+  }
 </style>
