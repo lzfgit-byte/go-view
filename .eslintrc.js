@@ -44,6 +44,7 @@ module.exports = {
     '@typescript-eslint/ban-types': 'off',
     'dot-notation': 'off',
     'no-case-declarations': 'off',
+    'vue/no-side-effects-in-computed-properties': 'off',
     '@typescript-eslint/no-this-alias': 'off',
   },
 };

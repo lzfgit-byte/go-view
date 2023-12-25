@@ -1,7 +1,7 @@
 <template>
   <n-layout has-sider sider-placement="right">
     <n-layout-content>
-      <!-- 图表拖拽区域,目标区域 -->
+      <!-- 图表拖拽区域,目标区域，画板 -->
       <ContentEdit></ContentEdit>
     </n-layout-content>
     <!--  画布主体的右侧配置栏  -->
@@ -112,7 +112,7 @@
     }
     const target = chartEditStore.componentList[chartEditStore.fetchTargetIndex()];
     if (target?.isGroup) {
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      //分组被选中时tab变少，所以重置回第一个
       tabsSelect.value = TabsEnum.CHART_SETTING;
     }
     return target;
