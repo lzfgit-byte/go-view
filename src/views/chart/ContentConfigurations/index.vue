@@ -1,9 +1,10 @@
 <template>
   <n-layout has-sider sider-placement="right">
     <n-layout-content>
-      <!-- 图表拖拽区域 -->
+      <!-- 图表拖拽区域,目标区域 -->
       <ContentEdit></ContentEdit>
     </n-layout-content>
+    <!--  画布主体的右侧配置栏  -->
     <n-layout-sider
       collapse-mode="transform"
       :collapsed-width="0"

@@ -21,9 +21,9 @@
     @content;
   }
 }
-
+//fix: deep()空参数报错
 @mixin deep() {
-  :deep() {
+  :deep {
     @content;
   }
 }
