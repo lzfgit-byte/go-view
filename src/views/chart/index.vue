@@ -50,17 +50,23 @@
 
   // 记录初始化
   chartHistoryStoreStore.canvasInit(chartEditStore.getEditCanvas);
-
+  //头部左侧按钮
   const HeaderLeftBtn = loadAsyncComponent(() => import('./ContentHeader/headerLeftBtn/index.vue'));
+  //头部右侧按钮
   const HeaderRightBtn = loadAsyncComponent(
     () => import('./ContentHeader/headerRightBtn/index.vue')
   );
+  //标题
   const HeaderTitle = loadAsyncComponent(() => import('./ContentHeader/headerTitle/index.vue'));
+  //图层 only
   const ContentLayers = loadAsyncComponent(() => import('./ContentLayers/index.vue'));
+  //图表 带左侧切换按钮
   const ContentCharts = loadAsyncComponent(() => import('./ContentCharts/index.vue'));
+  //画布主体
   const ContentConfigurations = loadAsyncComponent(
     () => import('./ContentConfigurations/index.vue')
   );
+  //加载时的进度条
   const ContentLoad = loadAsyncComponent(() => import('./ContentLoad/index.vue'));
 
   // 右键

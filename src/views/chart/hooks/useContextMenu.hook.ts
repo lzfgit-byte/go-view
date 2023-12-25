@@ -244,7 +244,6 @@ const handleContextMenu = (
 
 /**
  * * 右键hook
- * @param menuConfig
  * @returns
  */
 export const useContextMenu = () => {
