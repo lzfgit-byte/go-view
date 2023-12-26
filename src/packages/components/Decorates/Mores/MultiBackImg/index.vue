@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-  import { PropType, useAttrs, watch } from 'vue';
+  import { PropType } from 'vue';
   import { CreateComponentType } from '@/packages/index.d';
   const props = defineProps({
     chartConfig: {
