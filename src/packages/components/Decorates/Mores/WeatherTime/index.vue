@@ -11,12 +11,6 @@
       required: true,
     },
   });
-  watch(
-    () => props.chartConfig?.option?.color,
-    () => {
-      console.log(props);
-    }
-  );
 </script>
 
 <style lang="scss" scoped></style>

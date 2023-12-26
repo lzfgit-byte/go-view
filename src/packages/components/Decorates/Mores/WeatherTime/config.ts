@@ -4,7 +4,8 @@ import { WeatherTimeConfig } from './index';
 import cloneDeep from 'lodash/cloneDeep';
 
 export const option = {
-  color: 'red',
+  color: '#CCC',
+  dataset: 'aaaa',
 };
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
