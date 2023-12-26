@@ -1,14 +1,14 @@
 import { PublicConfigClass } from '@/packages/public';
 import { CreateComponentType } from '@/packages/index.d';
-import { WeatherTimeConfig } from './index';
+import { {{uniqueId}}Config } from './index';
 import cloneDeep from 'lodash/cloneDeep';
 
 export const option = {
-  url: '#',
+  //此处写配置项
 };
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
-  public key = WeatherTimeConfig.key;
-  public chartConfig = cloneDeep(WeatherTimeConfig);
+  public key = {{uniqueId}}Config.key;
+  public chartConfig = cloneDeep({{uniqueId}}Config);
   public option = cloneDeep(option);
 }

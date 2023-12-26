@@ -4,7 +4,8 @@ module.exports = {
     {
       type: 'input',
       name: 'dir',
-      message: 'Please enter path dir，such as "Decorates/Mores/MultiBackImg" :',
+      message:
+        'root path is src/packages/components，Please enter path dir ，such as "Decorates/Mores/MultiBackImg" :',
       validate(value) {
         if (!value || value.trim === '') {
           return 'name is required';
@@ -15,6 +16,8 @@ module.exports = {
   ],
   actions: (data) => {
     const dir = data.dir;
+    const dirArr = dir.split('/');
+    const uniqueId = dirArr[dirArr.length - 1];
 
     // 首字母大写
 
@@ -23,25 +26,25 @@ module.exports = {
         type: 'add',
         path: `${process.cwd()}/src/packages/components/${dir}/config.ts`, // 这里的name就是上面定义的键
         templateFile: './component-template/config.ts.hbs',
-        data: {},
+        data: { uniqueId },
       },
       {
         type: 'add',
         path: `${process.cwd()}/src/packages/components/${dir}/config.vue`, // 这里的name就是上面定义的键
         templateFile: './component-template/config.vue.hbs',
-        data: {},
+        data: { uniqueId },
       },
       {
         type: 'add',
         path: `${process.cwd()}/src/packages/components/${dir}/index.ts`, // 这里的name就是上面定义的键
         templateFile: './component-template/index.ts.hbs',
-        data: {},
+        data: { uniqueId },
       },
       {
         type: 'add',
         path: `${process.cwd()}/src/packages/components/${dir}/index.vue`, // 这里的name就是上面定义的键
         templateFile: './component-template/index.vue.hbs',
-        data: {},
+        data: { uniqueId },
       },
     ];
 
