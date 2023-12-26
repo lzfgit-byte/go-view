@@ -6,6 +6,7 @@ import { CountDownConfig } from './CountDown/index';
 import { FlipperNumberConfig } from './FlipperNumber';
 import { PipelineHConfig } from './PipelineH/index';
 import { PipelineVConfig } from './PipelineV/index';
+import { WeatherTimeConfig } from './WeatherTime';
 
 export default [
   NumberConfig,
@@ -16,4 +17,5 @@ export default [
   FullScreenConfig,
   PipelineHConfig,
   PipelineVConfig,
+  WeatherTimeConfig,
 ];

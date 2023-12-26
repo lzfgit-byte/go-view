@@ -1,3 +1,7 @@
-<template> </template>
+<template>
+  {{ props }}
+</template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  const props = defineProps({ optionData: Object });
+</script>
