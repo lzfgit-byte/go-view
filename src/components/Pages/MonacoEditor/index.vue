@@ -7,6 +7,7 @@
   import { onMounted, watch, PropType } from 'vue';
   import { useMonacoEditor } from './index.hook';
   import { EditorWorker } from './index';
+  import * as monaco from 'monaco-editor';
 
   const props = defineProps({
     width: {
@@ -30,7 +31,7 @@
       default: '',
     },
     editorOptions: {
-      type: Object as PropType<object>,
+      type: Object as PropType<monaco.editor.IStandaloneEditorConstructionOptions>,
       default: () => ({}),
     },
   });
