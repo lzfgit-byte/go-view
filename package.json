@@ -8,7 +8,8 @@
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "new": "plop --plopfile ./plop/plopfile.js",
+    "new:store": "plop --plopfile ./plop/plopfile.js",
+    "new:component": "plop --plopfile ./plop/plopfileComp.js",
     "postinstall": "husky install",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue src",
     "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.vue src --fix"
