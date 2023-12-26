@@ -4,7 +4,7 @@ import { MultiBackImgConfig } from './index';
 import cloneDeep from 'lodash/cloneDeep';
 
 export const option = {
-  url: '#',
+  url: '',
 };
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
