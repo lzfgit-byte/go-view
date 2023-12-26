@@ -19,6 +19,13 @@
       </n-upload>
     </div>
   </div>
+  <collapse-item name="图片设置" :expanded="true">
+    <setting-item-box name="样式" :alone="true">
+      <setting-item>
+        <n-input v-model:value="optionData.style" type="textarea" size="small"></n-input>
+      </setting-item>
+    </setting-item-box>
+  </collapse-item>
 </template>
 
 <script setup lang="ts">
@@ -30,6 +37,7 @@
   import { uploadFile } from '@/api/path';
   import { FileTypeEnum } from '@/enums/fileTypeEnum';
   import { ResultEnum } from '@/enums/httpEnum';
+  import { CollapseItem, SettingItem, SettingItemBox } from '@/components/Pages/ChartItemSetting';
 
   const props = defineProps({
     optionData: { type: Object as PropType<typeof option>, required: true },
@@ -101,6 +109,7 @@
         }
       }
       .upload-show {
+        width: 100%;
         height: $uploadHeight;
         border-radius: 5px;
       }

@@ -1,9 +1,11 @@
 <template>
-  <div> 新组件 </div>
+  <div class="multi-container">
+    <img :src="url" :style="style" />
+  </div>
 </template>
 
 <script setup lang="ts">
-  import { PropType } from 'vue';
+  import { PropType, toRef } from 'vue';
   import { CreateComponentType } from '@/packages/index.d';
   const props = defineProps({
     chartConfig: {
@@ -11,6 +13,14 @@
       required: true,
     },
   });
+  const url = toRef(props?.chartConfig?.option, 'url');
+  const style = toRef(props?.chartConfig?.option, 'style');
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .multi-container {
+    img {
+      width: 100%;
+    }
+  }
+</style>

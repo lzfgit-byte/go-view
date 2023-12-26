@@ -5,6 +5,7 @@ import cloneDeep from 'lodash/cloneDeep';
 
 export const option = {
   url: '',
+  style: '',
 };
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
