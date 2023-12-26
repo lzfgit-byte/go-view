@@ -36,8 +36,9 @@
             <component :is="item.render"></component>
           </n-tab-pane>
         </n-tabs>
+        <!--  页面配置结束  -->
 
-        <!-- 编辑 -->
+        <!-- 编辑，选中组件时展示 -->
         <n-tabs
           v-if="selectTarget"
           v-model:value="tabsSelect"

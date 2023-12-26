@@ -60,7 +60,7 @@
   const HeaderTitle = loadAsyncComponent(() => import('./ContentHeader/headerTitle/index.vue'));
   //图层 only
   const ContentLayers = loadAsyncComponent(() => import('./ContentLayers/index.vue'));
-  //图表 带左侧切换按钮
+  //图表 带左侧切换按钮 画布左侧
   const ContentCharts = loadAsyncComponent(() => import('./ContentCharts/index.vue'));
   //画布主体
   const ContentConfigurations = loadAsyncComponent(
