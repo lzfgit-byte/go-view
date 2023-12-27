@@ -22,6 +22,15 @@
   import { includes } from './config';
   import { useChartDataFetch } from '@/hooks';
   import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
+  import { use } from 'echarts/core';
+  import {
+    DatasetComponent,
+    GridComponent,
+    LegendComponent,
+    TooltipComponent,
+  } from 'echarts/components';
+  import { CanvasRenderer } from 'echarts/renderers';
+  import { BarChart } from 'echarts/charts';
   const props = defineProps({
     themeSetting: {
       type: Object,
@@ -37,6 +46,14 @@
     },
   });
   const optionSet = JSONParse(props.chartConfig.option.echartsOpts);
+  use([
+    DatasetComponent,
+    CanvasRenderer,
+    BarChart,
+    GridComponent,
+    TooltipComponent,
+    LegendComponent,
+  ]);
   const initOptions = useCanvasInitOptions(optionSet, props.themeSetting);
   const option = computed(() => {
     return mergeTheme(optionSet, props.themeSetting, includes);
