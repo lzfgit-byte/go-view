@@ -4,7 +4,9 @@ import { CreateComponentType } from '@/packages/index.d';
 import cloneDeep from 'lodash/cloneDeep';
 import dataJson from './data.json';
 
+//从theme里混入的属性
 export const includes = ['legend', 'xAxis', 'yAxis', 'grid'];
+//options里的series
 export const seriesItem = {
   type: 'bar',
   barWidth: 15,

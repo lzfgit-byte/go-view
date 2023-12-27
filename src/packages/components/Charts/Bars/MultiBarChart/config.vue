@@ -1,4 +1,7 @@
-<template> </template>
+<template>
+  {{ optionData.echartsOpts }}
+  {{ optionData.dataset }}
+</template>
 
 <script setup lang="ts">
   import { PropType } from 'vue';
