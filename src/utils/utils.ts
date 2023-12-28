@@ -12,6 +12,7 @@ import type { RequestParamsObjType } from '@/enums/httpEnum';
 import { RequestHttpIntervalEnum } from '@/enums/httpEnum';
 import type { CreateComponentGroupType, CreateComponentType } from '@/packages/index.d';
 import { excludeParseEventKeyList, excludeParseEventValueList } from '@/enums/eventEnum';
+import { ref } from 'vue-demi';
 
 /**
  * * 判断是否是开发环境
@@ -313,6 +314,9 @@ export const JSONParse = (data: string) => {
     // 过滤函数字符串
     if (excludeParseEventKeyList.includes(k)) {
       return v;
+    }
+    if (k === 'isRefresh') {
+      return ref(false);
     }
     // 过滤函数值表达式
     if (typeof v === 'string') {

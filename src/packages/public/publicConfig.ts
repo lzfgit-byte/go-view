@@ -17,6 +17,7 @@ import {
 } from '@/packages/index.d';
 import { chartInitConfig } from '@/settings/designSetting';
 import cloneDeep from 'lodash/cloneDeep';
+import { ref } from 'vue-demi';
 
 // 请求基础属性
 export const requestConfig: RequestConfigType = {
@@ -46,6 +47,7 @@ export const requestConfig: RequestConfigType = {
 export class PublicConfigClass implements PublicConfigType {
   public id = getUUID();
   public isGroup = false;
+  public isRefresh = ref(false);
   // 基本信息
   public attr = { ...chartInitConfig, zIndex: -1 };
   // 基本样式

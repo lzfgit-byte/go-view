@@ -99,6 +99,15 @@ export const useChartDataFetch = (
             deep: true,
           }
         );
+        watch(
+          () => targetComponent.isRefresh,
+          () => {
+            if (targetComponent.isRefresh) {
+              console.log('重新刷新');
+              targetComponent.isRefresh.value = false;
+            }
+          }
+        );
 
         // 定时时间
         const time =

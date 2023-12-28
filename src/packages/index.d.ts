@@ -1,6 +1,7 @@
 import { BaseEvent, EventLife, InteractEvents, InteractEventOn, InteractActionsType } from '@/enums/eventEnum'
 import type { GlobalThemeJsonType } from '@/settings/chartThemes/index'
 import type { RequestConfigType } from '@/store/modules/chartEditStore/chartEditStore.d'
+import {Ref} from "vue";
 
 export enum ChartFrameEnum {
   // 支持 dataset 的 echarts 框架
@@ -114,6 +115,7 @@ export const BlendModeEnumList = [
 export interface PublicConfigType {
   id: string
   isGroup: boolean
+  isRefresh:Ref<boolean>
   attr: { x: number; y: number; w: number; h: number; zIndex: number; offsetX: number; offsetY: number }
   styles: {
     [FilterEnum.FILTERS_SHOW]: boolean
