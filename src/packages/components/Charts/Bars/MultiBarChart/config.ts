@@ -73,7 +73,7 @@ const preOpt = {
     type: 'value',
   },
   dataset: {
-    source: source,
+    source: [],
   },
   series: [seriesItem, seriesItem],
 };

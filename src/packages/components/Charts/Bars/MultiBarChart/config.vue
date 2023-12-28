@@ -23,5 +23,4 @@
   const props = defineProps({
     optionData: { type: Object as PropType<typeof option>, required: true },
   });
-  console.log(props.optionData);
 </script>
