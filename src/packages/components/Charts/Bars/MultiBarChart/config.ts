@@ -79,7 +79,7 @@ const preOpt = {
 };
 export const option = {
   echartsOpts: JSONStringify(preOpt),
-  dataset: JSONStringify(source),
+  dataset: [],
 };
 
 export default class Config extends PublicConfigClass implements CreateComponentType {

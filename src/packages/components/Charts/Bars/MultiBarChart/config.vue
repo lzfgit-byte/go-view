@@ -1,13 +1,9 @@
 <template>
+  <global-setting :optionData="optionData"></global-setting>
   <collapse-item name="图表设置" :expanded="true">
-    <setting-item-box name="配置" :alone="true">
+    <setting-item-box name="图表配置" :alone="true">
       <setting-item>
         <JSONInput v-model:value="optionData.echartsOpts" type="textarea" size="small"></JSONInput>
-      </setting-item>
-    </setting-item-box>
-    <setting-item-box name="数据" :alone="true">
-      <setting-item>
-        <n-input v-model:value="optionData.dataset" type="textarea" size="small"></n-input>
       </setting-item>
     </setting-item-box>
   </collapse-item>
@@ -16,10 +12,16 @@
 <script setup lang="ts">
   import { PropType } from 'vue';
   import { option } from './config';
-  import { CollapseItem, SettingItem, SettingItemBox } from '@/components/Pages/ChartItemSetting';
+  import {
+    CollapseItem,
+    GlobalSetting,
+    SettingItem,
+    SettingItemBox,
+  } from '@/components/Pages/ChartItemSetting';
   import JSONInput from '@/packages/components/Charts/Bars/MultiBarChart/JSONInput.vue';
 
   const props = defineProps({
     optionData: { type: Object as PropType<typeof option>, required: true },
   });
+  console.log(props.optionData);
 </script>
