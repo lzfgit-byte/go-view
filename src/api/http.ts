@@ -11,6 +11,8 @@ import type {
   RequestConfigType,
   RequestGlobalConfigType,
 } from '@/store/modules/chartEditStore/chartEditStore.d';
+import { JSONParse, JSONStringify } from '@/utils';
+import { CustomListReqData } from '@/const/HttpConst';
 
 export const get = <T = any>(url: string, params?: object) => {
   return axiosInstance<T>({
@@ -222,13 +224,19 @@ export const customizeHttp = (
 
   try {
     const url = new Function(`return \`${`${requestOriginUrl}${requestUrl}`.trim()}\``)();
-    return axiosInstance({
+    let reqObj = {
       url,
       method: requestHttpType,
       data,
       params,
       headers,
+    };
+    let jsonStr = JSONStringify(reqObj);
+    CustomListReqData.forEach(({ reg, value }) => {
+      jsonStr = jsonStr.replace(reg, value);
+      reqObj = JSONParse(jsonStr);
     });
+    return axiosInstance(reqObj);
   } catch (error) {
     console.log(error);
     window['$message'].error('URL地址格式有误！');

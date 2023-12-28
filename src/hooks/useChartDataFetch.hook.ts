@@ -1,4 +1,4 @@
-import { ref, toRaw, toRefs, watch } from 'vue';
+import { nextTick, ref, toRaw, toRefs, watch } from 'vue';
 import type VChart from 'vue-echarts';
 import { customizeHttp } from '@/api/http';
 import { useChartDataPondFetch } from '@/hooks/';
@@ -6,15 +6,8 @@ import type { CreateComponentType } from '@/packages/index.d';
 import { ChartFrameEnum } from '@/packages/index.d';
 import type { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
 import { RequestDataTypeEnum } from '@/enums/httpEnum';
-import {
-  JSONParse,
-  JSONStringify,
-  intervalUnitHandle,
-  isPreview,
-  newFunctionHandle,
-} from '@/utils';
+import { intervalUnitHandle, isPreview, newFunctionHandle } from '@/utils';
 import { setOption } from '@/packages/public/chart';
-import { CustomListReqData } from '@/const/HttpConst';
 
 // 获取类型
 type ChartEditStoreType = typeof useChartEditStore;
@@ -50,7 +43,6 @@ export const useChartDataFetch = (
 
   const requestIntervalFn = () => {
     const chartEditStore = useChartEditStore();
-
     // 全局数据
     const {
       requestOriginUrl,
@@ -80,11 +72,6 @@ export const useChartDataFetch = (
 
         const fetchFn = async () => {
           let request = toRaw(targetComponent.request);
-          let jsonStr = JSONStringify(request);
-          CustomListReqData.forEach(({ reg, value }) => {
-            jsonStr = jsonStr.replace(reg, value);
-            request = JSONParse(jsonStr);
-          });
           const res = await customizeHttp(request, toRaw(chartEditStore.getRequestGlobalConfig));
           if (res) {
             try {
@@ -133,16 +120,19 @@ export const useChartDataFetch = (
     }
   };
 
-  if (isPreview()) {
-    targetComponent.request.requestDataType === RequestDataTypeEnum.Pond
-      ? addGlobalDataInterface(
-          targetComponent,
-          useChartEditStore,
-          updateCallback || echartsUpdateHandle
-        )
-      : requestIntervalFn();
-  } else {
-    requestIntervalFn();
-  }
+  nextTick().then(() => {
+    if (isPreview()) {
+      targetComponent.request.requestDataType === RequestDataTypeEnum.Pond
+        ? addGlobalDataInterface(
+            targetComponent,
+            useChartEditStore,
+            updateCallback || echartsUpdateHandle
+          )
+        : requestIntervalFn();
+    } else {
+      requestIntervalFn();
+    }
+  });
+
   return { vChartRef };
 };

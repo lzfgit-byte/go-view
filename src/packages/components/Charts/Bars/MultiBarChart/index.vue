@@ -4,18 +4,14 @@
     :init-options="initOptions"
     :theme="themeColor"
     :option="option"
-    :manual-update="isPreview()"
-    :update-options="{
-      replaceMerge: replaceMergeArr,
-    }"
     autoresize
   ></v-chart>
 </template>
 
 <script setup lang="ts">
-  import { computed, PropType, ref, useAttrs, watch } from 'vue';
+  import { computed, nextTick, PropType, reactive, ref, useAttrs, watch } from 'vue';
   import config from './config';
-  import { isPreview, JSONParse } from '@/utils';
+  import { JSONParse } from '@/utils';
   import VChart from 'vue-echarts';
   import { useCanvasInitOptions } from '@/hooks/useCanvasInitOptions.hook';
   import { mergeTheme } from '@/packages/public';
@@ -59,14 +55,23 @@
     LegendComponent,
   ]);
   const initOptions = useCanvasInitOptions(optionSet.value, props.themeSetting);
+  const datasetRef = ref(props.chartConfig?.option.dataset);
   const option = computed(() => {
-    return mergeTheme(optionSet.value, props.themeSetting, includes);
+    return {
+      ...mergeTheme(optionSet.value, props.themeSetting, includes),
+      dataset: { source: datasetRef.value },
+    };
   });
-  //Options for updating chart option.
-  //更新时需要替换的属性
-  const replaceMergeArr = ref<string[]>(['dataset']);
   //获取图表数据
-  const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore);
+  const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore, (data) => {
+    datasetRef.value = data;
+  });
+  watch(
+    () => props.chartConfig?.option.dataset,
+    (v) => {
+      datasetRef.value = v as any;
+    }
+  );
 </script>
 
 <style lang="scss" scoped></style>
