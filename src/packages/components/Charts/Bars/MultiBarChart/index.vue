@@ -45,7 +45,11 @@
       required: true,
     },
   });
-  const optionSet = JSONParse(props.chartConfig.option.echartsOpts);
+  const optionSet = computed(() =>
+    typeof props.chartConfig?.option?.echartsOpts === 'string'
+      ? JSONParse(props.chartConfig?.option?.echartsOpts)
+      : props.chartConfig?.option?.echartsOpts
+  );
   use([
     DatasetComponent,
     CanvasRenderer,
@@ -54,13 +58,13 @@
     TooltipComponent,
     LegendComponent,
   ]);
-  const initOptions = useCanvasInitOptions(optionSet, props.themeSetting);
+  const initOptions = useCanvasInitOptions(optionSet.value, props.themeSetting);
   const option = computed(() => {
-    return mergeTheme(optionSet, props.themeSetting, includes);
+    return mergeTheme(optionSet.value, props.themeSetting, includes);
   });
   //Options for updating chart option.
   //更新时需要替换的属性
-  const replaceMergeArr = ref<string[]>();
+  const replaceMergeArr = ref<string[]>(['dataset']);
   //获取图表数据
   const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore);
 </script>
