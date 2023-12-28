@@ -5,7 +5,7 @@ export const MultiBarChartConfig: ConfigType = {
   key: 'MultiBarChart',
   chartKey: 'VMultiBarChart',
   conKey: 'VCMultiBarChart',
-  title: 'MultiBarChart',
+  title: '动态配置图表',
   category: ChatCategoryEnum.BAR,
   categoryName: ChatCategoryEnumName.BAR,
   chartFrame: ChartFrameEnum.ECHARTS,
