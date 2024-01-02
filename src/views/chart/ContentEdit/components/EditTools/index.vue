@@ -1,4 +1,5 @@
 <template>
+  <!-- 右侧浮动快捷栏 -->
   <div
     class="go-chart-edit-tools"
     :class="[settingStore.getChartToolsStatus, isMiniComputed ? 'isMini' : 'unMini']"
