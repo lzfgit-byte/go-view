@@ -316,7 +316,7 @@ export const JSONParse = (data: string) => {
       return v;
     }
     if (k === 'isRefresh') {
-      return ref(false);
+      return false;
     }
     // 过滤函数值表达式
     if (typeof v === 'string') {

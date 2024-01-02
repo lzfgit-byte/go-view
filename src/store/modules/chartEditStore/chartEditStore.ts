@@ -1011,5 +1011,13 @@ export const useChartEditStore = defineStore({
         this.getEditCanvas.scale = scale;
       }
     },
+    /**
+     *组件重新请求
+     */
+    notifyAllQuery(): void {
+      this.componentList.forEach((item) => {
+        item.isRefresh = true;
+      });
+    },
   },
 });

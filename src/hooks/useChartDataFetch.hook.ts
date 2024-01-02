@@ -102,9 +102,10 @@ export const useChartDataFetch = (
         watch(
           () => targetComponent.isRefresh,
           () => {
+            console.log(targetComponent.id, '重新刷新');
             if (targetComponent.isRefresh) {
-              console.log('重新刷新');
-              targetComponent.isRefresh.value = false;
+              targetComponent.isRefresh = false;
+              fetchFn();
             }
           }
         );

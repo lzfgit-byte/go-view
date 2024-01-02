@@ -115,7 +115,7 @@ export const BlendModeEnumList = [
 export interface PublicConfigType {
   id: string
   isGroup: boolean
-  isRefresh:Ref<boolean>
+  isRefresh:boolean
   attr: { x: number; y: number; w: number; h: number; zIndex: number; offsetX: number; offsetY: number }
   styles: {
     [FilterEnum.FILTERS_SHOW]: boolean

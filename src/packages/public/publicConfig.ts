@@ -47,7 +47,7 @@ export const requestConfig: RequestConfigType = {
 export class PublicConfigClass implements PublicConfigType {
   public id = getUUID();
   public isGroup = false;
-  public isRefresh = ref(false);
+  public isRefresh = false;
   // 基本信息
   public attr = { ...chartInitConfig, zIndex: -1 };
   // 基本样式
