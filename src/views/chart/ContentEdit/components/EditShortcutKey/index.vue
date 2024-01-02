@@ -1,4 +1,5 @@
 <template>
+  <!-- 快捷键页面 -->
   <div class="go-edit-shortcut">
     <shortcut-key-modal v-model:modelShow="modelShow"></shortcut-key-modal>
     <n-tooltip trigger="hover">

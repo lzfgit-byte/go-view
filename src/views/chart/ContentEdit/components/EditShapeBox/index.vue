@@ -1,4 +1,5 @@
 <template>
+  <!-- 每个图表包裹的box -->
   <div class="go-shape-box" :class="{ lock, hide }">
     <slot></slot>
     <!-- 锚点 -->

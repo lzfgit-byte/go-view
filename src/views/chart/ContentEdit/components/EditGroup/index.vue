@@ -1,4 +1,5 @@
 <template>
+  <!-- 分组时使用 -->
   <div class="go-edit-group-box">
     <edit-shape-box
       :key="groupData.id"

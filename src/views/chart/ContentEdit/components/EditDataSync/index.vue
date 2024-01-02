@@ -1,4 +1,5 @@
 <template>
+  <!-- 下部更新状态 -->
   <div class="go-edit-data-sync go-flex-items-center">
     <n-tooltip trigger="hover">
       <template #trigger>
@@ -36,7 +37,7 @@
 
   const statusDesc = ref('');
   const descType = ref('');
-  let setTimeoutIns: NodeJS.Timeout = setTimeout(() => {});
+  let setTimeoutIns = setTimeout(() => {});
 
   const statusDescObj = {
     [SyncEnum.PENDING]: {

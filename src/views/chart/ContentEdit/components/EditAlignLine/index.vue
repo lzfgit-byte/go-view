@@ -1,4 +1,5 @@
 <template>
+  <!-- 拖拽控制线 -->
   <div class="go-edit-align-line">
     <div
       class="line"

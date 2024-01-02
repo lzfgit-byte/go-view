@@ -1,4 +1,5 @@
 <template>
+  <!-- 画布，大小 -->
   <div
     class="go-edit-range go-transition"
     :style="rangeStyle"

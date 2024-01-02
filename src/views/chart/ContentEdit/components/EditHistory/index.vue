@@ -1,4 +1,5 @@
 <template>
+  <!-- 编辑历史 -->
   <div class="go-flex-items-center">
     <n-popover
       class="edit-history-popover"

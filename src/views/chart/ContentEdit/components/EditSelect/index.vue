@@ -1,4 +1,5 @@
 <template>
+  <!-- 编辑拖拉框选时的框 -->
   <div class="go-edit-select" v-if="isSelect" :style="positionStyle">
     <div class="select-background"></div>
     <div class="select-border"></div>
