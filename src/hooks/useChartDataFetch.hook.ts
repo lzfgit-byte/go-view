@@ -131,17 +131,19 @@ export const useChartDataFetch = (
   };
 
   nextTick().then(() => {
-    if (isPreview()) {
-      targetComponent.request.requestDataType === RequestDataTypeEnum.Pond
-        ? addGlobalDataInterface(
-            targetComponent,
-            useChartEditStore,
-            updateCallback || echartsUpdateHandle
-          )
-        : requestIntervalFn();
-    } else {
-      requestIntervalFn();
-    }
+    setTimeout(() => {
+      if (isPreview()) {
+        targetComponent.request.requestDataType === RequestDataTypeEnum.Pond
+          ? addGlobalDataInterface(
+              targetComponent,
+              useChartEditStore,
+              updateCallback || echartsUpdateHandle
+            )
+          : requestIntervalFn();
+      } else {
+        requestIntervalFn();
+      }
+    });
   });
 
   return { vChartRef };
