@@ -1,4 +1,4 @@
-import image from '@/assets/images/chart/decorates/weather_time.png';
+import image from '@/assets/images/chart/charts/bar_multi.png';
 import { ChartFrameEnum, ConfigType, PackagesCategoryEnum } from '@/packages/index.d';
 import { ChatCategoryEnum, ChatCategoryEnumName } from '../../index.d';
 export const MultiBarChartConfig: ConfigType = {
