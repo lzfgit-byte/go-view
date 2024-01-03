@@ -1,5 +1,5 @@
 import { computed, onUnmounted, Ref, watch } from 'vue';
-import { getNewData, setDynamicData } from './util';
+import { getNewData, getNewDataByLimit, setDynamicData } from './util';
 
 export default (
   vChartRef: Ref,
@@ -8,17 +8,32 @@ export default (
   xAxisTwoData: Ref,
   seriesOneData: Ref,
   seriesTwoData: Ref,
-  rd: Ref
+  rd: Ref,
+  limitCount: Ref<number>
 ) => {
   const loadData = () => {
-    const categories = getNewData(xAxisOneData.value, () =>
-      new Date().toLocaleTimeString().replace(/^\D*/, '')
+    const categories = getNewDataByLimit(
+      xAxisOneData.value,
+      () => new Date().toLocaleTimeString().replace(/^\D*/, ''),
+      limitCount.value
     );
-    const categories2 = getNewData(xAxisTwoData.value, (temp) => {
-      return temp[temp.length - 1] + 1;
-    });
-    const data = getNewData(seriesOneData.value, () => Math.round(Math.random() * 1000));
-    const data2 = getNewData(seriesTwoData.value, () => +(Math.random() * 10 + 5).toFixed(1));
+    const categories2 = getNewDataByLimit(
+      xAxisTwoData.value,
+      (temp) => {
+        return +(temp[temp.length - 1] || 0) + 1;
+      },
+      limitCount.value
+    );
+    const data = getNewDataByLimit(
+      seriesOneData.value,
+      () => Math.round(Math.random() * 1000),
+      limitCount.value
+    );
+    const data2 = getNewDataByLimit(
+      seriesTwoData.value,
+      () => +(Math.random() * 10 + 5).toFixed(1),
+      limitCount.value
+    );
     setDynamicData(vChartRef, categories, categories2, data, data2);
   };
   let timer: any = null;

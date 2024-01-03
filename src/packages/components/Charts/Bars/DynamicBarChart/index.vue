@@ -10,7 +10,17 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, computed, watch, PropType, nextTick, onUnmounted } from 'vue';
+  import {
+    ref,
+    computed,
+    watch,
+    PropType,
+    nextTick,
+    onUnmounted,
+    toRaw,
+    onMounted,
+    watchEffect,
+  } from 'vue';
   import VChart from 'vue-echarts';
   import { useCanvasInitOptions } from '@/hooks/useCanvasInitOptions.hook';
   import { use } from 'echarts/core';
@@ -71,8 +81,7 @@
   const seriesOneData = computed(() => optionsC.value?.series[0]?.data);
   const seriesTwoData = computed(() => optionsC.value?.series[1]?.data);
   const rd = ref(false);
-  const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore, (data) => {
-    rd.value = true;
+  const loadData = (data: any) => {
     if (data?.xAxis?.length === 2 && data?.series?.length === 2) {
       setDynamicData(
         vChartRef,
@@ -82,15 +91,23 @@
         getNewDataByLimit(seriesTwoData.value, () => data.series[1], limitCount.value)
       );
     }
-  });
-  useDataSet(vChartRef, props, xAxisOneData, xAxisTwoData, seriesOneData, seriesTwoData, rd);
-  watch(
-    () => props.chartConfig.option.dataset,
-    (newData, oldData) => {
-      console.log(newData);
-    },
-    {
-      deep: false,
+  };
+  const { vChartRef, isRequest } = useChartDataFetch(
+    props.chartConfig,
+    useChartEditStore,
+    (data) => {
+      rd.value = true;
+      loadData(data);
     }
+  );
+  useDataSet(
+    vChartRef,
+    props,
+    xAxisOneData,
+    xAxisTwoData,
+    seriesOneData,
+    seriesTwoData,
+    rd,
+    limitCount
   );
 </script>

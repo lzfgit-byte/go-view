@@ -25,6 +25,7 @@ export const useChartDataFetch = (
 ) => {
   const vChartRef = ref<typeof VChart | null>(null);
   let fetchInterval: any = 0;
+  const isRequest = ref(false);
 
   // 数据池
   const { addGlobalDataInterface } = useChartDataPondFetch();
@@ -67,7 +68,7 @@ export const useChartDataFetch = (
         // requestOriginUrl 允许为空
         const completePath = requestOriginUrl?.value && requestOriginUrl.value + requestUrl.value;
         if (!completePath) return;
-
+        isRequest.value = true;
         clearInterval(fetchInterval);
 
         const fetchFn = async () => {
@@ -146,5 +147,5 @@ export const useChartDataFetch = (
     });
   });
 
-  return { vChartRef };
+  return { vChartRef, isRequest };
 };

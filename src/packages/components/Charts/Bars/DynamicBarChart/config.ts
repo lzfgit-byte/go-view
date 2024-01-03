@@ -38,7 +38,7 @@ const data2 = (function () {
   }
   return res;
 })();
-const dataSet = { xAxis: [categories, categories2], series: [data, data2] };
+const dataSet = { xAxis: [[], []], series: [[], []] };
 const preOpt = {
   tooltip: {
     trigger: 'axis',
