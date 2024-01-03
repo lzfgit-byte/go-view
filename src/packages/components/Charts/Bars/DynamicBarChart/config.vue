@@ -22,10 +22,17 @@
       </setting-item>
     </setting-item-box>
   </collapse-item>
-  <collapse-item name="是否加载示例动态数据">
-    <template #header>
-      <n-switch v-model:value="loadDynamicData.value"></n-switch>
-    </template>
+  <collapse-item name="数据设置" v-if="dataConfigSet">
+    <setting-item-box name="静态数据">
+      <setting-item>
+        <n-switch v-model:value="dataConfigSet.dynamicStaticLoad"></n-switch>
+      </setting-item>
+    </setting-item-box>
+    <setting-item-box name="数据条数限制" :alone="true">
+      <setting-item>
+        <n-input-number v-model:value="dataConfigSet.lengthLimit"></n-input-number>
+      </setting-item>
+    </setting-item-box>
   </collapse-item>
 </template>
 
@@ -48,7 +55,7 @@
   const yAxis = computed(() => {
     return props.optionData.yAxis;
   });
-  const loadDynamicData = computed(() => {
-    return props.optionData.loadDynamicData;
+  const dataConfigSet = computed(() => {
+    return props.optionData?.dataConfigSet;
   });
 </script>

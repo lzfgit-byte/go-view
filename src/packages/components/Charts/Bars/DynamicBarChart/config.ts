@@ -140,9 +140,10 @@ export const option = {
     right: '10%',
     bottom: '60',
   },
-  dataset: dataSet,
-  loadDynamicData: { value: true },
+  dataset: { xAxis: ['12:16:04', 5], series: [143, 9.6] },
+  dataConfigSet: { dynamicStaticLoad: true, lengthLimit: 10 },
 };
+//bottom top  right left
 export default class Config extends PublicConfigClass implements CreateComponentType {
   public key = DynamicBarChartConfig.key;
   public chartConfig = cloneDeep(DynamicBarChartConfig);

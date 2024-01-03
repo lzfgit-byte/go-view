@@ -29,6 +29,10 @@
     LegendComponent,
   } from 'echarts/components';
   import useDataSet from '@/packages/components/Charts/Bars/DynamicBarChart/useDataSet';
+  import {
+    getNewDataByLimit,
+    setDynamicData,
+  } from '@/packages/components/Charts/Bars/DynamicBarChart/util';
 
   const props = defineProps({
     themeSetting: {
@@ -57,12 +61,28 @@
     LegendComponent,
   ]);
 
-  const replaceMergeArr = ref<string[]>();
-
   const option = computed(() => {
     return mergeTheme(props.chartConfig.option, props.themeSetting, includes);
   });
-
+  const limitCount = computed(() => props.chartConfig?.option.dataConfigSet.lengthLimit);
+  const optionsC = computed(() => vChartRef.value?.option);
+  const xAxisOneData = computed(() => optionsC.value?.xAxis[0]?.data);
+  const xAxisTwoData = computed(() => optionsC.value?.xAxis[1]?.data);
+  const seriesOneData = computed(() => optionsC.value?.series[0]?.data);
+  const seriesTwoData = computed(() => optionsC.value?.series[1]?.data);
+  const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore, (data) => {
+    //{xAxis:[bo,tp],series:[rt,lt]}
+    if (data?.xAxis?.length === 2 && data?.series?.length === 2) {
+      setDynamicData(
+        vChartRef,
+        getNewDataByLimit(xAxisOneData.value, () => data.xAxis[0], limitCount.value),
+        getNewDataByLimit(xAxisTwoData.value, () => data.xAxis[1], limitCount.value),
+        getNewDataByLimit(seriesOneData.value, () => data.series[0], limitCount.value),
+        getNewDataByLimit(seriesTwoData.value, () => data.series[1], limitCount.value)
+      );
+    }
+  });
+  useDataSet(vChartRef, props, xAxisOneData, xAxisTwoData, seriesOneData, seriesTwoData);
   watch(
     () => props.chartConfig.option.dataset,
     (newData, oldData) => {},
@@ -70,9 +90,4 @@
       deep: false,
     }
   );
-
-  const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore, (data) => {
-    console.log('数据获取-->', data);
-  });
-  const {} = useDataSet(vChartRef, props);
 </script>
