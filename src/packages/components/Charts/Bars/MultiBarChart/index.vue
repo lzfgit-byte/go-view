@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, nextTick, PropType, reactive, ref, useAttrs, watch } from 'vue';
+  import { computed, nextTick, PropType, reactive, ref, useAttrs, watch, watchEffect } from 'vue';
   import config from './config';
   import { JSONParse } from '@/utils';
   import VChart from 'vue-echarts';

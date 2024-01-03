@@ -2,6 +2,7 @@ import { BarCommonConfig } from './BarCommon/index';
 import { BarCrossrangeConfig } from './BarCrossrange/index';
 import { CapsuleChartConfig } from './CapsuleChart/index';
 import { BarLineConfig } from './BarLine/index';
+import { DynamicBarChartConfig } from './DynamicBarChart';
 import { MultiBarChartConfig } from './MultiBarChart/index';
 
 export default [
@@ -9,5 +10,6 @@ export default [
   BarCrossrangeConfig,
   BarLineConfig,
   CapsuleChartConfig,
+  DynamicBarChartConfig,
   MultiBarChartConfig,
 ];
