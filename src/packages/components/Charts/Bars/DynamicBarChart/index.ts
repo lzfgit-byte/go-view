@@ -6,7 +6,7 @@ export const DynamicBarChartConfig: ConfigType = {
   key: 'DynamicBarChart',
   chartKey: 'VDynamicBarChart',
   conKey: 'VCDynamicBarChart',
-  title: 'DynamicBarChart',
+  title: '动态数据图表',
   category: ChatCategoryEnum.BAR,
   categoryName: ChatCategoryEnumName.BAR,
   chartFrame: ChartFrameEnum.ECHARTS,
