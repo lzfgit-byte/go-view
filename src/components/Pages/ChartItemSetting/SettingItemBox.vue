@@ -1,11 +1,17 @@
 <template>
   <div class="go-config-item-box">
-    <n-text class="item-left" depth="2">
+    <n-tooltip trigger="hover">
+      <template #trigger>
+        <n-text class="item-left" depth="2">
+          {{ name }}
+          <n-space :size="5">
+            <slot name="name"></slot>
+          </n-space>
+        </n-text>
+      </template>
       {{ name }}
-      <n-space :size="5">
-        <slot name="name"></slot>
-      </n-space>
-    </n-text>
+    </n-tooltip>
+
     <div
       class="item-right"
       :style="{
@@ -49,6 +55,9 @@
       margin-top: 4px;
       margin-left: 10px;
       font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .item-right {
       display: grid;

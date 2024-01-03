@@ -79,11 +79,13 @@ export const option = {
     {
       type: 'category',
       boundaryGap: true,
+      show: true,
       data: dataSet.xAxis[0],
     },
     {
       type: 'category',
       boundaryGap: true,
+      show: true,
       data: dataSet.xAxis[1],
     },
   ],
@@ -91,7 +93,7 @@ export const option = {
     {
       type: 'value',
       scale: true,
-      name: 'Price',
+      name: '线值',
       max: 30,
       min: 0,
       boundaryGap: [0.2, 0.2],
@@ -99,7 +101,7 @@ export const option = {
     {
       type: 'value',
       scale: true,
-      name: 'Order',
+      name: '柱值',
       max: 1200,
       min: 0,
       boundaryGap: [0.2, 0.2],
@@ -107,14 +109,14 @@ export const option = {
   ],
   series: [
     {
-      name: 'Dynamic Bar',
+      name: '柱',
       type: 'bar',
       xAxisIndex: 1,
       yAxisIndex: 1,
       data: dataSet.series[0],
     },
     {
-      name: 'Dynamic Line',
+      name: '线',
       type: 'line',
       data: dataSet.series[1],
     },

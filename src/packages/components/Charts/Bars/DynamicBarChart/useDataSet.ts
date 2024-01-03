@@ -7,7 +7,8 @@ export default (
   xAxisOneData: Ref,
   xAxisTwoData: Ref,
   seriesOneData: Ref,
-  seriesTwoData: Ref
+  seriesTwoData: Ref,
+  rd: Ref
 ) => {
   const loadData = () => {
     const categories = getNewData(xAxisOneData.value, () =>
@@ -21,28 +22,39 @@ export default (
     setDynamicData(vChartRef, categories, categories2, data, data2);
   };
   let timer: any = null;
+  const stopTimer = () => {
+    timer && clearInterval(timer);
+  };
   const dynamicStaticLoad = computed(
     () => props.chartConfig?.option?.dataConfigSet?.dynamicStaticLoad
   );
-  watch(
+  const stop = watch(
     () => dynamicStaticLoad.value,
     (value) => {
+      if (rd.value) {
+        stopTimer();
+        stop();
+        return;
+      }
       if (value) {
         timer = setInterval(() => {
           loadData();
         }, 2100);
       } else {
-        timer && clearInterval(timer);
-        timer = null;
+        stopTimer();
       }
     }
   );
   if (dynamicStaticLoad.value) {
     timer = setInterval(() => {
+      if (rd.value) {
+        stopTimer();
+        return;
+      }
       loadData();
     }, 2100);
   }
   onUnmounted(() => {
-    timer && clearInterval(timer);
+    stopTimer();
   });
 };

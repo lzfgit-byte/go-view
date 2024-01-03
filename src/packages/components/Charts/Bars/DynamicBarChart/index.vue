@@ -70,8 +70,9 @@
   const xAxisTwoData = computed(() => optionsC.value?.xAxis[1]?.data);
   const seriesOneData = computed(() => optionsC.value?.series[0]?.data);
   const seriesTwoData = computed(() => optionsC.value?.series[1]?.data);
+  const rd = ref(false);
   const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore, (data) => {
-    //{xAxis:[bo,tp],series:[rt,lt]}
+    rd.value = true;
     if (data?.xAxis?.length === 2 && data?.series?.length === 2) {
       setDynamicData(
         vChartRef,
@@ -82,10 +83,12 @@
       );
     }
   });
-  useDataSet(vChartRef, props, xAxisOneData, xAxisTwoData, seriesOneData, seriesTwoData);
+  useDataSet(vChartRef, props, xAxisOneData, xAxisTwoData, seriesOneData, seriesTwoData, rd);
   watch(
     () => props.chartConfig.option.dataset,
-    (newData, oldData) => {},
+    (newData, oldData) => {
+      console.log(newData);
+    },
     {
       deep: false,
     }

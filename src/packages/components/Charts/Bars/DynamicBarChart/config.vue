@@ -12,13 +12,25 @@
       </setting-item>
     </setting-item-box>
   </collapse-item>
-  <collapse-item name="y轴label设置" v-if="series">
-    <setting-item-box name="设置">
+  <collapse-item name="轴设置" v-if="series">
+    <setting-item-box name="y轴label设置">
       <setting-item name="左侧">
         <n-input v-model:value="yAxis[0].name"></n-input>
       </setting-item>
       <setting-item name="右侧">
         <n-input v-model:value="yAxis[1].name"></n-input>
+      </setting-item>
+    </setting-item-box>
+    <setting-item-box name="x轴显隐设置">
+      <setting-item name="下">
+        <div style="width: 100%; display: flex; justify-content: start">
+          <n-switch v-model:value="xAxis[0].show"></n-switch>
+        </div>
+      </setting-item>
+      <setting-item name="上">
+        <div style="width: 100%; display: flex; justify-content: start">
+          <n-switch v-model:value="xAxis[1].show"></n-switch>
+        </div>
       </setting-item>
     </setting-item-box>
   </collapse-item>
@@ -54,6 +66,9 @@
   });
   const yAxis = computed(() => {
     return props.optionData.yAxis;
+  });
+  const xAxis = computed(() => {
+    return props.optionData.xAxis;
   });
   const dataConfigSet = computed(() => {
     return props.optionData?.dataConfigSet;
