@@ -30,7 +30,7 @@ const imagesModules: Record<string, { default: string }> = import.meta.glob(
   }
 );
 
-// * 所有图表
+// * 所有图表 添加收藏
 export let packagesList: PackagesType = {
   [PackagesCategoryEnum.CHARTS]: ChartList,
   [PackagesCategoryEnum.INFORMATIONS]: InformationList,
@@ -38,6 +38,7 @@ export let packagesList: PackagesType = {
   [PackagesCategoryEnum.DECORATES]: DecorateList,
   [PackagesCategoryEnum.PHOTOS]: PhotoList,
   [PackagesCategoryEnum.ICONS]: IconList,
+  [PackagesCategoryEnum.COLLECT]: IconList,
 };
 
 // 组件缓存, 可以大幅度提升组件加载速度

@@ -70,6 +70,7 @@ import {
   Albums as AlbumsIcon,
   Analytics as AnalyticsIcon,
   AirplaneOutline as AirPlaneOutlineIcon,
+  StarOutline as StarOutlineIcon,
 } from '@vicons/ionicons5';
 
 import {
@@ -249,6 +250,8 @@ const ionicons5 = {
   AnalyticsIcon,
   // 飞机
   AirPlaneOutlineIcon,
+  //星星
+  StarOutlineIcon,
 };
 
 const carbon = {
