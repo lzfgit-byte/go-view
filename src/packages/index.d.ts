@@ -160,7 +160,7 @@ export interface PublicConfigType {
 export interface CreateComponentType extends PublicConfigType, requestConfig {
   key: string
   chartConfig: ConfigType
-  option: GlobalThemeJsonType
+  option: GlobalThemeJsonType | Record<string, any>
   groupList?: Array<CreateComponentType>
 }
 

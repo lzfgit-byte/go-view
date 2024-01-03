@@ -45,7 +45,12 @@
         ></n-input-number>
       </setting-item>
     </setting-item-box>
-    <setting-item-box name="副标题">
+    <setting-item-box name="内容" :alone="true" v-if="title.text">
+      <setting-item name="标题内容">
+        <n-input v-model:value="title.text" size="small"></n-input>
+      </setting-item>
+    </setting-item-box>
+    <setting-item-box name="副标题" v-if="title.subtext">
       <setting-item name="颜色">
         <n-color-picker size="small" v-model:value="title.subtextStyle.color"></n-color-picker>
       </setting-item>
@@ -76,7 +81,7 @@
     </setting-item-box>
   </collapse-item>
 
-  <collapse-item v-if="xAxis" name="X轴">
+  <collapse-item v-if="xAxis && !Array.isArray(xAxis)" name="X轴">
     <template #header>
       <n-switch v-model:value="xAxis.show" size="small"></n-switch>
     </template>
@@ -203,7 +208,7 @@
     </setting-item-box>
   </collapse-item>
 
-  <collapse-item v-if="yAxis" name="Y轴">
+  <collapse-item v-if="yAxis && !Array.isArray(yAxis)" name="Y轴">
     <template #header>
       <n-switch v-model:value="yAxis.show" size="small"></n-switch>
     </template>

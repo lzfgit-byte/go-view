@@ -1,6 +1,7 @@
 {
   "title": {
     "show": true,
+    "text":"",
     "textStyle": {
       "color": "#BFBFBF",
       "fontSize": 18
