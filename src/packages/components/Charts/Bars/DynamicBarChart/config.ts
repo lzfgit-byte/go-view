@@ -2,7 +2,7 @@ import { PublicConfigClass } from '@/packages/public';
 import { CreateComponentType } from '@/packages/index.d';
 import { DynamicBarChartConfig } from './index';
 import cloneDeep from 'lodash/cloneDeep';
-export const includes = ['title', 'grid'];
+export const includes = ['title', 'grid', 'xAxis', 'yAxis', 'series'];
 const categories = (function () {
   let now = new Date();
   let res = [];
@@ -38,6 +38,7 @@ const data2 = (function () {
   }
   return res;
 })();
+const dataSet = { xAxis: [categories, categories2], series: [data, data2] };
 const preOpt = {
   tooltip: {
     trigger: 'axis',
@@ -65,29 +66,25 @@ const preOpt = {
       color: '#B9B8CE',
     },
   },
-  toolbox: {
-    show: true,
-    feature: {
-      dataView: { readOnly: false },
-      restore: {},
-      saveAsImage: {},
-    },
-  },
   dataZoom: {
     show: false,
     start: 0,
     end: 100,
   },
+};
+export const option = {
+  //此处写配置项
+  ...preOpt,
   xAxis: [
     {
       type: 'category',
       boundaryGap: true,
-      data: categories,
+      data: dataSet.xAxis[0],
     },
     {
       type: 'category',
       boundaryGap: true,
-      data: categories2,
+      data: dataSet.xAxis[1],
     },
   ],
   yAxis: [
@@ -114,21 +111,19 @@ const preOpt = {
       type: 'bar',
       xAxisIndex: 1,
       yAxisIndex: 1,
-      data: data,
+      data: dataSet.series[0],
     },
     {
       name: 'Dynamic Line',
       type: 'line',
-      data: data2,
+      data: dataSet.series[1],
     },
   ],
-};
-export const option = {
-  //此处写配置项
-  ...preOpt,
   title: {
     text: 'Dynamic Data',
     show: true,
+    left: '0',
+    top: '0',
     textStyle: {
       color: '#BFBFBF',
       fontSize: 18,
@@ -145,8 +140,8 @@ export const option = {
     right: '10%',
     bottom: '60',
   },
-
-  dataset: [],
+  dataset: dataSet,
+  loadDynamicData: { value: true },
 };
 export default class Config extends PublicConfigClass implements CreateComponentType {
   public key = DynamicBarChartConfig.key;

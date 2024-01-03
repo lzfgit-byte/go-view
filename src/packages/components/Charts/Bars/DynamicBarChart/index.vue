@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, computed, watch, PropType, nextTick } from 'vue';
+  import { ref, computed, watch, PropType, nextTick, onUnmounted } from 'vue';
   import VChart from 'vue-echarts';
   import { useCanvasInitOptions } from '@/hooks/useCanvasInitOptions.hook';
   import { use } from 'echarts/core';
@@ -28,6 +28,7 @@
     TooltipComponent,
     LegendComponent,
   } from 'echarts/components';
+  import useDataSet from '@/packages/components/Charts/Bars/DynamicBarChart/useDataSet';
 
   const props = defineProps({
     themeSetting: {
@@ -64,19 +65,7 @@
 
   watch(
     () => props.chartConfig.option.dataset,
-    (newData, oldData) => {
-      // if (newData.dimensions.length !== oldData.dimensions.length) {
-      //   const seriesArr = [];
-      //   for (let i = 0; i < newData.dimensions.length - 1; i++) {
-      //     seriesArr.push(barSeriesItem, lineSeriesItem);
-      //   }
-      //   replaceMergeArr.value = ['series'];
-      //   props.chartConfig.option.series = seriesArr;
-      //   nextTick(() => {
-      //     replaceMergeArr.value = [];
-      //   });
-      // }
-    },
+    (newData, oldData) => {},
     {
       deep: false,
     }
@@ -85,4 +74,5 @@
   const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore, (data) => {
     console.log('数据获取-->', data);
   });
+  const {} = useDataSet(vChartRef, props);
 </script>

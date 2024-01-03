@@ -50,6 +50,14 @@
         <n-input v-model:value="title.text" size="small"></n-input>
       </setting-item>
     </setting-item-box>
+    <setting-item-box name="位置" v-if="title.left !== undefined && title.top !== undefined">
+      <setting-item name="left">
+        <n-input v-model:value="title.left" size="small"></n-input>
+      </setting-item>
+      <setting-item name="top">
+        <n-input v-model:value="title.top" size="small"></n-input>
+      </setting-item>
+    </setting-item-box>
     <setting-item-box name="副标题" v-if="title.subtext">
       <setting-item name="颜色">
         <n-color-picker size="small" v-model:value="title.subtextStyle.color"></n-color-picker>
