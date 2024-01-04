@@ -4,7 +4,13 @@ import { CreateComponentType } from '@/packages/index.d';
 import cloneDeep from 'lodash/cloneDeep';
 
 export const includes = ['legend'];
-
+const dataSet = [
+  { value: 1048, name: 'Search Engine' },
+  { value: 735, name: 'Direct' },
+  { value: 580, name: 'Email' },
+  { value: 484, name: 'Union Ads' },
+  { value: 300, name: 'Video Ads' },
+];
 export const option = {
   tooltip: {
     trigger: 'item',
@@ -30,16 +36,11 @@ export const option = {
         },
       },
       data: [
-        { value: 1048, name: 'Search Engine' },
-        { value: 735, name: 'Direct' },
-        { value: 580, name: 'Email' },
-        { value: 484, name: 'Union Ads' },
-        { value: 300, name: 'Video Ads' },
+        ...dataSet,
         {
           // make an record to fill the bottom 50%
-          value: 1048 + 735 + 580 + 484 + 300,
+          value: dataSet.reduce((a, v) => a + v.value, 0),
           itemStyle: {
-            // stop the chart from rendering this piece
             color: 'none',
             decal: {
               symbol: 'none',
@@ -52,6 +53,7 @@ export const option = {
       ],
     },
   ],
+  dataset: dataSet,
 };
 
 export default class Config extends PublicConfigClass implements CreateComponentType {

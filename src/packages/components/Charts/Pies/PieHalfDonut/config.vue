@@ -1,6 +1,6 @@
 <template>
   <global-setting :option-data="optionData" />
-  <CollapseItem name="饼图配置" :expanded="true">
+  <CollapseItem name="饼图配置">
     <setting-item-box name="内外环" v-if="radius">
       <setting-item name="内">
         <n-input v-model:value="optionData.series[0].radius[0]"></n-input>
@@ -14,7 +14,26 @@
         <n-input-number v-model:value="optionData.series[0].startAngle"></n-input-number>
       </setting-item>
     </setting-item-box>
+    <setting-item-box name="位置" v-if="optionData.series[0].center[0]">
+      <setting-item name="左">
+        <n-input v-model:value="optionData.series[0].center[0]"></n-input>
+      </setting-item>
+      <setting-item name="右">
+        <n-input v-model:value="optionData.series[0].center[1]"></n-input>
+      </setting-item>
+    </setting-item-box>
   </CollapseItem>
+  <collapse-item name="标签">
+    <template #header>
+      <n-switch v-model:value="optionData.series[0].label.show"></n-switch>
+    </template>
+    <setting-item-box name="格式">
+      <FuncInput
+        :language="'javascript'"
+        v-model:value="optionData.series[0].label.formatter"
+      ></FuncInput>
+    </setting-item-box>
+  </collapse-item>
 </template>
 
 <script setup lang="ts">
@@ -26,6 +45,7 @@
     SettingItem,
     SettingItemBox,
   } from '@/components/Pages/ChartItemSetting';
+  import FuncInput from '@/packages/components/Charts/Pies/PieHalfDonut/FuncInput.vue';
 
   const props = defineProps({
     optionData: { type: Object as PropType<typeof option>, required: true },
