@@ -51,6 +51,8 @@
   import { ChartsOptionContent } from './components/ChartsOptionContent';
   import { ChartsSearch } from './components/ChartsSearch';
   import { useAsideHook } from './hooks/useAside.hook';
+  import { provide } from 'vue-demi';
+  import { MenuProvideEnum } from '@/views/chart/ContentCharts/const/MenuProvideEnum';
 
   const {
     getCharts,
@@ -61,6 +63,7 @@
     clickItemHandle,
     menuOptions,
   } = useAsideHook();
+  provide(MenuProvideEnum.CURRENT_MENU, selectValue);
 </script>
 
 <style lang="scss" scoped>

@@ -30,7 +30,7 @@
                   @click="collectStore.addCollect(item)"
                   v-if="!collectStore.checkIsCollect(item)"
                 />
-                <StarIcon @click="collectStore.cancelCollect(item)" v-else />
+                <StarIcon @click="handleCancelCollect(item, index)" v-else />
               </n-icon>
             </div>
           </n-text>
@@ -93,6 +93,8 @@
 
   import omit from 'lodash/omit';
   import { useCollectStoreStore } from '@/store/modules/collectStoreStore/collectStoreStore';
+  import { inject } from 'vue-demi';
+  import { MenuProvideEnum } from '@/views/chart/ContentCharts/const/MenuProvideEnum';
 
   const chartEditStore = useChartEditStore();
   const collectStore = useCollectStoreStore();
@@ -181,6 +183,14 @@
         packagesStore.deletePhotos(item, index);
       },
     });
+  };
+  //取消收藏
+  const currentMenu: Ref<string> = inject(MenuProvideEnum.CURRENT_MENU) as any;
+  const handleCancelCollect = (item: ConfigType, index: number) => {
+    if (currentMenu.value === PackagesCategoryEnum.COLLECT) {
+      emit('deletePhoto', item, index);
+    }
+    collectStore.cancelCollect(item);
   };
 
   watch(

@@ -12,7 +12,7 @@ export default (menuOptions: MenuOptionsType[]) => {
   watchEffect(() => {
     const index = menuOptions?.findIndex((i) => i.key === PackagesCategoryEnum.COLLECT);
     if (collects?.value?.length > -1 && index > -1) {
-      menuOptions[index].list = collects?.value || [];
+      menuOptions[index].list = collects.value;
     }
   });
   const initCollect = () => {

@@ -1,5 +1,5 @@
 <template>
-  <!-- 侧边栏和数据分发处理 -->
+  <!-- 侧边栏和数据分发处理 |x|current|x|-->
   <div class="go-chart-common">
     <n-menu
       v-show="hidePackageOneCategory"
@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, watch, computed, reactive } from 'vue';
+  import { ref, watch, computed, reactive, useAttrs } from 'vue';
   import { ConfigType } from '@/packages/index.d';
   import { useSettingStore } from '@/store/modules/settingStore/settingStore';
   import { loadAsyncComponent } from '@/utils';

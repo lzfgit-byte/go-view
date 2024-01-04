@@ -66,6 +66,7 @@ export const useAsideHook = () => {
         list: packagesStore.getPackagesList[val],
       });
     }
+    console.log(menuOptions);
   };
   handlePackagesList();
 
