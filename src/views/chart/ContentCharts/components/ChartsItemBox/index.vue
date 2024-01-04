@@ -24,7 +24,7 @@
           ></mac-os-control-btn>
           <n-text class="list-header-text" depth="3">
             <n-ellipsis style="max-width: 89px">{{ item.title }}</n-ellipsis>
-            <div class="collect-star">
+            <div class="collect-star" v-if="collectStore.canCollect(item)">
               <n-icon>
                 <star-outline-icon
                   @click="collectStore.addCollect(item)"
