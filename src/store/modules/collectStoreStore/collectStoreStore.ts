@@ -29,7 +29,9 @@ export const useCollectStoreStore = defineStore({
       deleteCollect({ value: JSONStringify(config) });
     },
     checkIsCollect(config: ConfigType): boolean {
-      return this.collects.some((item: ConfigType) => item.key === config.key);
+      return this.collects.some(
+        (item: ConfigType) => item.key + item.title === config.key + config.title
+      );
     },
   },
 });

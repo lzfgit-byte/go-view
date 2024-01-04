@@ -6,8 +6,7 @@ import { PackagesCategoryEnum, PackagesCategoryName, ConfigType } from '@/packag
 import { usePackagesStore } from '@/store/modules/packagesStore/packagesStore';
 import { ChartLayoutStoreEnum } from '@/store/modules/chartLayoutStore/chartLayoutStore.d';
 import { useCollectStoreStore } from '@/store/modules/collectStoreStore/collectStoreStore';
-import { collectListApi, CollectType } from '@/api/path/collect.api';
-import { MyResponseType } from '@/api/axios';
+import useCollectHook from '@/views/chart/ContentCharts/hooks/useCollect.hook';
 // 图标
 const { AirPlaneOutlineIcon, ImageIcon, BarChartIcon, StarOutlineIcon } = icon.ionicons5;
 const { TableSplitIcon, RoadmapIcon, SpellCheckIcon, GraphicalDataFlowIcon } = icon.carbon;
@@ -50,11 +49,10 @@ const packagesListObj = {
     label: PackagesCategoryName.COLLECT,
   },
 };
-const collectStore = useCollectStoreStore();
 export const useAsideHook = () => {
   const packagesStore = usePackagesStore();
   const menuOptions: MenuOptionsType[] = [];
-  const collects = computed(() => collectStore.getCollects);
+
   // 处理列表
   const handlePackagesList = () => {
     for (const val in packagesStore.getPackagesList) {
@@ -69,13 +67,6 @@ export const useAsideHook = () => {
       });
     }
   };
-  //收藏
-  watchEffect(() => {
-    const index = menuOptions?.findIndex((i) => i.key === PackagesCategoryEnum.COLLECT);
-    if (collects?.value?.length > -1 && index > -1) {
-      menuOptions[index].list = collects?.value || [];
-    }
-  });
   handlePackagesList();
 
   // 记录选中值
@@ -96,11 +87,7 @@ export const useAsideHook = () => {
     }
     beforeSelect = key;
   };
-  onMounted(() => {
-    collectListApi().then((res) => {
-      collectStore.initCollect(res?.data?.map((item) => JSONParse(item?.value)) as any);
-    });
-  });
+  useCollectHook(menuOptions);
   return {
     getCharts,
     BarChartIcon,
