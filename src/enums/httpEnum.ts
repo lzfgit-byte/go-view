@@ -3,6 +3,7 @@
 export enum ModuleTypeEnum {
   SYSTEM = 'sys',
   PROJECT = 'project',
+  Collect = 'collect',
 }
 
 // 请求结果集

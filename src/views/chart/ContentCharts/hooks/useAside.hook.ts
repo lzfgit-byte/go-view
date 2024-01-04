@@ -1,11 +1,13 @@
-import { ref, watch, computed, watchEffect } from 'vue';
+import { ref, watch, computed, watchEffect, onMounted } from 'vue';
 import { icon } from '@/plugins';
-import { renderLang, renderIcon } from '@/utils';
+import { renderLang, renderIcon, JSONParse } from '@/utils';
 import { themeColor, setItem, getCharts } from './useLayout.hook';
 import { PackagesCategoryEnum, PackagesCategoryName, ConfigType } from '@/packages/index.d';
 import { usePackagesStore } from '@/store/modules/packagesStore/packagesStore';
 import { ChartLayoutStoreEnum } from '@/store/modules/chartLayoutStore/chartLayoutStore.d';
 import { useCollectStoreStore } from '@/store/modules/collectStoreStore/collectStoreStore';
+import { collectListApi, CollectType } from '@/api/path/collect.api';
+import { MyResponseType } from '@/api/axios';
 // 图标
 const { AirPlaneOutlineIcon, ImageIcon, BarChartIcon, StarOutlineIcon } = icon.ionicons5;
 const { TableSplitIcon, RoadmapIcon, SpellCheckIcon, GraphicalDataFlowIcon } = icon.carbon;
@@ -94,7 +96,11 @@ export const useAsideHook = () => {
     }
     beforeSelect = key;
   };
-
+  onMounted(() => {
+    collectListApi().then((res) => {
+      collectStore.initCollect(res?.data?.map((item) => JSONParse(item?.value)) as any);
+    });
+  });
   return {
     getCharts,
     BarChartIcon,
