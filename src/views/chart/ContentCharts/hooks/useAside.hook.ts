@@ -5,7 +5,6 @@ import { themeColor, setItem, getCharts } from './useLayout.hook';
 import { PackagesCategoryEnum, PackagesCategoryName, ConfigType } from '@/packages/index.d';
 import { usePackagesStore } from '@/store/modules/packagesStore/packagesStore';
 import { ChartLayoutStoreEnum } from '@/store/modules/chartLayoutStore/chartLayoutStore.d';
-import { useCollectStoreStore } from '@/store/modules/collectStoreStore/collectStoreStore';
 import useCollectHook from '@/views/chart/ContentCharts/hooks/useCollect.hook';
 // 图标
 const { AirPlaneOutlineIcon, ImageIcon, BarChartIcon, StarOutlineIcon } = icon.ionicons5;
@@ -66,7 +65,6 @@ export const useAsideHook = () => {
         list: packagesStore.getPackagesList[val],
       });
     }
-    console.log(menuOptions);
   };
   handlePackagesList();
 
