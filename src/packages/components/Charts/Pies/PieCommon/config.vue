@@ -6,6 +6,11 @@
       <SettingItem>
         <n-select v-model:value="optionData.type" size="small" :options="fontWeightOptions" />
       </SettingItem>
+      <SettingItem name="是否半环" v-if="false">
+        <SettingItemCover>
+          <n-switch v-model:value="optionData.isHalf" size="small" />
+        </SettingItemCover>
+      </SettingItem>
     </SettingItemBox>
     <SettingItemBox name="动画" :alone="true">
       <SettingItem>
@@ -68,12 +73,19 @@
         </n-space>
       </setting-item>
     </setting-item-box>
+    <setting-item-box name="内外环" v-if="radius">
+      <setting-item name="内">
+        <n-input v-model:value="optionData.series[0].radius[0]"></n-input>
+      </setting-item>
+      <setting-item name="外">
+        <n-input v-model:value="optionData.series[0].radius[1]"></n-input>
+      </setting-item>
+    </setting-item-box>
   </CollapseItem>
 </template>
 
 <script setup lang="ts">
-  import { PropType, watch } from 'vue';
-  import { GlobalThemeJsonType } from '@/settings/chartThemes/index';
+  import { computed, PropType, watch } from 'vue';
   import {
     GlobalSetting,
     CollapseItem,
@@ -82,10 +94,11 @@
   } from '@/components/Pages/ChartItemSetting';
   import { PieTypeObject, PieTypeEnum } from './config';
   import { labelConfig } from '@/packages/chartConfiguration/echarts';
-
+  import { option } from './config';
+  import SettingItemCover from '@/components/Pages/ChartItemSetting/SettingItemCover.vue';
   const props = defineProps({
     optionData: {
-      type: Object as PropType<GlobalThemeJsonType>,
+      type: Object as PropType<typeof option>,
       required: true,
     },
   });
@@ -109,4 +122,5 @@
     { label: '百分比', value: '{d}' },
     { label: '列名:百分比', value: '{b}:{d}%' },
   ];
+  const radius = computed(() => props?.optionData?.series[0].radius);
 </script>

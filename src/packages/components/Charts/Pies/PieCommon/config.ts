@@ -24,7 +24,7 @@ const otherConfig = {
   isCarousel: false,
 };
 
-const option = {
+export const option = {
   ...otherConfig,
   type: 'ring',
   tooltip: {
@@ -66,6 +66,7 @@ const option = {
       },
     },
   ],
+  isHalf: false,
 };
 
 export default class Config extends PublicConfigClass implements CreateComponentType {
