@@ -1,10 +1,11 @@
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, watchEffect } from 'vue';
 import { icon } from '@/plugins';
 import { renderLang, renderIcon } from '@/utils';
 import { themeColor, setItem, getCharts } from './useLayout.hook';
 import { PackagesCategoryEnum, PackagesCategoryName, ConfigType } from '@/packages/index.d';
 import { usePackagesStore } from '@/store/modules/packagesStore/packagesStore';
 import { ChartLayoutStoreEnum } from '@/store/modules/chartLayoutStore/chartLayoutStore.d';
+import { useCollectStoreStore } from '@/store/modules/collectStoreStore/collectStoreStore';
 // 图标
 const { AirPlaneOutlineIcon, ImageIcon, BarChartIcon, StarOutlineIcon } = icon.ionicons5;
 const { TableSplitIcon, RoadmapIcon, SpellCheckIcon, GraphicalDataFlowIcon } = icon.carbon;
@@ -47,11 +48,11 @@ const packagesListObj = {
     label: PackagesCategoryName.COLLECT,
   },
 };
-
+const collectStore = useCollectStoreStore();
 export const useAsideHook = () => {
   const packagesStore = usePackagesStore();
   const menuOptions: MenuOptionsType[] = [];
-
+  const collects = computed(() => collectStore.getCollects);
   // 处理列表
   const handlePackagesList = () => {
     for (const val in packagesStore.getPackagesList) {
@@ -66,6 +67,13 @@ export const useAsideHook = () => {
       });
     }
   };
+  //收藏
+  watchEffect(() => {
+    const index = menuOptions?.findIndex((i) => i.key === PackagesCategoryEnum.COLLECT);
+    if (collects?.value?.length > -1 && index > -1) {
+      menuOptions[index].list = collects?.value || [];
+    }
+  });
   handlePackagesList();
 
   // 记录选中值

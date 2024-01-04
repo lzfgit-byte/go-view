@@ -22,5 +22,8 @@ export const useCollectStoreStore = defineStore({
         1
       );
     },
+    checkIsCollect(config: ConfigType): boolean {
+      return this.collects.some((item: ConfigType) => item.key === config.key);
+    },
   },
 });

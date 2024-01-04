@@ -38,7 +38,7 @@ export let packagesList: PackagesType = {
   [PackagesCategoryEnum.DECORATES]: DecorateList,
   [PackagesCategoryEnum.PHOTOS]: PhotoList,
   [PackagesCategoryEnum.ICONS]: IconList,
-  [PackagesCategoryEnum.COLLECT]: IconList,
+  [PackagesCategoryEnum.COLLECT]: [],
 };
 
 // 组件缓存, 可以大幅度提升组件加载速度

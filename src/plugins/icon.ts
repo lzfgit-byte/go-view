@@ -71,6 +71,7 @@ import {
   Analytics as AnalyticsIcon,
   AirplaneOutline as AirPlaneOutlineIcon,
   StarOutline as StarOutlineIcon,
+  Star as StarIcon,
 } from '@vicons/ionicons5';
 
 import {
@@ -250,8 +251,10 @@ const ionicons5 = {
   AnalyticsIcon,
   // 飞机
   AirPlaneOutlineIcon,
-  //星星
+  //星星 空心
   StarOutlineIcon,
+  // 实心
+  StarIcon,
 };
 
 const carbon = {

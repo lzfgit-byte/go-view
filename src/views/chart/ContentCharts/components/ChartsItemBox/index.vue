@@ -23,7 +23,16 @@
             :disabled="true"
           ></mac-os-control-btn>
           <n-text class="list-header-text" depth="3">
-            <n-ellipsis>{{ item.title }}</n-ellipsis>
+            <n-ellipsis style="max-width: 89px">{{ item.title }}</n-ellipsis>
+            <div class="collect-star">
+              <n-icon>
+                <star-outline-icon
+                  @click="collectStore.addCollect(item)"
+                  v-if="!collectStore.checkIsCollect(item)"
+                />
+                <StarIcon @click="collectStore.cancelCollect(item)" v-else />
+              </n-icon>
+            </div>
           </n-text>
         </div>
         <div class="list-center go-flex-center go-transition" draggable="true">
@@ -83,9 +92,11 @@
   import { icon } from '@/plugins';
 
   import omit from 'lodash/omit';
+  import { useCollectStoreStore } from '@/store/modules/collectStoreStore/collectStoreStore';
 
   const chartEditStore = useChartEditStore();
-  const { TrashIcon } = icon.ionicons5;
+  const collectStore = useCollectStoreStore();
+  const { TrashIcon, StarOutlineIcon, StarIcon } = icon.ionicons5;
 
   const emit = defineEmits(['deletePhoto']);
   const props = defineProps({
@@ -211,6 +222,10 @@
       border-radius: 6px;
       cursor: pointer;
       border: 1px solid rgba(0, 0, 0, 0);
+      .collect-star {
+        display: none;
+        margin-left: 3px;
+      }
       @include fetch-bg-color('background-color2');
       &:hover {
         @include hover-border-color('background-color4');
@@ -219,6 +234,10 @@
         }
         .list-tools {
           opacity: 1;
+        }
+        .collect-star {
+          display: inline-block;
+          transform: translateY(2px);
         }
       }
       .list-header {

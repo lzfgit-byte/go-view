@@ -3,6 +3,7 @@ import { ConfigType, PackagesStoreType, PackagesType } from './packagesStore.d';
 import { packagesList } from '@/packages/index';
 import { StorageEnum } from '@/enums/storageEnum';
 import { getLocalStorage, setLocalStorage } from '@/utils';
+import { useCollectStoreStore } from '@/store/modules/collectStoreStore/collectStoreStore';
 
 // 组件 packages
 export const usePackagesStore = defineStore({
