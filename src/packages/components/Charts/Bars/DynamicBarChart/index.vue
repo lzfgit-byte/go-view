@@ -10,17 +10,7 @@
 </template>
 
 <script setup lang="ts">
-  import {
-    ref,
-    computed,
-    watch,
-    PropType,
-    nextTick,
-    onUnmounted,
-    toRaw,
-    onMounted,
-    watchEffect,
-  } from 'vue';
+  import { ref, computed, PropType } from 'vue';
   import VChart from 'vue-echarts';
   import { useCanvasInitOptions } from '@/hooks/useCanvasInitOptions.hook';
   import { use } from 'echarts/core';

@@ -53,7 +53,6 @@
     TooltipComponent,
     LegendComponent,
   ]);
-
   const option = computed(() => {
     return mergeTheme(props.chartConfig.option, props.themeSetting, includes);
   });

@@ -27,11 +27,18 @@
     <template #header>
       <n-switch v-model:value="optionData.series[0].label.show"></n-switch>
     </template>
-    <setting-item-box name="格式">
-      <FuncInput
-        :language="'javascript'"
-        v-model:value="optionData.series[0].label.formatter"
-      ></FuncInput>
+    <setting-item-box name="格式化" :alone="true">
+      <setting-item>
+        <FuncInput
+          :language="'javascript'"
+          v-model:value="optionData.series[0].label.formatter"
+        ></FuncInput>
+      </setting-item>
+    </setting-item-box>
+    <setting-item-box name="样式">
+      <setting-item name="大小">
+        <n-input-number v-model:value="optionData.series[0].label.fontSize"></n-input-number>
+      </setting-item>
     </setting-item-box>
   </collapse-item>
 </template>

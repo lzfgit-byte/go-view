@@ -30,6 +30,10 @@ export const option = {
       startAngle: 180,
       label: {
         show: true,
+        fontSize: 18,
+        textBorderWidth: 0,
+        color: '#fff',
+        textBorderColor: '#fff',
         formatter(param: any) {
           // correct the percentage
           return param.name + ' (' + param.percent * 2 + '%)';
