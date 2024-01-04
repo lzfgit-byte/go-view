@@ -32,7 +32,7 @@ export const option = {
         show: true,
         fontSize: 18,
         textBorderWidth: 0,
-        color: '#fff',
+        color: '#b9b8ce',
         textBorderColor: '#fff',
         formatter(param: any) {
           // correct the percentage
