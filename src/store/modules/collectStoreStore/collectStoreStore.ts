@@ -15,7 +15,7 @@ export const useCollectStoreStore = defineStore({
   },
   actions: {
     addCollect(config: ConfigType) {
-      this.collects.push(config);
+      this.collects.splice(0, 0, config);
       addCollect({ value: JSONStringify(config) });
     },
     initCollect(config: ConfigType[]) {
