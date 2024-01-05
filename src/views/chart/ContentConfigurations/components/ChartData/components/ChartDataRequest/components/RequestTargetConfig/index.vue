@@ -182,7 +182,9 @@
       value: `【关系图】${graphUrl}`,
     },
   ];
-  const reqData = CustomListReqData.map((item) => ({ value: `【${item.aka}】->${item.value}` }));
+  const reqData = CustomListReqData.value.map((item) => ({
+    value: `【${item.aka}】->${item.value}`,
+  }));
 </script>
 
 <style lang="scss" scoped>

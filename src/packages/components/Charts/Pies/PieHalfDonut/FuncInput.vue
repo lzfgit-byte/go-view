@@ -1,5 +1,10 @@
 <template>
-  <n-input v-model:value="inputModelValue" size="small" @click="showModal = true"></n-input>
+  <n-input
+    v-model:value="inputModelValue"
+    :readonly="true"
+    size="small"
+    @click="showModal = true"
+  ></n-input>
   <n-modal v-model:show="showModal" @maskClick="showModal = false">
     <n-card
       style="width: 70vw"
@@ -47,22 +52,18 @@
   const valueModel = useVModel(props, 'value', emits);
 
   const inputModelValue = ref<string>(valueModel.value?.toString() || '');
+  const getFuncBody = (str: string) => str.substring(str.indexOf('{') + 1, str.lastIndexOf('}'));
   //弹窗
   const showModal = ref(false);
   const dialogValue = ref(inputModelValue.value);
   watchEffect(() => {
     inputModelValue.value = valueModel.value?.toString() as string;
     if (inputModelValue.value.length > 0) {
-      dialogValue.value = inputModelValue.value;
+      dialogValue.value = getFuncBody(inputModelValue.value);
     }
   });
   const handlerConfirm = () => {
-    const funStr = dialogValue.value.substring(
-      dialogValue.value.indexOf('{') + 1,
-      dialogValue.value.lastIndexOf('}')
-    );
-    const newFunc = new Function('param', `${funStr}`);
-    valueModel.value = newFunc;
+    valueModel.value = new Function('param', `${dialogValue.value}`);
     showModal.value = false;
   };
 </script>

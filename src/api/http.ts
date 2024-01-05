@@ -232,7 +232,7 @@ export const customizeHttp = (
       headers,
     };
     let jsonStr = JSONStringify(reqObj);
-    CustomListReqData.forEach(({ reg, value }) => {
+    CustomListReqData.value.forEach(({ reg, value }) => {
       jsonStr = jsonStr.replace(reg, value);
       reqObj = JSONParse(jsonStr);
     });

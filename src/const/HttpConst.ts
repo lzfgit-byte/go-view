@@ -1,4 +1,6 @@
 // 表格数据请求动态参数 TODO 添加更多动态参数
+import { ref } from 'vue-demi';
+
 const fetchRouteParamsLocation = () => {
   try {
     // 防止添加query参数的时候，解析ID异常
@@ -8,6 +10,6 @@ const fetchRouteParamsLocation = () => {
     return '';
   }
 };
-export const CustomListReqData = [
+export const CustomListReqData = ref([
   { reg: /\$projectId/g, aka: '$projectId', value: fetchRouteParamsLocation() },
-];
+]);
