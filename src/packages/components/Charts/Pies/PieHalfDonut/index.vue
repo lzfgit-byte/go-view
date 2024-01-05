@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, PropType } from 'vue';
+  import { computed, onMounted, PropType, ref } from 'vue';
   import VChart from 'vue-echarts';
   import { useCanvasInitOptions } from '@/hooks/useCanvasInitOptions.hook';
   import { use } from 'echarts/core';
@@ -27,7 +27,7 @@
   } from 'echarts/components';
   import { useChartDataFetch } from '@/hooks';
   import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore';
-  import dataJson from '@/packages/components/Charts/Pies/PieCommon/data.json';
+  import { option as COption } from './config';
 
   const props = defineProps({
     themeSetting: {
@@ -53,8 +53,34 @@
     TooltipComponent,
     LegendComponent,
   ]);
+  const fromRemote = ref([]);
+  const dataset = computed(() =>
+    fromRemote.value.length > 0 ? fromRemote.value : props.chartConfig?.option?.dataset
+  );
   const option = computed(() => {
-    return mergeTheme(props.chartConfig.option, props.themeSetting, includes);
+    const theme: typeof COption = mergeTheme(
+      props.chartConfig.option,
+      props.themeSetting,
+      includes
+    );
+    theme.series[0].data = [
+      ...dataset.value,
+      {
+        value: dataset.value.reduce((a: any, v: any) => a + v.value, 0),
+        itemStyle: {
+          color: 'none',
+          decal: {
+            symbol: 'none',
+          },
+        },
+        label: {
+          show: false,
+        },
+      },
+    ];
+    return theme;
   });
-  const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore, (newData) => {});
+  const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore, (newData) => {
+    fromRemote.value = newData;
+  });
 </script>

@@ -23,7 +23,7 @@ export const useChartDataFetch = (
   useChartEditStore: ChartEditStoreType,
   updateCallback?: (...args: any) => any
 ) => {
-  const vChartRef = ref<typeof VChart | null>(null);
+  const vChartRef = ref<InstanceType<typeof VChart>>();
   let fetchInterval: any = 0;
   const isRequest = ref(false);
 
@@ -37,7 +37,7 @@ export const useChartDataFetch = (
   const echartsUpdateHandle = (dataset: any) => {
     if (chartFrame === ChartFrameEnum.ECHARTS) {
       if (vChartRef.value) {
-        setOption(vChartRef.value, { dataset });
+        setOption(vChartRef.value as any, { dataset });
       }
     }
   };

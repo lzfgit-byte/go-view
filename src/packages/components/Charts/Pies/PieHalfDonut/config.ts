@@ -40,10 +40,8 @@ export const option = {
         },
       },
       data: [
-        ...dataSet,
         {
-          // make an record to fill the bottom 50%
-          value: dataSet.reduce((a, v) => a + v.value, 0),
+          value: 5,
           itemStyle: {
             color: 'none',
             decal: {
