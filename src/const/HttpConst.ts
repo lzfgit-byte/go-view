@@ -8,4 +8,6 @@ const fetchRouteParamsLocation = () => {
     return '';
   }
 };
-export const CustomListReqData = [{ reg: /\$projectId/g, value: fetchRouteParamsLocation() }];
+export const CustomListReqData = [
+  { reg: /\$projectId/g, aka: '$projectId', value: fetchRouteParamsLocation() },
+];

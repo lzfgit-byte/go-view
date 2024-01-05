@@ -1,16 +1,26 @@
 <template>
   <div class="go-config-item-box">
-    <n-tooltip trigger="hover">
-      <template #trigger>
-        <n-text class="item-left" depth="2">
-          {{ name }}
-          <n-space :size="5">
-            <slot name="name"></slot>
-          </n-space>
-        </n-text>
-      </template>
-      {{ name }}
-    </n-tooltip>
+    <template v-if="name">
+      <n-tooltip trigger="hover">
+        <template #trigger>
+          <n-text class="item-left" depth="2">
+            {{ name }}
+            <n-space :size="5">
+              <slot name="name"></slot>
+            </n-space>
+          </n-text>
+        </template>
+        {{ name }}
+      </n-tooltip>
+    </template>
+    <template v-else>
+      <n-text class="item-left" depth="2">
+        {{ name }}
+        <n-space :size="5">
+          <slot name="name"></slot>
+        </n-space>
+      </n-text>
+    </template>
 
     <div
       class="item-right"

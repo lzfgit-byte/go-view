@@ -15,12 +15,30 @@
             <help-outline-icon></help-outline-icon>
           </n-icon>
         </template>
-        <ul class="go-pl-0">
-          开发环境使用 mock 数据，请输入
-          <li v-for="item in apiList" :key="item.value">
-            <n-text type="info"> {{ item.value }} </n-text>
-          </li>
-        </ul>
+        <div>
+          <n-tabs type="segment">
+            <n-tab-pane name="placeholder" tab="数据占位符">
+              <n-scrollbar style="max-height: 300px; min-height: 300px">
+                <ul class="go-pl-0">
+                  会将写入的占位符值，替换为具体的值
+                  <li v-for="item in reqData" :key="item.value">
+                    <n-text type="info"> {{ item.value }} </n-text>
+                  </li>
+                </ul>
+              </n-scrollbar>
+            </n-tab-pane>
+            <n-tab-pane name="mock" tab="mock数据">
+              <n-scrollbar style="max-height: 300px">
+                <ul class="go-pl-0">
+                  开发环境使用 mock 数据，请输入
+                  <li v-for="item in apiList" :key="item.value">
+                    <n-text type="info"> {{ item.value }} </n-text>
+                  </li>
+                </ul>
+              </n-scrollbar>
+            </n-tab-pane>
+          </n-tabs>
+        </div>
       </n-tooltip>
     </template>
     <setting-item name="请求方式 & URL 地址">
@@ -95,6 +113,7 @@
     threeEarth01Url,
     sankeyUrl,
   } from '@/api/mock';
+  import { CustomListReqData } from '@/const/HttpConst';
 
   const props = defineProps({
     targetDataRequest: Object as PropType<RequestConfigType>,
@@ -163,6 +182,7 @@
       value: `【关系图】${graphUrl}`,
     },
   ];
+  const reqData = CustomListReqData.map((item) => ({ value: `【${item.aka}】->${item.value}` }));
 </script>
 
 <style lang="scss" scoped>
