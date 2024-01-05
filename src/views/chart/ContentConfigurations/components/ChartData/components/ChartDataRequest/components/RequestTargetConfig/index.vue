@@ -9,7 +9,7 @@
   >
     <template #name>
       地址
-      <n-tooltip trigger="hover" v-if="isDev()">
+      <n-tooltip trigger="hover">
         <template #trigger>
           <n-icon size="21" :depth="3">
             <help-outline-icon></help-outline-icon>
@@ -27,13 +27,20 @@
                 </ul>
               </n-scrollbar>
             </n-tab-pane>
-            <n-tab-pane name="mock" tab="mock数据">
+            <n-tab-pane name="mock" tab="数据格式解释">
               <n-scrollbar style="max-height: 300px">
                 <ul class="go-pl-0">
-                  开发环境使用 mock 数据，请输入
-                  <li v-for="item in apiList" :key="item.value">
-                    <n-text type="info"> {{ item.value }} </n-text>
-                  </li>
+                  接口返回的值跟展示的数据格式一模一样变可以
+                  <br />
+                  <n-card size="small" class="go-code-card">
+                    <n-code :code="'{code:200,data:[]}'" language="json"></n-code>
+                  </n-card>
+                  <br />
+                  系统会自动将data传给组件
+                  <!--                  开发环境使用 mock 数据，请输入-->
+                  <!--                  <li v-for="item in apiList" :key="item.value">-->
+                  <!--                    <n-text type="info"> {{ item.value }} </n-text>-->
+                  <!--                  </li>-->
                 </ul>
               </n-scrollbar>
             </n-tab-pane>
@@ -91,7 +98,7 @@
   } from '@/views/chart/ContentConfigurations/components/ChartData/index.d';
   import { RequestConfigType } from '@/store/modules/chartEditStore/chartEditStore.d';
   import { RequestHeader } from '../RequestHeader';
-  import { isDev } from '@/utils';
+  import { isDev, toString } from '@/utils';
   import { icon } from '@/plugins';
   import {
     graphUrl,
@@ -196,5 +203,11 @@
   }
   .select-type-options {
     width: 120px;
+  }
+  .go-pl-0 {
+    color: var(--n-tab-color);
+  }
+  .go-code-card {
+    background-color: var(--n-color);
   }
 </style>
